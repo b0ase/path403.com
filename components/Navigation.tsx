@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeProvider';
 
 const navItems = [
+  { href: 'https://path401.com', label: '$401', external: true },
+  { href: 'https://path402.com', label: '$402', external: true },
   { href: '/', label: '$403' },
   { href: '/spec', label: 'SPEC' },
   { href: '/blog', label: 'BLOG' },
-  { href: 'https://path401.com', label: '$401', external: true },
-  { href: 'https://path402.com', label: '$402', external: true },
 ];
 
 export function Navigation() {
