@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode */
+:root {
+  --bg-surface: #ffffff;
+  --bg-surface-secondary: #fafafa;
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+  --border-primary: #e4e4e7;
+}
+
+/* Dark mode */
+.dark {
+  --bg-surface: #000000;
+  --bg-surface-secondary: #09090b;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-primary: #27272a;
+}
+
+body {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: #18181b;
+  color: #ffffff;
+}
+.dark ::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #fafafa; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+.dark ::-webkit-scrollbar-track { background: #09090b; }
+.dark ::-webkit-scrollbar-thumb { background: #27272a; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+*:focus-visible {
+  outline: 1px solid #3f3f46;
+  outline-offset: 2px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.2s ease-out; }
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #71717a;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+.dark .section-label { border-color: #18181b; }
+
+/* Amber title glow */
+.hero-title-glow {
+  text-shadow:
+    0 0 10px rgba(245, 158, 11, 0.6),
+    0 0 30px rgba(245, 158, 11, 0.3),
+    0 0 60px rgba(245, 158, 11, 0.15),
+    0 0 100px rgba(245, 158, 11, 0.1);
+  animation: title-glow 4s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(245, 158, 11, 0.6),
+      0 0 30px rgba(245, 158, 11, 0.3),
+      0 0 60px rgba(245, 158, 11, 0.15),
+      0 0 100px rgba(245, 158, 11, 0.1);
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(245, 158, 11, 0.8),
+      0 0 40px rgba(245, 158, 11, 0.4),
+      0 0 80px rgba(245, 158, 11, 0.2),
+      0 0 120px rgba(245, 158, 11, 0.15);
+  }
+}
