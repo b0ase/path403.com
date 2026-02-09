@@ -43,13 +43,14 @@ export default function Page403() {
 
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden bg-black">
-        {/* Background video — fits inside HUD corner brackets */}
+        {/* Background video — inside HUD frame */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute top-6 left-6 right-6 bottom-6 object-cover opacity-30"
+          className="absolute left-1/2 -translate-x-1/2 opacity-30"
+          style={{ width: 'calc(100% - 8rem)', top: '-16%' }}
         >
           <source src="/403-hero.mp4" type="video/mp4" />
         </video>
@@ -127,7 +128,7 @@ export default function Page403() {
 
           {/* Reflection */}
           <div
-            className="relative overflow-hidden h-12 md:h-20 select-none mb-8"
+            className="relative overflow-hidden h-6 md:h-10 select-none mb-0"
             aria-hidden="true"
             style={{
               transform: 'scaleY(-1)',
@@ -149,7 +150,7 @@ export default function Page403() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mb-4"
           >
-            <span className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
+            <span className="text-zinc-400 text-xl md:text-2xl tracking-[0.3em] uppercase font-display font-black">
               SECURE YOUR PERIMETER
             </span>
           </motion.div>

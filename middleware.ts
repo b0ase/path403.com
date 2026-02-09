@@ -17,7 +17,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL('/403', request.url));
   }
 
-  return NextResponse.next();
+  // Default to 403 for this project
+  return NextResponse.rewrite(new URL('/403', request.url));
 }
 
 export const config = {
