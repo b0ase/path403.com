@@ -9,11 +9,10 @@ export const TOKEN_CONFIG = {
   description: 'PoW20 mining token for the $402 network. Earned by running nodes and indexing BSV-21 tokens. Stake with $401 KYC to earn serving revenue.',
   totalSupply: 21_000_000, // 21 million (8 decimal places)
   decimals: 8,
-  // Mainnet token not yet deployed — inscription details will be updated after deployment
-  inscriptionId: '', // Set after mainnet deploy
-  txId: '', // Set after mainnet deploy
+  inscriptionId: '294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502_0',
+  txId: '294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502',
   protocol: 'bsv-21',
-  marketUrl: '', // Set after mainnet deploy
+  marketUrl: 'https://1satordinals.com/token/294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502_0',
   // Legacy $PATH402 equity token (deprecated — kept for reference)
   legacy: {
     symbol: 'PATH402.com',

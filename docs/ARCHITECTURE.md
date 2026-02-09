@@ -200,7 +200,7 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 | Exchange (broad) | Live | b0ase.com/exchange |
 | MCP server | Published | npm: path402-mcp-server |
 | GitHub repo | Public | github.com/b0ase/path402-mcp-server |
-| $402 PoW20 token | Pending mainnet deploy | BSV-21 HTM contract |
+| $402 PoW20 token | **LIVE** on mainnet | BSV-21 HTM: `294691e2...e95502_0` |
 | HandCash wallet integration | Working | path402.com/token |
 
 ---
@@ -241,6 +241,6 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 
 **Distribution:** 100% mined, 0% pre-mine, 50 tokens per mint, halving every 210,000 mints
 
-**Genesis inscription:** Pending mainnet deployment
+**Genesis inscription:** `294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502_0`
 
 **Legacy token:** The $PATH402 BSV-20 equity token (`5bf47d...`) has been deprecated.

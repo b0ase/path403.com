@@ -61,13 +61,15 @@ const NODE_LABELS = [
   { label: 'TX_POOL', x: '20%', y: '85%', delay: 0.3 },
 ];
 
+const TOKEN_ID = '294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502_0';
+
 const SYSTEM_READOUT = [
   { label: 'PROTOCOL', value: 'HTTP 402', color: 'text-zinc-600' },
   { label: 'NETWORK', value: 'BSV MAINNET', color: 'text-zinc-600' },
   { label: 'TRANSPORT', value: 'NOISE/P2P', color: 'text-zinc-600' },
   { label: 'STATUS', value: 'OPERATIONAL', color: 'text-green-600' },
-  { label: 'PEERS', value: '142', color: 'text-zinc-600' },
-  { label: 'BLOCK', value: '891,247', color: 'text-zinc-600' },
+  { label: 'TOKEN', value: 'BSV-21 POW20', color: 'text-zinc-600' },
+  { label: 'GENESIS', value: TOKEN_ID.slice(0, 12) + '...', color: 'text-blue-500' },
 ];
 
 function BootSequenceHero() {
@@ -650,7 +652,7 @@ function StatusGrid() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
           {[
             { label: 'Protocol', value: 'HTTP 402', sub: 'Payment Required', accent: false },
-            { label: 'Token Standard', value: 'POW20', sub: 'BSV-20 via mining', accent: false },
+            { label: 'Token Standard', value: 'POW20', sub: 'BSV-21 Hash-to-Mint', accent: false },
             { label: 'Transport', value: 'NOISE', sub: 'E2E encrypted P2P', accent: false },
             { label: 'Status', value: 'LIVE', sub: 'Mainnet operational', accent: true },
           ].map((metric, i) => (
@@ -671,6 +673,104 @@ function StatusGrid() {
               <div className="text-[9px] text-zinc-500 font-mono font-bold uppercase tracking-widest">{metric.sub}</div>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+// ── Genesis Proof ────────────────────────────────────────────────
+
+function GenesisProof() {
+  const txId = TOKEN_ID.replace('_0', '');
+  return (
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      className="border-b border-zinc-200 dark:border-zinc-900"
+    >
+      <div className="max-w-[1920px] mx-auto px-6 md:px-16 py-16">
+        <motion.div custom={0} variants={fadeIn} className="section-label">
+          Genesis Proof
+        </motion.div>
+        <div className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
+          {/* Token ID */}
+          <motion.div custom={0.1} variants={slideRight} className="p-6 border-b border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors">
+            <div className="flex items-start gap-6">
+              <span className="w-10 h-10 flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 text-xs font-display font-bold shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-zinc-500">BSV-21 Token ID</span>
+                  <span className="text-[8px] font-mono font-bold uppercase px-1.5 py-0.5 border text-green-500 border-green-500/30">live</span>
+                </div>
+                <code className="text-xs font-mono text-zinc-600 dark:text-zinc-400 break-all block">
+                  {TOKEN_ID}
+                </code>
+              </div>
+              <a
+                href={`https://whatsonchain.com/tx/${txId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors shrink-0 self-center"
+              >
+                Verify &rarr;
+              </a>
+            </div>
+          </motion.div>
+
+          {/* DNS TXT Record */}
+          <motion.div custom={0.2} variants={slideRight} className="p-6 border-b border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors">
+            <div className="flex items-start gap-6">
+              <span className="w-10 h-10 flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 text-xs font-display font-bold shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" /></svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-zinc-500">DNS Verification</span>
+                  <span className="text-[8px] font-mono font-bold uppercase px-1.5 py-0.5 border text-green-500 border-green-500/30">verified</span>
+                </div>
+                <pre className="text-xs font-mono text-zinc-600 dark:text-zinc-400 whitespace-pre-wrap">
+{`_bsv-token.path402.com  TXT  "token_id=${TOKEN_ID}"`}
+                </pre>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contract Details */}
+          <motion.div custom={0.3} variants={slideRight} className="p-6 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors">
+            <div className="flex items-start gap-6">
+              <span className="w-10 h-10 flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 text-xs font-display font-bold shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-zinc-500 block mb-3">On-Chain Contract</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    ['Supply', '21,000,000'],
+                    ['Per Mint', '50'],
+                    ['Halving', '210,000 mints'],
+                    ['Pre-mine', '0%'],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <div className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest mb-1">{label}</div>
+                      <div className="text-sm font-black tracking-tight">{value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <a
+                href={`https://1satordinals.com/token/${TOKEN_ID}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors shrink-0 self-center"
+              >
+                1Sat &rarr;
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>
@@ -910,7 +1010,7 @@ function TokenModel() {
             <div className="space-y-4">
               {[
                 ['Earned', 'By running a node and serving the network'],
-                ['Standard', 'BSV-20 via POW20 mining (BRC-100)'],
+                ['Standard', 'BSV-21 via POW20 mining (BRC-114)'],
                 ['Utility', 'Protocol fees, staking, governance'],
                 ['Distribution', 'Fair \u2014 operators earn, not speculators'],
               ].map(([label, desc]) => (
@@ -1074,7 +1174,7 @@ function Ecosystem() {
     { href: 'https://www.npmjs.com/package/path402', title: 'path402', desc: 'MCP server + daemon + CLI in one package', tag: 'npm', external: true },
     { href: 'https://github.com/b0ase/path402', title: 'GitHub', desc: 'Source code, issues, and contributions', tag: 'github', external: true },
     { href: '/token', title: 'POW20 Token', desc: 'Earn $402 tokens by running the network', tag: 'token', external: false },
-    { href: '/protocol', title: 'Protocol Economics', desc: 'Staking, dividends, hierarchical ownership', tag: 'advanced', external: false },
+    { href: '/protocol', title: 'Protocol Economics', desc: 'Staking, serving revenue, hierarchical ownership', tag: 'advanced', external: false },
     { href: '/docs', title: 'Documentation', desc: 'Protocol spec, API reference, guides', tag: 'docs', external: false },
     { href: 'https://fnews.online', title: 'F.NEWS', desc: 'The adversarial satire factory \u2014 $402 in action', tag: 'demo', external: true },
   ];
@@ -1330,6 +1430,7 @@ export default function Home() {
       {SITE_VARIANT === '401' ? <Hero401 /> : SITE_VARIANT === '403' ? <Hero403 /> : <BootSequenceHero />}
       <div className="pt-0">
         <StatusGrid />
+        <GenesisProof />
         <CoreIdea />
         <PaymentFlow />
         <DemoVideo />

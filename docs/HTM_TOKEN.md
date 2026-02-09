@@ -2,7 +2,7 @@
 
 **Version**: 1.0.0
 **Date**: February 2026
-**Status**: Implemented (pending mainnet deployment)
+**Status**: **LIVE** on BSV mainnet — Token ID: `294691e2069ce8f6b9a1afd1022c6d32f8b30cb24c07b6584385bd6066e95502_0`
 
 ## Overview
 
