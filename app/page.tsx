@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWallet } from "@/components/WalletProvider";
 import { useEffect, useState } from "react";
-import Hero401 from "@/components/heroes/Hero401";
-import Hero403 from "@/components/heroes/Hero403";
+import Page401 from "./401/page";
+import Page403 from "./403/page";
 
 const SITE_VARIANT = process.env.NEXT_PUBLIC_SITE_VARIANT || '402';
 
@@ -1425,9 +1425,13 @@ export default function Home() {
     );
   }
 
+  // Variant sites render their dedicated page at /
+  if (SITE_VARIANT === '401') return <Page401 />;
+  if (SITE_VARIANT === '403') return <Page403 />;
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-white">
-      {SITE_VARIANT === '401' ? <Hero401 /> : SITE_VARIANT === '403' ? <Hero403 /> : <BootSequenceHero />}
+      <BootSequenceHero />
       <div className="pt-0">
         <StatusGrid />
         <GenesisProof />
