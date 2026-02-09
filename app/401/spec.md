@@ -1,9 +1,9 @@
 # $401 Identity Token Specification
 
-**Version:** 0.1.0-draft
+**Version:** 0.2.0
 **Date:** 2026-02-09
 **Author:** Richard Boase (b0ase.com)
-**Status:** Draft
+**Status:** Draft — Identity Chain implementation live
 
 ---
 
@@ -494,23 +494,263 @@ Nodes maintain a local index of known identities. The gossip layer enables:
 
 ---
 
-## 12. Reference Implementation
+## 12. Identity Chains (Implemented)
 
-The reference implementation lives in the path402d client:
-- **Minting**: `packages/core/src/identity/mint.ts`
-- **Verification**: `packages/core/src/identity/verify.ts`
-- **Gossip**: `packages/core/src/identity/gossip.ts`
-- **HTTP Auth**: `packages/core/src/identity/auth.ts`
+The Identity Chain is the first practical implementation of $401 — a multi-strand identity tree built from OAuth proofs.
+
+### 12.1 Concept
+
+Every user gets one **identity root** (their anchor on-chain). Each OAuth provider they link becomes a **strand** — a branch of their digital DNA woven onto the root. More strands = stronger identity = higher confidence.
+
+```
+Identity Root (one per user)
+├── GitHub strand    (OAuth proof hash)
+├── Twitter strand   (OAuth proof hash)
+├── LinkedIn strand  (OAuth proof hash)
+├── Google strand    (OAuth proof hash)
+├── Discord strand   (OAuth proof hash)
+└── HandCash strand  (wallet proof hash)
+```
+
+The root inscription contains a `payTo` BSV address — this is the user's **on-chain bank account**. All $402 content revenue for this identity flows to that address.
+
+### 12.2 On-Chain Inscription Format
+
+Protocol prefix: `401`. Three operations:
+
+**Root Inscription** — identity anchor (one per user):
+
+```json
+{
+  "p": "401",
+  "op": "root",
+  "v": "1.0",
+  "payTo": "1BrbnQon4uZPSxNwt19ozwtgHPDbgvaeD1",
+  "ts": "2026-02-09T12:00:00Z"
+}
+```
+
+**Strand Inscription** — OAuth identity link (one per provider):
+
+```json
+{
+  "p": "401",
+  "op": "strand",
+  "v": "1.0",
+  "root": "<root inscription txid>",
+  "provider": "github",
+  "handle": "b0ase",
+  "proofHash": "<SHA-256 of OAuth token>",
+  "metadata": {
+    "bio": "...",
+    "followers": 1234,
+    "public_repos": 56
+  },
+  "ts": "2026-02-09T12:00:00Z"
+}
+```
+
+**Update Inscription** — change payout address:
+
+```json
+{
+  "p": "401",
+  "op": "update",
+  "v": "1.0",
+  "root": "<root inscription txid>",
+  "payTo": "<new BSV address>",
+  "ts": "2026-02-09T12:00:00Z"
+}
+```
+
+All inscriptions use OP_RETURN: `<"401"> <"application/json"> <json_payload>`.
+
+### 12.3 Identity Strength Scoring
+
+| Strands | Level | Meaning |
+|---------|-------|---------|
+| 1 | Weak | Single OAuth proof |
+| 2 | Moderate | Two independent proofs |
+| 3 | Strong | Three cross-platform proofs |
+| 4+ | Verified | Rich multi-platform identity |
+
+### 12.4 Supported Providers
+
+| Provider | Data Captured | OAuth Flow |
+|----------|--------------|------------|
+| GitHub | username, bio, repos, followers, avatar | GitHub OAuth + API |
+| Twitter | username, name, profile_image | Twitter OAuth 2.0 + PKCE |
+| LinkedIn | name, handle, avatar | Supabase OIDC |
+| Google | email, name, avatar | Supabase OAuth |
+| Discord | username, avatar | Supabase OAuth |
+| HandCash | handle, displayName, avatar | HandCash Connect SDK |
+
+### 12.5 Security Model
+
+- **OAuth token never stored** — only SHA-256 hash inscribed as proof
+- **One provider per root** — `UNIQUE(root_id, provider)` constraint
+- **On-chain = source of truth** — database is a cache/index for fast lookup
+- **Any BSV wallet can create inscriptions** — not tied to any platform
+- **Payout address updates audited** — change log in `identity_payout_updates` table
 
 ---
 
-## 13. Security Considerations
+## 13. REST API Reference
+
+Base URL: `https://b0ase.com/api/identity` (reference implementation)
+
+### 13.1 Authenticated Endpoints
+
+**Create Identity Root**
+
+```
+POST /api/identity/root
+Body: { "payToAddress": "1..." }  (optional)
+→ 201 { success, root: { id, rootTxid, payToAddress, strandCount } }
+```
+
+**Get My Identity**
+
+```
+GET /api/identity/root
+→ 200 { exists, root: { ... }, strands: [...] }
+```
+
+**Mint Identity Strand**
+
+```
+POST /api/identity/strand/{provider}
+Providers: github, twitter, linkedin, google, discord
+→ 201 { success, strand: { id, provider, handle, strandTxid }, root: { ... } }
+```
+
+**Update Payout Address**
+
+```
+PUT /api/identity/payout
+Body: { "payToAddress": "1..." }
+→ 200 { success, previousAddress, newAddress, updateTxid }
+```
+
+### 13.2 Public Endpoints (No Auth)
+
+**Lookup by Root TXID**
+
+```
+GET /api/identity/{rootTxid}
+→ 200 { root, strands, strength: { score, level, strands } }
+```
+
+**Resolve Provider Handle**
+
+```
+GET /api/identity/resolve/{provider}/{handle}
+→ 200 { found, root: { rootTxid, payToAddress }, matchedStrand, allStrands, strength }
+```
+
+This is the key lookup: *"Who is @b0ase on GitHub, and where do they get paid?"*
+
+---
+
+## 14. Database Schema (Cache/Index)
+
+On-chain inscriptions are the source of truth. These tables are a fast cache shared across b0ase.com, path401.com, and bit-sign.online (same Supabase instance).
+
+```sql
+-- Identity root — one per user
+CREATE TABLE identity_roots (
+  id UUID PRIMARY KEY,
+  unified_user_id UUID NOT NULL UNIQUE,
+  root_txid TEXT,
+  root_inscription_id TEXT,
+  pay_to_address TEXT,
+  strand_count INT DEFAULT 0,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Identity strands — one per OAuth provider per root
+CREATE TABLE identity_strands (
+  id UUID PRIMARY KEY,
+  root_id UUID REFERENCES identity_roots(id),
+  provider TEXT NOT NULL,
+  provider_user_id TEXT NOT NULL,
+  provider_handle TEXT,
+  provider_display_name TEXT,
+  provider_avatar_url TEXT,
+  provider_metadata JSONB DEFAULT '{}',
+  strand_txid TEXT,
+  parent_txid TEXT,
+  oauth_verified_at TIMESTAMPTZ,
+  proof_hash TEXT,
+  is_active BOOLEAN DEFAULT true,
+  UNIQUE(root_id, provider)
+);
+
+-- Payout address change audit trail
+CREATE TABLE identity_payout_updates (
+  id UUID PRIMARY KEY,
+  root_id UUID REFERENCES identity_roots(id),
+  old_address TEXT,
+  new_address TEXT NOT NULL,
+  update_txid TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+---
+
+## 15. Reference Implementation
+
+### 15.1 Live Implementation (b0ase.com)
+
+The first implementation lives at b0ase.com, shared with path401.com and bit-sign.online:
+
+| File | Purpose |
+|------|---------|
+| `lib/identity/inscription.ts` | On-chain inscription format + OP_RETURN broadcast |
+| `lib/identity/chain.ts` | CRUD for roots, strands, resolution, strength scoring |
+| `app/api/identity/root/route.ts` | Create/get identity root |
+| `app/api/identity/strand/[provider]/route.ts` | Mint OAuth strand |
+| `app/api/identity/[rootTxid]/route.ts` | Public identity lookup |
+| `app/api/identity/resolve/[provider]/[handle]/route.ts` | Resolve handle → identity |
+| `app/api/identity/payout/route.ts` | Update payout address |
+
+### 15.2 Future Implementations
+
+- **path402d client**: `packages/core/src/identity/` — P2P gossip-based identity resolution
+- **bit-sign.online**: Encrypted identity bundles (Confidence Level 1)
+- **Standalone wallets**: Any BSV wallet can create $401 inscriptions directly using the OP_RETURN format above
+
+---
+
+## 16. Security Considerations
 
 - **Key compromise**: Use `rotate` operation immediately. Previous key signs the rotation to maintain chain of custody.
 - **Handle squatting**: First-to-inscribe wins. Disputed handles resolved by trust score and confidence level.
 - **Sybil resistance**: Burn mechanics create a cost floor for identity creation. Staking creates ongoing accountability.
-- **Privacy**: All identity attributes are hashed or encrypted by default. Selective revelation only to authorized parties.
+- **Privacy**: OAuth tokens hashed (SHA-256), never stored. Provider metadata is public by design (username, avatar). Sensitive claims use BRC-52 encrypted fields.
 - **Agent containment**: `capitalLimit` prevents runaway agent spending. Parent can revoke agent delegation at any time.
+- **Multi-platform correlation**: Each strand independently verifiable. Compromise of one provider doesn't invalidate others.
+
+---
+
+## 17. Relationship to $402 and $403
+
+The three protocols form a regulatory taxonomy:
+
+| Protocol | HTTP Status | Purpose | Analogy | Regulated? |
+|----------|------------|---------|---------|------------|
+| **$401** | 401 Unauthorized | Identity | Passport | No — identity is not a security |
+| **$402** | 402 Payment Required | Content/Commodity | Vending machine | No — commodity token, algorithmic pricing |
+| **$403** | 403 Forbidden | Securities/Access | Stock certificate | Yes — requires KYC, company-dependent payouts |
+
+**$401 enables $402**: You need identity to receive revenue from content tokens.
+
+**$401 gates $403**: Securities tokens require KYC-verified identity (Confidence Level 2+).
+
+**$402 is independent**: Content tokens work without $401 identity (anonymous purchases allowed), but sellers need $401 to set their payout address.
 
 ---
 
@@ -526,4 +766,4 @@ The reference implementation lives in the path402d client:
 
 ---
 
-*$401 is part of the path402 Protocol ecosystem. Specification maintained at [path401.com](https://path401.com).*
+*$401 is part of the path402 Protocol ecosystem. Specification maintained at [path401.com](https://path401.com). This is the single source of truth for the $401 protocol.*
