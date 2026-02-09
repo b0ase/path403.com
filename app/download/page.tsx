@@ -18,8 +18,9 @@ const staggerContainer = {
   }
 };
 
-const GITHUB_RELEASE = "https://github.com/b0ase/path402/releases/tag/v4.0.0-alpha.2";
-const RELEASE_BASE = "https://github.com/b0ase/path402/releases/download/v4.0.0-alpha.2";
+const GITHUB_RELEASE = "https://github.com/b0ase/path402/releases/tag/v4.0.0-alpha.3";
+const RELEASE_BASE_MAC = "https://github.com/b0ase/path402/releases/download/v4.0.0-alpha.3";
+const RELEASE_BASE_WIN_LINUX = "https://github.com/b0ase/path402/releases/download/v4.0.0-alpha.1";
 
 const APPLE_ICON = (
   <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -43,8 +44,8 @@ const DOWNLOADS = [
   {
     platform: "macOS",
     subtitle: "Apple Silicon",
-    filename: "path402-4.0.0-alpha.2-arm64.dmg",
-    url: `${RELEASE_BASE}/path402-4.0.0-alpha.2-arm64.dmg`,
+    filename: "path402-4.0.0-alpha.3-arm64.dmg",
+    url: `${RELEASE_BASE_MAC}/path402-4.0.0-alpha.3-arm64.dmg`,
     icon: APPLE_ICON,
     note: "For M1, M2, M3, M4 Macs",
     label: "Download DMG"
@@ -52,8 +53,8 @@ const DOWNLOADS = [
   {
     platform: "macOS",
     subtitle: "Intel",
-    filename: "path402-4.0.0-alpha.2.dmg",
-    url: `${RELEASE_BASE}/path402-4.0.0-alpha.2.dmg`,
+    filename: "path402-4.0.0-alpha.3.dmg",
+    url: `${RELEASE_BASE_MAC}/path402-4.0.0-alpha.3.dmg`,
     icon: APPLE_ICON,
     note: "For Intel-based Macs",
     label: "Download DMG"
@@ -61,8 +62,8 @@ const DOWNLOADS = [
   {
     platform: "Windows",
     subtitle: "Installer",
-    filename: "path402 Setup 4.0.0-alpha.2.exe",
-    url: `${RELEASE_BASE}/path402%20Setup%204.0.0-alpha.2.exe`,
+    filename: "path402.Setup.4.0.0-alpha.1.exe",
+    url: `${RELEASE_BASE_WIN_LINUX}/path402.Setup.4.0.0-alpha.1.exe`,
     icon: WINDOWS_ICON,
     note: "NSIS installer for Windows x64",
     label: "Download EXE"
@@ -70,8 +71,8 @@ const DOWNLOADS = [
   {
     platform: "Windows",
     subtitle: "Portable",
-    filename: "path402 4.0.0-alpha.2.exe",
-    url: `${RELEASE_BASE}/path402%204.0.0-alpha.2.exe`,
+    filename: "path402.4.0.0-alpha.1.exe",
+    url: `${RELEASE_BASE_WIN_LINUX}/path402.4.0.0-alpha.1.exe`,
     icon: WINDOWS_ICON,
     note: "No installation required — run directly",
     label: "Download Portable"
@@ -79,8 +80,8 @@ const DOWNLOADS = [
   {
     platform: "Linux",
     subtitle: "AppImage",
-    filename: "path402-client-4.0.0-alpha.2-x86_64.AppImage",
-    url: `${RELEASE_BASE}/path402-client-4.0.0-alpha.2-x86_64.AppImage`,
+    filename: "path402-client-4.0.0-alpha.1-x86_64.AppImage",
+    url: `${RELEASE_BASE_WIN_LINUX}/path402-client-4.0.0-alpha.1-x86_64.AppImage`,
     icon: LINUX_ICON,
     note: "Universal Linux package — chmod +x and run",
     label: "Download AppImage"
@@ -88,8 +89,8 @@ const DOWNLOADS = [
   {
     platform: "Linux",
     subtitle: "Debian",
-    filename: "path402-client-4.0.0-alpha.2-amd64.deb",
-    url: `${RELEASE_BASE}/path402-client-4.0.0-alpha.2-amd64.deb`,
+    filename: "path402-client-4.0.0-alpha.1-amd64.deb",
+    url: `${RELEASE_BASE_WIN_LINUX}/path402-client-4.0.0-alpha.1-amd64.deb`,
     icon: LINUX_ICON,
     note: "For Ubuntu, Debian, and derivatives",
     label: "Download .deb"
@@ -98,9 +99,19 @@ const DOWNLOADS = [
 
 const RELEASE_NOTES = [
   {
-    version: "4.0.0-alpha.2",
+    version: "4.0.0-alpha.3",
     date: "February 2026",
     tag: "latest",
+    changes: [
+      "One-token model: $402 PoW20 mining only, no equity token",
+      "Updated documentation and protocol messaging",
+      "macOS builds (arm64 + x64) — signed and notarized",
+    ]
+  },
+  {
+    version: "4.0.0-alpha.2",
+    date: "February 2026",
+    tag: "",
     changes: [
       "BRC-114 Hash-to-Mint: real $402 token mining via on-chain smart contract",
       "Proof-of-Indexing work commitments recorded permanently on BSV",
@@ -113,7 +124,7 @@ const RELEASE_NOTES = [
   {
     version: "4.0.0-alpha.1",
     date: "February 2026",
-    tag: "alpha",
+    tag: "",
     changes: [
       "All platforms: macOS (arm64 + x64), Windows, Linux",
       "macOS builds signed with Developer ID certificate",
@@ -141,7 +152,7 @@ export default function DownloadPage() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase tracking-widest text-zinc-500 mb-8"
               variants={fadeIn}
             >
-              VERSION 4.0.0-ALPHA.1
+              VERSION 4.0.0-ALPHA.3
             </motion.div>
 
             <motion.h1
@@ -155,8 +166,8 @@ export default function DownloadPage() {
               className="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-12"
               variants={fadeIn}
             >
-              Get the $402 Desktop Client. Run your own node, serve content, and earn POW20 tokens
-              by participating in the network.
+              Run your own $402 node. Index BSV-21 tokens, serve content to peers, and mine $402 via
+              Proof-of-Indexing. macOS builds are latest (alpha.3). Windows and Linux builds available from alpha.1.
             </motion.p>
 
             {/* Download Cards */}
