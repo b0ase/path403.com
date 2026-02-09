@@ -4,10 +4,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWallet } from "@/components/WalletProvider";
 import { useEffect, useState } from "react";
-import Page401 from "./401/page";
-import Page403 from "./403/page";
-
-const SITE_VARIANT = process.env.NEXT_PUBLIC_SITE_VARIANT || '402';
 
 // ── Animation variants ──────────────────────────────────────────
 
@@ -1424,10 +1420,6 @@ export default function Home() {
       </div>
     );
   }
-
-  // Variant sites render their dedicated page at /
-  if (SITE_VARIANT === '401') return <Page401 />;
-  if (SITE_VARIANT === '403') return <Page403 />;
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-white">
