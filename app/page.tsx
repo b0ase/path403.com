@@ -43,6 +43,17 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden bg-black">
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        >
+          <source src="/403-hero.mp4" type="video/mp4" />
+        </video>
+
         {/* Background texture */}
         <div
           className="absolute inset-0 pointer-events-none opacity-20"
@@ -98,68 +109,107 @@ export default function Home() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
                 </span>
                 <span className="text-zinc-600 text-[10px] tracking-[0.3em] uppercase font-mono font-bold">
-                  HTTP 403 : FORBIDDEN &mdash; YOU SHALL NOT PASS
+                  HTTP 403 : FORBIDDEN
                 </span>
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease }}
-                className="font-display font-black tracking-tighter leading-[0.85] mb-2"
-                style={{
-                  fontSize: 'clamp(4rem, 12vw, 12rem)',
-                  textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)',
-                }}
-              >
-                <span className="text-white">$403</span>
-              </motion.h1>
-
-              {/* Reflection */}
-              <div
-                className="relative overflow-hidden h-12 md:h-20 select-none mb-8"
-                aria-hidden="true"
-                style={{
-                  transform: 'scaleY(-1)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.1), transparent 80%)',
-                  maskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.1), transparent 80%)',
-                }}
-              >
-                <div
-                  className="font-display font-black tracking-tighter leading-[0.85] text-amber-400/30"
-                  style={{ fontSize: 'clamp(4rem, 12vw, 12rem)' }}
+              {/* ═══ THE MASSIVE $403 TITLE ═══ */}
+              <div className="relative mb-0">
+                <motion.h1
+                  className="font-display font-black tracking-tighter leading-[0.85]"
+                  style={{ fontSize: 'clamp(5rem, 12vw, 12rem)' }}
                 >
-                  $403
+                  <motion.span
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2, ease }}
+                    className="inline-block text-white"
+                    style={{ textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)' }}
+                  >
+                    $
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.35, ease }}
+                    className="inline-block text-white"
+                    style={{ textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)' }}
+                  >
+                    4
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.45, ease }}
+                    className="inline-block text-white"
+                    style={{ textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)' }}
+                  >
+                    0
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.55, ease }}
+                    className="inline-block text-white"
+                    style={{ textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)' }}
+                  >
+                    3
+                  </motion.span>
+                </motion.h1>
+
+                {/* Title reflection */}
+                <div
+                  className="relative overflow-hidden h-6 md:h-10 select-none"
+                  aria-hidden="true"
+                  style={{
+                    transform: 'scaleY(-1)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.12), transparent 80%)',
+                    maskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.12), transparent 80%)',
+                  }}
+                >
+                  <div
+                    className="font-display font-black tracking-tighter leading-[0.85] text-amber-400/30"
+                    style={{ fontSize: 'clamp(5rem, 12vw, 12rem)' }}
+                  >
+                    $403
+                  </div>
                 </div>
+
+                {/* Horizontal scan line across title */}
+                <motion.div
+                  initial={{ scaleX: 0, originX: 0 }}
+                  animate={{ scaleX: [0, 1, 1, 0], originX: [0, 0, 1, 1] }}
+                  transition={{ duration: 1.2, delay: 0.6, ease: "easeInOut" }}
+                  className="absolute top-[60%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                />
+
+                {/* Secondary thinner scan line */}
+                <motion.div
+                  initial={{ scaleX: 0, originX: 1 }}
+                  animate={{ scaleX: [0, 1, 1, 0], originX: [1, 1, 0, 0] }}
+                  transition={{ duration: 1, delay: 0.8, ease: "easeInOut" }}
+                  className="absolute top-[65%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-500/20 to-transparent"
+                />
               </div>
 
+              {/* Tagline */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
                 className="mb-2"
               >
-                <span className="text-xl md:text-2xl font-display font-black text-white uppercase tracking-tight">
-                  PATH 403 &mdash; PROGRAMMABLE ACCESS CONTROL
+                <span className="text-zinc-400 text-xl md:text-2xl tracking-[0.3em] uppercase font-display font-black">
+                  PATH 403 &mdash; FORBIDDEN
                 </span>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="mb-4"
-              >
-                <span className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
-                  WHO SEES WHAT. WHEN. WHERE. WHY.
-                </span>
-              </motion.div>
-
+              {/* Description */}
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="text-zinc-500 max-w-xl text-sm leading-relaxed mb-12 font-mono"
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="text-zinc-500 max-w-xl text-sm leading-relaxed mb-8 font-mono"
               >
                 The <code className="text-amber-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">$403</code> standard
                 is the access control layer of the protocol stack.
@@ -170,7 +220,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
                 className="flex flex-wrap gap-4"
               >
                 <Link
