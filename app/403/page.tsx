@@ -150,7 +150,7 @@ export default function Page403() {
             className="mb-4"
           >
             <span className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
-              THE GATE. THE RULES. THE PROTOCOL.
+              SECURE YOUR PERIMETER
             </span>
           </motion.div>
 

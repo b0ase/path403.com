@@ -43,41 +43,52 @@ export default function Page401() {
 
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden bg-black">
-        {/* Background glow — purple/violet for identity */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px]"
-            style={{
-              background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.03) 35%, transparent 70%)',
-            }}
-          />
-        </div>
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-25"
+        >
+          <source src="/401-hero.mp4" type="video/mp4" />
+        </video>
 
         {/* Dot grid */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(239, 68, 68, 0.8) 1px, transparent 1px)',
             backgroundSize: '40px 40px',
           }}
         />
+
+        {/* Radial glow — red for identity */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px]"
+            style={{
+              background: 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 35%, transparent 70%)',
+            }}
+          />
+        </div>
 
         {/* CRT vignette */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%)',
+            background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%)',
           }}
         />
 
         {/* HUD corners */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-6 left-6 w-12 h-12 border-l-2 border-t-2 border-violet-500/10" />
-          <div className="absolute top-6 right-6 w-12 h-12 border-r-2 border-t-2 border-violet-500/10" />
-          <div className="absolute bottom-6 left-6 w-12 h-12 border-l-2 border-b-2 border-violet-500/10" />
-          <div className="absolute bottom-6 right-6 w-12 h-12 border-r-2 border-b-2 border-violet-500/10" />
+          <div className="absolute top-6 left-6 w-12 h-12 border-l-2 border-t-2 border-red-500/10" />
+          <div className="absolute top-6 right-6 w-12 h-12 border-r-2 border-t-2 border-red-500/10" />
+          <div className="absolute bottom-6 left-6 w-12 h-12 border-l-2 border-b-2 border-red-500/10" />
+          <div className="absolute bottom-6 right-6 w-12 h-12 border-r-2 border-b-2 border-red-500/10" />
           <div className="absolute top-8 left-20 text-[7px] font-mono text-zinc-700 tracking-[0.25em]">
-            IDENTITY PROTOCOL v1.0
+            $401 IDENTITY PROTOCOL
           </div>
           <div className="absolute bottom-8 left-20 text-[7px] font-mono text-zinc-700 tracking-[0.25em]">
             HTTP 401: UNAUTHORIZED
@@ -93,8 +104,8 @@ export default function Page401() {
             className="flex items-center gap-3 mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
             </span>
             <span className="text-zinc-600 text-[10px] tracking-[0.3em] uppercase font-mono font-bold">
               HTTP 401 : UNAUTHORIZED &mdash; PROVE WHO YOU ARE
@@ -108,7 +119,7 @@ export default function Page401() {
             className="font-display font-black tracking-tighter leading-[0.85] mb-2"
             style={{
               fontSize: 'clamp(4rem, 12vw, 12rem)',
-              textShadow: '0 0 10px rgba(139, 92, 246, 0.4), 0 0 30px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.1)',
+              textShadow: '0 0 10px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.2), 0 0 60px rgba(239, 68, 68, 0.1)',
             }}
           >
             <span className="text-white">$401</span>
@@ -125,7 +136,7 @@ export default function Page401() {
             }}
           >
             <div
-              className="font-display font-black tracking-tighter leading-[0.85] text-violet-400/30"
+              className="font-display font-black tracking-tighter leading-[0.85] text-red-400/30"
               style={{ fontSize: 'clamp(4rem, 12vw, 12rem)' }}
             >
               $401
@@ -139,7 +150,7 @@ export default function Page401() {
             className="mb-4"
           >
             <span className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
-              YOUR IDENTITY. YOUR PATH. YOUR TOKEN.
+              FOLLOW YOUR OWN PATH
             </span>
           </motion.div>
 
@@ -150,7 +161,7 @@ export default function Page401() {
             className="text-zinc-500 max-w-xl text-sm leading-relaxed mb-12 font-mono"
           >
             Before you can follow the money, you need to know who you are.
-            The <code className="text-violet-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">$401</code> token
+            The <code className="text-red-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">$401</code> token
             is your cryptographic identity &mdash; encrypted, self-sovereign, and inscribed on-chain forever.
           </motion.p>
 
@@ -162,7 +173,7 @@ export default function Page401() {
           >
             <Link
               href="/identity"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-violet-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-violet-700 transition-all overflow-hidden"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-all overflow-hidden"
             >
               Mint Your Identity
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -171,14 +182,14 @@ export default function Page401() {
               href="https://bit-sign.online"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 border border-zinc-800 text-zinc-400 font-bold uppercase tracking-widest text-xs hover:border-zinc-600 hover:text-white transition-all"
+              className="inline-flex items-center gap-3 px-8 py-4 border border-zinc-800 text-zinc-400 font-bold uppercase tracking-widest text-xs hover:border-red-500/50 hover:text-red-400 transition-all"
             >
               bit-sign.online &rarr;
             </a>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/20 to-transparent" />
       </section>
 
       {/* ═══ THE IDEA ═══ */}
@@ -212,7 +223,7 @@ export default function Page401() {
                 <p className="text-zinc-500 text-sm">Payment flows, content access, economic coordination. The money side of the protocol.</p>
               </motion.div>
               <motion.div custom={0.3} variants={fadeUp} className="p-8 md:p-12 flex-1">
-                <div className="text-[9px] text-violet-500 font-mono uppercase tracking-[0.2em] mb-4">$401 says</div>
+                <div className="text-[9px] text-red-500 font-mono uppercase tracking-[0.2em] mb-4">$401 says</div>
                 <p className="text-xl font-black tracking-tight mb-2">&ldquo;Follow your own path&rdquo;</p>
                 <p className="text-zinc-500 text-sm">Identity, authorship, reputation, self-sovereignty. The human side of the protocol.</p>
               </motion.div>
@@ -268,7 +279,7 @@ export default function Page401() {
                 } hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors`}
               >
                 <span className={`w-10 h-10 flex items-center justify-center text-xs font-display font-bold shrink-0 ${
-                  item.accent ? 'bg-violet-500 text-white' : 'bg-zinc-100 dark:bg-zinc-900'
+                  item.accent ? 'bg-red-500 text-white' : 'bg-zinc-100 dark:bg-zinc-900'
                 }`}>
                   {item.step}
                 </span>
@@ -278,8 +289,8 @@ export default function Page401() {
                 </div>
                 {item.accent && (
                   <span className="relative flex h-2 w-2 self-center">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-500 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                   </span>
                 )}
               </motion.div>
@@ -302,7 +313,7 @@ export default function Page401() {
           <div className="grid md:grid-cols-2 gap-0 border border-zinc-200 dark:border-zinc-800">
             <motion.div custom={0.1} variants={fadeUp} className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-zinc-200 dark:border-zinc-800">
               <h3 className="text-lg font-display font-black tracking-tight mb-6 uppercase">
-                $401<span className="text-violet-300 dark:text-violet-800"> Identity</span>
+                $401<span className="text-red-300 dark:text-red-800"> Identity</span>
               </h3>
               <div className="space-y-4">
                 {[
@@ -404,7 +415,7 @@ export default function Page401() {
                 <div className="text-2xl mb-3 opacity-60">{item.icon}</div>
                 <h3 className="text-sm font-black uppercase tracking-wider mb-2">{item.title}</h3>
                 <p className="text-zinc-500 text-sm mb-3">{item.desc}</p>
-                <span className="text-[8px] font-mono text-violet-500 uppercase tracking-widest">{item.tag}</span>
+                <span className="text-[8px] font-mono text-red-500 uppercase tracking-widest">{item.tag}</span>
               </motion.div>
             ))}
           </div>
@@ -427,7 +438,7 @@ export default function Page401() {
               <thead>
                 <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
                   <th className="text-left p-4 text-[9px] font-bold uppercase tracking-widest text-zinc-500">Activity</th>
-                  <th className="text-center p-4 text-[9px] font-bold uppercase tracking-widest text-violet-500">$401</th>
+                  <th className="text-center p-4 text-[9px] font-bold uppercase tracking-widest text-red-500">$401</th>
                   <th className="text-center p-4 text-[9px] font-bold uppercase tracking-widest text-zinc-500">$402</th>
                 </tr>
               </thead>
@@ -448,7 +459,7 @@ export default function Page401() {
                     className={`${i < 8 ? 'border-b border-zinc-200 dark:border-zinc-800' : ''} hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors`}
                   >
                     <td className="p-4 text-sm">{activity}</td>
-                    <td className={`p-4 text-center text-sm ${needs401 === '\u2713' ? 'text-violet-500 font-bold' : needs401 === 'Optional' ? 'text-amber-500' : 'text-zinc-400'}`}>
+                    <td className={`p-4 text-center text-sm ${needs401 === '\u2713' ? 'text-red-500 font-bold' : needs401 === 'Optional' ? 'text-amber-500' : 'text-zinc-400'}`}>
                       {needs401}
                     </td>
                     <td className={`p-4 text-center text-sm ${needs402 === '\u2713' ? 'text-green-500 font-bold' : 'text-zinc-400'}`}>
@@ -479,7 +490,7 @@ export default function Page401() {
             className="text-3xl md:text-5xl font-display font-black tracking-tighter mb-6"
           >
             FOLLOW YOUR<br />
-            <span className="text-violet-500">OWN PATH</span>
+            <span className="text-red-500">OWN PATH</span>
           </motion.h2>
           <motion.p
             custom={0.2}
@@ -491,7 +502,7 @@ export default function Page401() {
           <motion.div custom={0.3} variants={fadeUp} className="flex flex-wrap justify-center gap-4">
             <Link
               href="/identity"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-violet-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-violet-700 transition-colors"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-red-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-colors"
             >
               Mint $401 Identity
             </Link>

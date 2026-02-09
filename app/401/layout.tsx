@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '$401 — Identity for the Open Web',
+  title: '$401 — Follow Your Own Path',
   description: 'Decentralised identity protocol. Prove who you are without giving yourself away.',
 };
 
