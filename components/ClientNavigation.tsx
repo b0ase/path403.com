@@ -7,10 +7,39 @@ import { ThemeToggle } from './ThemeProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 
-const navItems = [
-  { href: 'https://path401.com', label: '$401', external: true },
-  { href: '/', label: '$402' },
-  { href: 'https://path403.com', label: '$403', external: true },
+// Detect which site we're on via hostname
+function getNavItems() {
+  if (typeof window === 'undefined') return getDefaultNavItems();
+  const host = window.location.hostname;
+  if (host.includes('path401')) {
+    return [
+      { href: '/', label: '$401' },
+      { href: 'https://path402.com', label: '$402', external: true },
+      { href: 'https://path403.com', label: '$403', external: true },
+      ...sharedNavItems,
+    ];
+  }
+  if (host.includes('path403')) {
+    return [
+      { href: 'https://path401.com', label: '$401', external: true },
+      { href: 'https://path402.com', label: '$402', external: true },
+      { href: '/', label: '$403' },
+      ...sharedNavItems,
+    ];
+  }
+  return getDefaultNavItems();
+}
+
+function getDefaultNavItems() {
+  return [
+    { href: 'https://path401.com', label: '$401', external: true },
+    { href: '/', label: '$402' },
+    { href: 'https://path403.com', label: '$403', external: true },
+    ...sharedNavItems,
+  ];
+}
+
+const sharedNavItems = [
   { href: '/portfolio', label: 'PORTFOLIO' },
   { href: '/market', label: 'MARKET' },
   { href: '/exchange', label: 'EXCHANGE' },
@@ -31,7 +60,12 @@ export function ClientNavigation() {
   const { wallet, connectYours, connectHandCash, connectMetanet, disconnect, isYoursAvailable } = useWallet();
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
+  const [navItems, setNavItems] = useState(getDefaultNavItems);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setNavItems(getNavItems());
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
