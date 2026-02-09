@@ -1,0 +1,350 @@
+{
+  "id": "pfizer_drug_development_revenue",
+  "name": "Pfizer Inc. - Drug Development & Revenue Model",
+  "version": "1.0.0",
+  "metadata": {
+    "company": {
+      "name": "Pfizer Inc.",
+      "ticker": "PFE",
+      "jurisdiction": "US",
+      "website": "https://pfizer.com",
+      "description": "Global pharmaceutical company developing and manufacturing medicines and vaccines"
+    },
+    "industry": "Healthcare",
+    "type": "revenue_model",
+    "created": "2024-01-20T00:00:00Z",
+    "updated": "2024-01-20T00:00:00Z",
+    "author": "Cashboard System",
+    "tags": ["pharmaceuticals", "drug-development", "vaccines", "healthcare"],
+    "folder": "healthcare/pharmaceuticals"
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Prescription Drug Sales",
+      "type": "payment",
+      "position": { "x": 150, "y": 100 },
+      "handcashHandle": "PFE_DrugSales",
+      "tokenAddress": "1PFEDrugSalesRevenue123456789",
+      "properties": {
+        "description": "Revenue from prescription medications",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "drug_sales"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Vaccine Revenue",
+      "type": "payment",
+      "position": { "x": 350, "y": 100 },
+      "handcashHandle": "PFE_Vaccines",
+      "tokenAddress": "1PFEVaccineRevenue123456789",
+      "properties": {
+        "description": "COVID-19 and other vaccine sales",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "vaccines"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Biosimilar Products",
+      "type": "payment",
+      "position": { "x": 550, "y": 100 },
+      "handcashHandle": "PFE_Biosimilar",
+      "tokenAddress": "1PFEBiosimilarRevenue123456789",
+      "properties": {
+        "description": "Generic and biosimilar drug revenue",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "biosimilars"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Licensing & Royalties",
+      "type": "instrument",
+      "position": { "x": 750, "y": 100 },
+      "handcashHandle": "PFE_Licensing",
+      "tokenAddress": "1PFELicensingRevenue123456789",
+      "properties": {
+        "description": "Patent licensing and royalty income",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "licensing"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Pfizer Revenue Pool",
+      "type": "splitter",
+      "position": { "x": 450, "y": 250 },
+      "handcashHandle": "PFE_Revenue",
+      "tokenAddress": "1PFERevenuePool123456789",
+      "properties": {
+        "description": "Central revenue aggregation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "aggregation",
+        "category": "revenue_pool"
+      }
+    },
+    {
+      "id": 15,
+      "name": "R&D Investment (25%)",
+      "type": "trigger",
+      "position": { "x": 200, "y": 400 },
+      "handcashHandle": "PFE_RD",
+      "tokenAddress": "1PFERND123456789",
+      "properties": {
+        "percentage": 25,
+        "description": "Drug discovery and development",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "research"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Manufacturing & Supply (30%)",
+      "type": "workflow",
+      "position": { "x": 400, "y": 400 },
+      "handcashHandle": "PFE_Manufacturing",
+      "tokenAddress": "1PFEManufacturing123456789",
+      "properties": {
+        "percentage": 30,
+        "description": "Production and distribution costs",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "manufacturing"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Sales & Marketing (20%)",
+      "type": "member",
+      "position": { "x": 600, "y": 400 },
+      "handcashHandle": "PFE_Marketing",
+      "tokenAddress": "1PFEMarketing123456789",
+      "properties": {
+        "percentage": 20,
+        "description": "Sales force and marketing expenses",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "marketing"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Net Profit (15%)",
+      "type": "organization",
+      "position": { "x": 800, "y": 400 },
+      "handcashHandle": "PFE_Profit",
+      "tokenAddress": "1PFEProfit123456789",
+      "properties": {
+        "percentage": 15,
+        "description": "Shareholder returns and reinvestment",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "profit"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Regulatory & Compliance (10%)",
+      "type": "contract",
+      "position": { "x": 1000, "y": 400 },
+      "handcashHandle": "PFE_Regulatory",
+      "tokenAddress": "1PFERegulatory123456789",
+      "properties": {
+        "percentage": 10,
+        "description": "FDA compliance and regulatory affairs",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "regulatory"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Clinical Trials",
+      "type": "workflow",
+      "position": { "x": 200, "y": 550 },
+      "handcashHandle": "PFE_Trials",
+      "tokenAddress": "1PFEClinicalTrials123456789",
+      "properties": {
+        "description": "Phase I, II, III clinical trial operations",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "research_process",
+        "category": "clinical_trials"
+      }
+    },
+    {
+      "id": 31,
+      "name": "Drug Discovery",
+      "type": "ai-agent",
+      "position": { "x": 400, "y": 550 },
+      "handcashHandle": "PFE_Discovery",
+      "tokenAddress": "1PFEDiscovery123456789",
+      "properties": {
+        "description": "AI-powered drug discovery and compound screening",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "research_process",
+        "category": "discovery"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "drugs_to_pool",
+      "from": 1,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Drug Sales Revenue"
+      }
+    },
+    {
+      "id": "vaccines_to_pool",
+      "from": 2,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Vaccine Revenue"
+      }
+    },
+    {
+      "id": "biosimilar_to_pool",
+      "from": 3,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Biosimilar Revenue"
+      }
+    },
+    {
+      "id": "licensing_to_pool",
+      "from": 4,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Licensing Revenue"
+      }
+    },
+    {
+      "id": "pool_to_rd",
+      "from": 10,
+      "to": 15,
+      "type": "payment",
+      "properties": {
+        "weight": 25,
+        "label": "25% to R&D"
+      }
+    },
+    {
+      "id": "pool_to_manufacturing",
+      "from": 10,
+      "to": 16,
+      "type": "payment",
+      "properties": {
+        "weight": 30,
+        "label": "30% to Manufacturing"
+      }
+    },
+    {
+      "id": "pool_to_marketing",
+      "from": 10,
+      "to": 17,
+      "type": "payment",
+      "properties": {
+        "weight": 20,
+        "label": "20% to Sales & Marketing"
+      }
+    },
+    {
+      "id": "pool_to_profit",
+      "from": 10,
+      "to": 18,
+      "type": "payment",
+      "properties": {
+        "weight": 15,
+        "label": "15% Net Profit"
+      }
+    },
+    {
+      "id": "pool_to_regulatory",
+      "from": 10,
+      "to": 19,
+      "type": "payment",
+      "properties": {
+        "weight": 10,
+        "label": "10% Regulatory"
+      }
+    },
+    {
+      "id": "rd_to_trials",
+      "from": 15,
+      "to": 30,
+      "type": "payment",
+      "properties": {
+        "label": "R&D to Clinical Trials"
+      }
+    },
+    {
+      "id": "rd_to_discovery",
+      "from": 15,
+      "to": 31,
+      "type": "payment",
+      "properties": {
+        "label": "R&D to Drug Discovery"
+      }
+    }
+  ],
+  "layout": {
+    "style": "hierarchy",
+    "direction": "top-down",
+    "spacing": {
+      "horizontal": 200,
+      "vertical": 150
+    }
+  },
+  "validation": {
+    "totalPercentage": 100,
+    "requiredNodes": ["revenue_source", "rd_investment", "manufacturing"],
+    "constraints": [
+      {
+        "type": "sum_equals",
+        "value": 100,
+        "message": "Distribution percentages must sum to 100%"
+      },
+      {
+        "type": "min_nodes",
+        "value": 3,
+        "message": "Must have at least 3 revenue sources"
+      }
+    ]
+  }
+}

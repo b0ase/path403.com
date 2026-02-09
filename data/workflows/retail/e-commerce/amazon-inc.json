@@ -1,0 +1,320 @@
+{
+  "id": "amazon_marketplace_revenue_flow",
+  "name": "Amazon Inc. - Marketplace & AWS Revenue Flow",
+  "version": "1.0.0",
+  "metadata": {
+    "company": {
+      "name": "Amazon Inc.",
+      "ticker": "AMZN",
+      "jurisdiction": "US",
+      "website": "https://amazon.com",
+      "description": "Global e-commerce marketplace and cloud computing platform"
+    },
+    "industry": "Retail",
+    "type": "revenue_model",
+    "created": "2024-01-20T00:00:00Z",
+    "updated": "2024-01-20T00:00:00Z",
+    "author": "Cashboard System",
+    "tags": ["e-commerce", "cloud-computing", "marketplace", "logistics"],
+    "folder": "retail/e-commerce"
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Amazon Retail Sales",
+      "type": "payment",
+      "position": { "x": 100, "y": 100 },
+      "handcashHandle": "AMZN_Retail",
+      "tokenAddress": "1AMZNRetailSales123456789",
+      "properties": {
+        "description": "First-party retail sales revenue",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "retail"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Third-Party Seller Fees",
+      "type": "payment",
+      "position": { "x": 300, "y": 100 },
+      "handcashHandle": "AMZN_SellerFees",
+      "tokenAddress": "1AMZNSellerFees123456789",
+      "properties": {
+        "description": "Commission from marketplace sellers",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "marketplace"
+      }
+    },
+    {
+      "id": 3,
+      "name": "AWS Cloud Services",
+      "type": "payment",
+      "position": { "x": 500, "y": 100 },
+      "handcashHandle": "AMZN_AWS",
+      "tokenAddress": "1AMZNAWS123456789",
+      "properties": {
+        "description": "Cloud computing service revenue",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "cloud_services"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Prime Subscriptions",
+      "type": "payment",
+      "position": { "x": 700, "y": 100 },
+      "handcashHandle": "AMZN_Prime",
+      "tokenAddress": "1AMZNPrime123456789",
+      "properties": {
+        "description": "Prime membership subscription revenue",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "subscriptions"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Advertising Revenue",
+      "type": "payment",
+      "position": { "x": 900, "y": 100 },
+      "handcashHandle": "AMZN_Ads",
+      "tokenAddress": "1AMZNAds123456789",
+      "properties": {
+        "description": "Sponsored product and brand advertising",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "advertising"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Amazon Revenue Pool",
+      "type": "splitter",
+      "position": { "x": 500, "y": 250 },
+      "handcashHandle": "AMZN_Revenue",
+      "tokenAddress": "1AMZNRevenuePool123456789",
+      "properties": {
+        "description": "Central revenue aggregation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "aggregation",
+        "category": "revenue_pool"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Fulfillment & Logistics (35%)",
+      "type": "workflow",
+      "position": { "x": 200, "y": 400 },
+      "handcashHandle": "AMZN_Fulfillment",
+      "tokenAddress": "1AMZNFulfillment123456789",
+      "properties": {
+        "percentage": 35,
+        "description": "Warehousing, shipping, delivery operations",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "operations"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Technology & Infrastructure (25%)",
+      "type": "trigger",
+      "position": { "x": 400, "y": 400 },
+      "handcashHandle": "AMZN_Tech",
+      "tokenAddress": "1AMZNTech123456789",
+      "properties": {
+        "percentage": 25,
+        "description": "AWS infrastructure, platform development",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "technology"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Marketing & Customer Acquisition (15%)",
+      "type": "member",
+      "position": { "x": 600, "y": 400 },
+      "handcashHandle": "AMZN_Marketing",
+      "tokenAddress": "1AMZNMarketing123456789",
+      "properties": {
+        "percentage": 15,
+        "description": "Advertising, promotions, customer acquisition",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "marketing"
+      }
+    },
+    {
+      "id": 18,
+      "name": "R&D & Innovation (15%)",
+      "type": "ai-agent",
+      "position": { "x": 800, "y": 400 },
+      "handcashHandle": "AMZN_RD",
+      "tokenAddress": "1AMZNRD123456789",
+      "properties": {
+        "percentage": 15,
+        "description": "Alexa, robotics, new product development",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "research"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Net Profit (10%)",
+      "type": "organization",
+      "position": { "x": 1000, "y": 400 },
+      "handcashHandle": "AMZN_Profit",
+      "tokenAddress": "1AMZNProfit123456789",
+      "properties": {
+        "percentage": 10,
+        "description": "Shareholder returns and retained earnings",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "profit"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "retail_to_pool",
+      "from": 1,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Retail Revenue"
+      }
+    },
+    {
+      "id": "seller_to_pool",
+      "from": 2,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Marketplace Fees"
+      }
+    },
+    {
+      "id": "aws_to_pool",
+      "from": 3,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "AWS Revenue"
+      }
+    },
+    {
+      "id": "prime_to_pool",
+      "from": 4,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Prime Subscriptions"
+      }
+    },
+    {
+      "id": "ads_to_pool",
+      "from": 5,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Advertising Revenue"
+      }
+    },
+    {
+      "id": "pool_to_fulfillment",
+      "from": 10,
+      "to": 15,
+      "type": "payment",
+      "properties": {
+        "weight": 35,
+        "label": "35% to Fulfillment"
+      }
+    },
+    {
+      "id": "pool_to_tech",
+      "from": 10,
+      "to": 16,
+      "type": "payment",
+      "properties": {
+        "weight": 25,
+        "label": "25% to Technology"
+      }
+    },
+    {
+      "id": "pool_to_marketing",
+      "from": 10,
+      "to": 17,
+      "type": "payment",
+      "properties": {
+        "weight": 15,
+        "label": "15% to Marketing"
+      }
+    },
+    {
+      "id": "pool_to_rd",
+      "from": 10,
+      "to": 18,
+      "type": "payment",
+      "properties": {
+        "weight": 15,
+        "label": "15% to R&D"
+      }
+    },
+    {
+      "id": "pool_to_profit",
+      "from": 10,
+      "to": 19,
+      "type": "payment",
+      "properties": {
+        "weight": 10,
+        "label": "10% Net Profit"
+      }
+    }
+  ],
+  "layout": {
+    "style": "process",
+    "direction": "top-down",
+    "spacing": {
+      "horizontal": 200,
+      "vertical": 150
+    }
+  },
+  "validation": {
+    "totalPercentage": 100,
+    "requiredNodes": ["revenue_source", "aggregation", "distribution"],
+    "constraints": [
+      {
+        "type": "sum_equals",
+        "value": 100,
+        "message": "Distribution percentages must sum to 100%"
+      }
+    ]
+  }
+}

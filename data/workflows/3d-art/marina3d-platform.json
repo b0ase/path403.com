@@ -1,0 +1,176 @@
+{
+  "id": "marina3d-platform",
+  "name": "Marina3D - 3D Art Portfolio Platform",
+  "description": "Professional 3D art platform and portfolio website with advanced visualization, client management, and digital art marketplace",
+  "category": "3D Art & Design",
+  "industry": "Creative Technology",
+  "type": "Portfolio & Marketplace Platform",
+  "complexity": "Advanced",
+  "estimatedDuration": "8-12 months",
+  "teamSize": "8-14 people",
+  "fundingRequired": "$800K - $2.2M",
+  "marketSize": "$450M",
+  
+  "keyFeatures": [
+    "3D Portfolio Management",
+    "Interactive 3D Viewer",
+    "Client Project Management",
+    "Digital Art Marketplace",
+    "Real-time Collaboration Tools",
+    "AR/VR Integration",
+    "Commission Management",
+    "Professional Networking"
+  ],
+  
+  "workflow": {
+    "phases": [
+      {
+        "id": "3d-infrastructure",
+        "name": "3D Infrastructure & Viewer",
+        "duration": "4 months",
+        "description": "Core 3D visualization engine and portfolio infrastructure",
+        "tasks": [
+          "3D model viewer development (WebGL/Three.js)",
+          "Portfolio management system",
+          "File upload and processing pipeline",
+          "3D model optimization and compression",
+          "Interactive viewing controls and features",
+          "Mobile and VR compatibility"
+        ],
+        "roles": ["3D Graphics Programmers", "WebGL Developers", "Backend Engineers"],
+        "deliverables": ["3D Viewer Engine", "Portfolio System", "File Processing Pipeline"]
+      },
+      {
+        "id": "platform-features",
+        "name": "Platform Features & Client Tools",
+        "duration": "3 months",
+        "description": "Client management, project tools, and professional features",
+        "tasks": [
+          "Client management and CRM system",
+          "Project collaboration tools",
+          "Commission and pricing management",
+          "Professional networking features",
+          "Analytics and portfolio insights",
+          "Payment and invoicing system"
+        ],
+        "roles": ["Full-Stack Developers", "UI/UX Designers", "Product Managers"],
+        "deliverables": ["Client Management System", "Collaboration Tools", "Professional Features"]
+      },
+      {
+        "id": "marketplace-ar",
+        "name": "Marketplace & AR/VR Integration",
+        "duration": "3 months",
+        "description": "Digital art marketplace and immersive technology integration",
+        "tasks": [
+          "Digital art marketplace development",
+          "AR integration for mobile viewing",
+          "VR gallery and exhibition spaces",
+          "Marketplace transaction system",
+          "Artist verification and curation",
+          "Social features and community building"
+        ],
+        "roles": ["AR/VR Developers", "Marketplace Engineers", "Community Managers"],
+        "deliverables": ["Digital Marketplace", "AR/VR Features", "Community Platform"]
+      },
+      {
+        "id": "launch-optimization",
+        "name": "Launch & Optimization",
+        "duration": "2 months",
+        "description": "Platform launch, artist onboarding, and performance optimization",
+        "tasks": [
+          "Beta testing with 3D artists",
+          "Performance optimization and scaling",
+          "Artist onboarding and education",
+          "Marketing campaign for creative professionals",
+          "Customer support and documentation",
+          "Analytics and monitoring setup"
+        ],
+        "roles": ["DevOps Engineers", "Marketing Team", "Customer Success"],
+        "deliverables": ["Live Platform", "Artist Community", "Support System"]
+      }
+    ]
+  },
+  
+  "organizations": [
+    {
+      "name": "Marina3D Creative Technologies",
+      "type": "Creative Technology Corporation",
+      "role": "Platform Developer",
+      "equity": "100%"
+    }
+  ],
+  
+  "roles": [
+    { "title": "Founder/Creative Director", "department": "Creative", "count": 1, "equity": "25%" },
+    { "title": "CTO", "department": "Technology", "count": 1, "equity": "18%" },
+    { "title": "Lead 3D Graphics Programmer", "department": "Graphics", "count": 1, "equity": "15%" },
+    { "title": "Full-Stack Developers", "department": "Engineering", "count": 3, "equity": "18%" },
+    { "title": "WebGL/Three.js Developer", "department": "Frontend", "count": 1, "equity": "10%" },
+    { "title": "AR/VR Developer", "department": "Immersive Tech", "count": 1, "equity": "8%" },
+    { "title": "UI/UX Designer", "department": "Design", "count": 2, "equity": "8%" },
+    { "title": "Product Manager", "department": "Product", "count": 1, "equity": "5%" },
+    { "title": "Community Manager", "department": "Community", "count": 1, "equity": "3%" },
+    { "title": "Marketing Specialist", "department": "Marketing", "count": 1, "equity": "2%" }
+  ],
+  
+  "instruments": [
+    { "name": "Common Stock", "type": "equity", "supply": 5000000, "description": "Founder and employee equity" },
+    { "name": "Preferred Shares Series A", "type": "equity", "supply": 1000000, "description": "Creative tech and art investor funding" },
+    { "name": "$M3D Token", "type": "utility", "supply": 250000000, "description": "Platform utility and artist rewards" },
+    { "name": "3D Art NFTs", "type": "nft", "supply": "Unlimited", "description": "3D digital art collectibles" },
+    { "name": "Artist Revenue Shares", "type": "revenue", "supply": 75000000, "description": "Commission and marketplace revenue sharing" }
+  ],
+  
+  "contracts": [
+    { "type": "Employment Agreements", "parties": ["Employees", "Company"], "duration": "2-3 years" },
+    { "type": "Artist Partnership Agreement", "parties": ["Company", "3D Artists"], "duration": "2 years" },
+    { "type": "Client Service Agreement", "parties": ["Artists", "Clients"], "duration": "Per Project" },
+    { "type": "Marketplace Terms", "parties": ["Company", "Buyers/Sellers"], "duration": "Ongoing" },
+    { "type": "Technology Licensing", "parties": ["Company", "3D Software Providers"], "duration": "2-3 years" }
+  ],
+  
+  "integrations": [
+    { "name": "Three.js", "type": "3D Library", "purpose": "WebGL 3D rendering and visualization" },
+    { "name": "Blender", "type": "3D Software", "purpose": "3D model import and processing" },
+    { "name": "Autodesk Maya", "type": "3D Software", "purpose": "Professional 3D pipeline integration" },
+    { "name": "Unity WebGL", "type": "3D Engine", "purpose": "Interactive 3D experiences" },
+    { "name": "AR.js", "type": "AR Framework", "purpose": "Augmented reality viewing" },
+    { "name": "A-Frame", "type": "VR Framework", "purpose": "Virtual reality galleries" },
+    { "name": "Stripe", "type": "Payment", "purpose": "Commission and marketplace payments" },
+    { "name": "AWS S3", "type": "Storage", "purpose": "3D model and asset storage" },
+    { "name": "CloudFront", "type": "CDN", "purpose": "Fast 3D model delivery" }
+  ],
+  
+  "risks": [
+    { "category": "Technical Performance", "description": "3D rendering performance on various devices", "mitigation": "Progressive loading and optimization techniques" },
+    { "category": "File Size Management", "description": "Large 3D model files and bandwidth", "mitigation": "Advanced compression and streaming solutions" },
+    { "category": "Market Competition", "description": "Established portfolio platforms", "mitigation": "Focus on 3D specialization and professional tools" },
+    { "category": "Artist Adoption", "description": "Convincing artists to migrate platforms", "mitigation": "Superior 3D viewing experience and professional features" }
+  ],
+  
+  "milestones": [
+    { "month": 4, "milestone": "3D Viewer Platform Complete", "funding": "$500K" },
+    { "month": 7, "milestone": "Client Tools Beta Launch", "funding": "$1M" },
+    { "month": 10, "milestone": "Marketplace & AR/VR Launch", "funding": "$1.8M" },
+    { "month": 12, "milestone": "500 Artists & 1K Artworks", "funding": "$2.2M" }
+  ],
+  
+  "revenue": {
+    "model": "Freemium + Marketplace + SaaS",
+    "streams": [
+      "Premium portfolio subscriptions ($19.99-$79.99/month)",
+      "Marketplace transaction fees (5-15%)",
+      "Commission management fees (3-8%)",
+      "Professional client tools ($49.99-$199.99/month)",
+      "Custom 3D viewer embedding licenses",
+      "AR/VR premium features",
+      "Enterprise white-label solutions"
+    ],
+    "projections": {
+      "year1": "$120K",
+      "year2": "$850K",
+      "year3": "$3.8M",
+      "year5": "$15M+"
+    }
+  }
+}

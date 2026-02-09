@@ -1,0 +1,101 @@
+{
+  "id": "course-kings",
+  "name": "Course Kings - Education Platform",
+  "description": "AI-powered education platform with course creation and creator monetization",
+  "category": "education",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Student Registration",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "CourseKings_Students"
+    },
+    {
+      "id": "2",
+      "name": "AI Course Creation",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "CourseKings_AI_Creation"
+    },
+    {
+      "id": "3",
+      "name": "Personalized Learning",
+      "type": "ai-agent",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "CourseKings_Personalized"
+    },
+    {
+      "id": "4",
+      "name": "Creator Monetization",
+      "type": "workflow",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "CourseKings_Creator_Monetization"
+    },
+    {
+      "id": "5",
+      "name": "Course Marketplace",
+      "type": "market",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "CourseKings_Marketplace"
+    },
+    {
+      "id": "10",
+      "name": "Course Kings Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "CourseKings_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Platform Development (35%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "CourseKings_Dev"
+    },
+    {
+      "id": "16",
+      "name": "AI Research (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "CourseKings_Research"
+    },
+    {
+      "id": "17",
+      "name": "Creator Support (25%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "CourseKings_Creator_Support"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "CourseKings_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["education", "ai", "creator-economy", "learning"]
+}

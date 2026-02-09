@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "path402": {
+      "command": "node",
+      "args": ["lib/mcp-servers/dist/index.js"],
+      "env": {
+        "TRANSPORT": "stdio"
+      }
+    }
+  }
+}

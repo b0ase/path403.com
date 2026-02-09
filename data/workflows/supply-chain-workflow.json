@@ -1,0 +1,133 @@
+{
+  "id": "supply-chain",
+  "name": "Supply Chain Management Workflow",
+  "description": "End-to-end supply chain tracking and management workflow",
+  "category": "logistics",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Raw Materials Supplier",
+      "type": "organization",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "SC_Supplier"
+    },
+    {
+      "id": "2",
+      "name": "Manufacturing Plant",
+      "type": "workflow",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "SC_Manufacturing"
+    },
+    {
+      "id": "3",
+      "name": "Quality Control",
+      "type": "assessment",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "SC_Quality"
+    },
+    {
+      "id": "4",
+      "name": "Warehouse",
+      "type": "organization",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "SC_Warehouse"
+    },
+    {
+      "id": "5",
+      "name": "Distribution Center",
+      "type": "workflow",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "SC_Distribution"
+    },
+    {
+      "id": "6",
+      "name": "Retail Store",
+      "type": "organization",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "SC_Retail"
+    },
+    {
+      "id": "7",
+      "name": "Customer",
+      "type": "member",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "SC_Customer"
+    },
+    {
+      "id": "8",
+      "name": "Blockchain Tracker",
+      "type": "integration",
+      "x": 500,
+      "y": 550,
+      "handcashHandle": "SC_Tracker"
+    }
+  ],
+  "connections": [
+    {
+      "from": "1",
+      "to": "2"
+    },
+    {
+      "from": "2",
+      "to": "3"
+    },
+    {
+      "from": "3",
+      "to": "4"
+    },
+    {
+      "from": "4",
+      "to": "5"
+    },
+    {
+      "from": "5",
+      "to": "6"
+    },
+    {
+      "from": "6",
+      "to": "7"
+    },
+    {
+      "from": "1",
+      "to": "8"
+    },
+    {
+      "from": "2",
+      "to": "8"
+    },
+    {
+      "from": "3",
+      "to": "8"
+    },
+    {
+      "from": "4",
+      "to": "8"
+    },
+    {
+      "from": "5",
+      "to": "8"
+    },
+    {
+      "from": "6",
+      "to": "8"
+    },
+    {
+      "from": "7",
+      "to": "8"
+    }
+  ],
+  "metadata": {
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-20T00:00:00Z",
+    "author": "Supply Chain Team",
+    "tags": ["supply-chain", "logistics", "manufacturing", "tracking", "blockchain"]
+  }
+}

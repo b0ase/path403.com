@@ -1,0 +1,621 @@
+{
+  "id": "audex_asset_monetary_flow",
+  "name": "AUDEX Corporation - Asset & Monetary Flows",
+  "version": "1.0.0",
+  "metadata": {
+    "company": {
+      "name": "AUDEX Corporation",
+      "ticker": "AUDEX",
+      "jurisdiction": "US",
+      "website": "https://audex.com",
+      "description": "Digital music platform with NFT integration and tokenized revenue sharing"
+    },
+    "industry": "Media & Entertainment",
+    "type": "asset_monetary_flow",
+    "created": "2024-01-20T00:00:00Z",
+    "updated": "2024-01-20T00:00:00Z",
+    "author": "Cashboard System",
+    "tags": ["music", "nft", "tokenization", "revenue-sharing", "streaming"],
+    "folder": "media-entertainment/music-platforms"
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Music Track Streaming",
+      "type": "youtube",
+      "position": { "x": 100, "y": 100 },
+      "handcashHandle": "AUDEX_Streaming",
+      "tokenAddress": "1AUDEXStreamingAddress123456789",
+      "properties": {
+        "description": "Revenue from music streaming platforms",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "streaming",
+        "comments": "Primary revenue source from streaming services"
+      }
+    },
+    {
+      "id": 2,
+      "name": "YouTube Ad Revenue",
+      "type": "youtube",
+      "position": { "x": 300, "y": 100 },
+      "handcashHandle": "AUDEX_YouTube",
+      "tokenAddress": "1AUDEXYouTubeAddress123456789",
+      "properties": {
+        "description": "Ad revenue from YouTube platform",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "advertising"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Spotify Royalties",
+      "type": "payment",
+      "position": { "x": 500, "y": 100 },
+      "handcashHandle": "AUDEX_Spotify",
+      "tokenAddress": "1AUDEXSpotifyAddress123456789",
+      "properties": {
+        "description": "Royalty payments from Spotify",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "royalties"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Platform Subscriptions",
+      "type": "payment",
+      "position": { "x": 700, "y": 100 },
+      "handcashHandle": "AUDEX_Subs",
+      "tokenAddress": "1AUDEXSubsAddress123456789",
+      "properties": {
+        "description": "Subscription revenue from platform users",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "subscriptions"
+      }
+    },
+    {
+      "id": 5,
+      "name": "NFT Music Sales",
+      "type": "instrument",
+      "position": { "x": 900, "y": 100 },
+      "handcashHandle": "AUDEX_NFTs",
+      "tokenAddress": "1AUDEXNFTAddress123456789",
+      "properties": {
+        "description": "Revenue from NFT music sales",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "nft_sales"
+      }
+    },
+    {
+      "id": 10,
+      "name": "AUDEX Revenue Pool",
+      "type": "splitter",
+      "position": { "x": 500, "y": 250 },
+      "handcashHandle": "AUDEX_Revenue",
+      "tokenAddress": "1AUDEXRevenueAddress123456789",
+      "properties": {
+        "description": "Central revenue aggregation point",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "aggregation",
+        "category": "revenue_pool"
+      }
+    },
+    {
+      "id": 15,
+      "name": "AUDEX Treasury (51%)",
+      "type": "organization",
+      "position": { "x": 300, "y": 400 },
+      "handcashHandle": "AUDEX_Treasury",
+      "tokenAddress": "1AUDEXTreasuryAddress123456789",
+      "properties": {
+        "percentage": 51,
+        "description": "Corporate treasury allocation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "corporate"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Artist Royalty Pool (35%)",
+      "type": "member",
+      "position": { "x": 500, "y": 400 },
+      "handcashHandle": "AUDEX_Artists",
+      "tokenAddress": "1AUDEXArtistsAddress123456789",
+      "properties": {
+        "percentage": 35,
+        "description": "Artist revenue sharing pool",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "artists"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Operations Reserve (10%)",
+      "type": "workflow",
+      "position": { "x": 700, "y": 400 },
+      "handcashHandle": "AUDEX_Ops",
+      "tokenAddress": "1AUDEXOpsAddress123456789",
+      "properties": {
+        "percentage": 10,
+        "description": "Operational expenses reserve",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "operations"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Platform Development (4%)",
+      "type": "trigger",
+      "position": { "x": 900, "y": 400 },
+      "handcashHandle": "AUDEX_Dev",
+      "tokenAddress": "1AUDEXDevAddress123456789",
+      "properties": {
+        "percentage": 4,
+        "description": "Platform development funding",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "development"
+      }
+    },
+    {
+      "id": 20,
+      "name": "AUDEX Token Contract",
+      "type": "contract",
+      "position": { "x": 500, "y": 550 },
+      "handcashHandle": "AUDEX_Tokens",
+      "tokenAddress": "1AUDEXTokensAddress123456789",
+      "properties": {
+        "description": "Smart contract for token management",
+        "status": "active",
+        "contractCode": "sCrypt token contract",
+        "isComposable": true
+      },
+      "metadata": {
+        "tier": "tokenization",
+        "category": "smart_contract"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Quarterly Dividend Calculator",
+      "type": "decision",
+      "position": { "x": 500, "y": 700 },
+      "handcashHandle": "AUDEX_Dividends",
+      "tokenAddress": "1AUDEXDividendsAddress123456789",
+      "properties": {
+        "description": "Automated dividend calculation system",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "calculation",
+        "category": "dividends"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Treasury Tokens (51%)",
+      "type": "wallets",
+      "position": { "x": 200, "y": 850 },
+      "handcashHandle": "AUDEX_Treasury_Tokens",
+      "tokenAddress": "1AUDEXTreasuryTokens123456789",
+      "properties": {
+        "percentage": 51,
+        "description": "Treasury token holdings",
+        "status": "active",
+        "walletType": "multisig",
+        "multisigThreshold": 3,
+        "multisigSigners": ["treasury_1", "treasury_2", "treasury_3", "treasury_4", "treasury_5"]
+      },
+      "metadata": {
+        "tier": "token_distribution",
+        "category": "treasury"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Public Shareholders (35%)",
+      "type": "member",
+      "position": { "x": 400, "y": 850 },
+      "handcashHandle": "AUDEX_Public",
+      "tokenAddress": "1AUDEXPublicAddress123456789",
+      "properties": {
+        "percentage": 35,
+        "description": "Public shareholder token allocation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "token_distribution",
+        "category": "public"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Artist Token Holders (10%)",
+      "type": "member",
+      "position": { "x": 600, "y": 850 },
+      "handcashHandle": "AUDEX_Artist_Tokens",
+      "tokenAddress": "1AUDEXArtistTokens123456789",
+      "properties": {
+        "percentage": 10,
+        "description": "Artist token holder allocation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "token_distribution",
+        "category": "artists"
+      }
+    },
+    {
+      "id": 24,
+      "name": "Team & Advisors (4%)",
+      "type": "role",
+      "position": { "x": 800, "y": 850 },
+      "handcashHandle": "AUDEX_Team",
+      "tokenAddress": "1AUDEXTeamAddress123456789",
+      "properties": {
+        "percentage": 4,
+        "description": "Team and advisor token allocation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "token_distribution",
+        "category": "team"
+      }
+    },
+    {
+      "id": 40,
+      "name": "Track NFT #001",
+      "type": "instrument",
+      "position": { "x": 1100, "y": 250 },
+      "handcashHandle": "AUDEX_Track001",
+      "tokenAddress": "1AUDEXTrack001Address123456789",
+      "properties": {
+        "description": "Individual track NFT asset",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "asset",
+        "category": "nft_track"
+      }
+    },
+    {
+      "id": 41,
+      "name": "Track Royalty Split",
+      "type": "splitter",
+      "position": { "x": 1100, "y": 400 },
+      "handcashHandle": "AUDEX_TrackSplit",
+      "tokenAddress": "1AUDEXTrackSplit123456789",
+      "properties": {
+        "description": "Individual track royalty distribution",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "track_royalties"
+      }
+    },
+    {
+      "id": 42,
+      "name": "Track Shareholders",
+      "type": "member",
+      "position": { "x": 1100, "y": 550 },
+      "handcashHandle": "AUDEX_TrackHolders",
+      "tokenAddress": "1AUDEXTrackHolders123456789",
+      "properties": {
+        "description": "Individual track shareholders",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "ownership",
+        "category": "track_holders"
+      }
+    },
+    {
+      "id": 50,
+      "name": "AUDEX Platform IP",
+      "type": "contract",
+      "position": { "x": 100, "y": 550 },
+      "handcashHandle": "AUDEX_Platform",
+      "tokenAddress": "1AUDEXPlatformAddress123456789",
+      "properties": {
+        "description": "Platform intellectual property rights",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "asset",
+        "category": "intellectual_property"
+      }
+    },
+    {
+      "id": 51,
+      "name": "User Database",
+      "type": "workflow",
+      "position": { "x": 100, "y": 700 },
+      "handcashHandle": "AUDEX_Users",
+      "tokenAddress": "1AUDEXUsersAddress123456789",
+      "properties": {
+        "description": "User data and analytics system",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "asset",
+        "category": "data"
+      }
+    },
+    {
+      "id": 52,
+      "name": "Music Catalog Rights",
+      "type": "instrument",
+      "position": { "x": 100, "y": 850 },
+      "handcashHandle": "AUDEX_Catalog",
+      "tokenAddress": "1AUDEXCatalogAddress123456789",
+      "properties": {
+        "description": "Music catalog licensing rights",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "asset",
+        "category": "licensing"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "stream_to_pool",
+      "from": 1,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Streaming Revenue"
+      }
+    },
+    {
+      "id": "youtube_to_pool",
+      "from": 2,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "YouTube Ad Revenue"
+      }
+    },
+    {
+      "id": "spotify_to_pool",
+      "from": 3,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Spotify Royalties"
+      }
+    },
+    {
+      "id": "subs_to_pool",
+      "from": 4,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Subscription Revenue"
+      }
+    },
+    {
+      "id": "nft_to_pool",
+      "from": 5,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "NFT Sales Revenue"
+      }
+    },
+    {
+      "id": "pool_to_treasury",
+      "from": 10,
+      "to": 15,
+      "type": "payment",
+      "properties": {
+        "weight": 51,
+        "label": "51% to Treasury"
+      }
+    },
+    {
+      "id": "pool_to_artists",
+      "from": 10,
+      "to": 16,
+      "type": "payment",
+      "properties": {
+        "weight": 35,
+        "label": "35% to Artists"
+      }
+    },
+    {
+      "id": "pool_to_ops",
+      "from": 10,
+      "to": 17,
+      "type": "payment",
+      "properties": {
+        "weight": 10,
+        "label": "10% to Operations"
+      }
+    },
+    {
+      "id": "pool_to_dev",
+      "from": 10,
+      "to": 18,
+      "type": "payment",
+      "properties": {
+        "weight": 4,
+        "label": "4% to Development"
+      }
+    },
+    {
+      "id": "treasury_to_tokens",
+      "from": 15,
+      "to": 20,
+      "type": "payment",
+      "properties": {
+        "label": "Treasury to Token Contract"
+      }
+    },
+    {
+      "id": "artists_to_tokens",
+      "from": 16,
+      "to": 20,
+      "type": "payment",
+      "properties": {
+        "label": "Artists to Token Contract"
+      }
+    },
+    {
+      "id": "tokens_to_calculator",
+      "from": 20,
+      "to": 30,
+      "type": "payment",
+      "properties": {
+        "label": "Token Contract to Dividend Calculator"
+      }
+    },
+    {
+      "id": "calc_to_treasury_tokens",
+      "from": 30,
+      "to": 21,
+      "type": "payment",
+      "properties": {
+        "weight": 51,
+        "label": "51% Treasury Tokens"
+      }
+    },
+    {
+      "id": "calc_to_public",
+      "from": 30,
+      "to": 22,
+      "type": "payment",
+      "properties": {
+        "weight": 35,
+        "label": "35% Public Shareholders"
+      }
+    },
+    {
+      "id": "calc_to_artist_tokens",
+      "from": 30,
+      "to": 23,
+      "type": "payment",
+      "properties": {
+        "weight": 10,
+        "label": "10% Artist Token Holders"
+      }
+    },
+    {
+      "id": "calc_to_team",
+      "from": 30,
+      "to": 24,
+      "type": "payment",
+      "properties": {
+        "weight": 4,
+        "label": "4% Team & Advisors"
+      }
+    },
+    {
+      "id": "stream_to_track",
+      "from": 1,
+      "to": 40,
+      "type": "payment",
+      "properties": {
+        "label": "Track-specific streaming"
+      }
+    },
+    {
+      "id": "track_to_split",
+      "from": 40,
+      "to": 41,
+      "type": "payment",
+      "properties": {
+        "label": "Track NFT to Royalty Split"
+      }
+    },
+    {
+      "id": "split_to_holders",
+      "from": 41,
+      "to": 42,
+      "type": "payment",
+      "properties": {
+        "label": "Royalty Split to Track Holders"
+      }
+    },
+    {
+      "id": "subs_to_platform",
+      "from": 4,
+      "to": 50,
+      "type": "payment",
+      "properties": {
+        "label": "Platform Revenue to IP"
+      }
+    },
+    {
+      "id": "platform_to_users",
+      "from": 50,
+      "to": 51,
+      "type": "data",
+      "properties": {
+        "label": "Platform IP to User Database"
+      }
+    },
+    {
+      "id": "users_to_catalog",
+      "from": 51,
+      "to": 52,
+      "type": "data",
+      "properties": {
+        "label": "User Database to Music Catalog"
+      }
+    }
+  ],
+  "layout": {
+    "style": "pyramid",
+    "direction": "top-down",
+    "spacing": {
+      "horizontal": 200,
+      "vertical": 150
+    }
+  },
+  "validation": {
+    "totalPercentage": 100,
+    "requiredNodes": ["revenue_pool", "treasury", "token_contract"],
+    "constraints": [
+      {
+        "type": "sum_equals",
+        "value": 100,
+        "message": "Distribution percentages must sum to 100%"
+      },
+      {
+        "type": "min_nodes",
+        "value": 5,
+        "message": "Workflow must have at least 5 revenue sources"
+      }
+    ]
+  }
+}

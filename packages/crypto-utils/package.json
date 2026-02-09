@@ -1,0 +1,28 @@
+{
+  "name": "@b0ase/crypto-utils",
+  "version": "0.1.0",
+  "description": "Common cryptographic utilities for hashing, encoding, and key operations",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "keywords": ["crypto", "hash", "sha256", "base58", "hex", "encoding"],
+  "license": "MIT"
+}

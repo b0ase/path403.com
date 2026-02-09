@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Write(projects/**)",
+      "Edit(projects/**)",
+      "Bash(npm:*)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebFetch(https://docs.*)",
+      "WebFetch(https://registry.npmjs.org/*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(su:*)",
+      "Bash(passwd:*)",
+      "Bash(apt:*)",
+      "Bash(yum:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(nc:*)",
+      "Bash(nmap:*)",
+      "Bash(ssh:*)",
+      "Bash(docker:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "WebFetch(*)"
+    ]
+  },
+  "model": "claude-sonnet-4-20250514",
+  "maxTurns": 100,
+  "apiProxy": "http://gateway:3001/anthropic"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "ai-tribes-social",
+  "name": "AI Tribes - Social Platform",
+  "description": "AI-powered social platform with tribal communities and creator tools",
+  "category": "social-platforms",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Registration",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "AI_Tribes_Users"
+    },
+    {
+      "id": "2",
+      "name": "AI Curation Engine",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "AI_Tribes_Curation"
+    },
+    {
+      "id": "3",
+      "name": "Tribal Communities",
+      "type": "team",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "AI_Tribes_Communities"
+    },
+    {
+      "id": "4",
+      "name": "Creator Tools",
+      "type": "workflow",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "AI_Tribes_Creator_Tools"
+    },
+    {
+      "id": "5",
+      "name": "Token Economy",
+      "type": "contract",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "AI_Tribes_Tokens"
+    },
+    {
+      "id": "10",
+      "name": "AI Tribes Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "AI_Tribes_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Platform Development (35%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "AI_Tribes_Dev"
+    },
+    {
+      "id": "16",
+      "name": "AI Research (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "AI_Tribes_Research"
+    },
+    {
+      "id": "17",
+      "name": "Community Building (20%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "AI_Tribes_Community"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (15%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "AI_Tribes_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["social", "ai", "community", "creator-economy"]
+}

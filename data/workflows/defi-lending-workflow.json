@@ -1,0 +1,113 @@
+{
+  "id": "defi-lending",
+  "name": "DeFi Lending Protocol Workflow",
+  "description": "Decentralized lending and borrowing workflow with collateral management",
+  "category": "defi",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Collateral",
+      "type": "wallet",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "DEFI_Collateral"
+    },
+    {
+      "id": "2",
+      "name": "Collateral Oracle",
+      "type": "integration",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "DEFI_Oracle"
+    },
+    {
+      "id": "3",
+      "name": "Liquidation Engine",
+      "type": "workflow",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "DEFI_Liquidation"
+    },
+    {
+      "id": "4",
+      "name": "Interest Rate Model",
+      "type": "contract",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "DEFI_Interest"
+    },
+    {
+      "id": "5",
+      "name": "Lending Pool",
+      "type": "organization",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "DEFI_Pool"
+    },
+    {
+      "id": "6",
+      "name": "Borrower",
+      "type": "member",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "DEFI_Borrower"
+    },
+    {
+      "id": "7",
+      "name": "Lender",
+      "type": "member",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "DEFI_Lender"
+    },
+    {
+      "id": "8",
+      "name": "Governance Token",
+      "type": "instrument",
+      "x": 500,
+      "y": 550,
+      "handcashHandle": "DEFI_Governance"
+    }
+  ],
+  "connections": [
+    {
+      "from": "1",
+      "to": "2"
+    },
+    {
+      "from": "2",
+      "to": "3"
+    },
+    {
+      "from": "2",
+      "to": "4"
+    },
+    {
+      "from": "3",
+      "to": "5"
+    },
+    {
+      "from": "4",
+      "to": "5"
+    },
+    {
+      "from": "5",
+      "to": "6"
+    },
+    {
+      "from": "5",
+      "to": "7"
+    },
+    {
+      "from": "5",
+      "to": "8"
+    }
+  ],
+  "metadata": {
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-20T00:00:00Z",
+    "author": "DeFi Team",
+    "tags": ["defi", "lending", "borrowing", "collateral", "governance"]
+  }
+}

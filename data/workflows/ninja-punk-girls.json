@@ -1,0 +1,101 @@
+{
+  "id": "ninja-punk-girls",
+  "name": "Ninja Punk Girls - NFT Collection Platform",
+  "description": "NFT collection platform with 1,530 asset library and rarity algorithm",
+  "category": "blockchain-gaming",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Asset Library (1,530)",
+      "type": "instrument",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "NinjaPunk_Assets"
+    },
+    {
+      "id": "2",
+      "name": "Layer Compositing",
+      "type": "workflow",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "NinjaPunk_Layers"
+    },
+    {
+      "id": "3",
+      "name": "Rarity Algorithm",
+      "type": "ai-agent",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "NinjaPunk_Rarity"
+    },
+    {
+      "id": "4",
+      "name": "NFT Minting",
+      "type": "instrument",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "NinjaPunk_Minting"
+    },
+    {
+      "id": "5",
+      "name": "NFT Marketplace",
+      "type": "market",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "NinjaPunk_Marketplace"
+    },
+    {
+      "id": "10",
+      "name": "Ninja Punk Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "NinjaPunk_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Asset Development (40%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "NinjaPunk_Asset_Dev"
+    },
+    {
+      "id": "16",
+      "name": "Platform Features (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "NinjaPunk_Features"
+    },
+    {
+      "id": "17",
+      "name": "NFT Infrastructure (20%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "NinjaPunk_NFT_Infra"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "NinjaPunk_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["nft", "gaming", "web3", "collectibles"]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "aigf-ai-girlfriend",
+  "name": "$AIGF - AI Girlfriend Platform",
+  "description": "AI-powered relationship platform with personality engine and emotional intelligence",
+  "category": "ai-platforms",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Registration",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "AIGF_Users"
+    },
+    {
+      "id": "2",
+      "name": "AI Personality Engine",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "AIGF_AI_Engine"
+    },
+    {
+      "id": "3",
+      "name": "Emotional Intelligence Module",
+      "type": "ai-agent",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "AIGF_Emotional_AI"
+    },
+    {
+      "id": "4",
+      "name": "Visual Avatar Generator",
+      "type": "ai-agent",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "AIGF_Avatars"
+    },
+    {
+      "id": "5",
+      "name": "Conversation History",
+      "type": "database",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "AIGF_Conversations"
+    },
+    {
+      "id": "10",
+      "name": "AIGF Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "AIGF_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Platform Development (40%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "AIGF_Dev"
+    },
+    {
+      "id": "16",
+      "name": "AI Research (35%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "AIGF_Research"
+    },
+    {
+      "id": "17",
+      "name": "Marketing (15%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "AIGF_Marketing"
+    },
+    {
+      "id": "18",
+      "name": "User Support (10%)",
+      "type": "team",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "AIGF_Support"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["ai", "saas", "relationships", "personalization"]
+}

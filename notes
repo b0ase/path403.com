@@ -1,0 +1,16 @@
+The produects page is supposed to show the complete products b0ase is creating. 
+The products are supposed to be complete businesses, so a token, website, product or service.. the whole thing. This is best expressed by the websites. 
+
+I want to play with fillling int he geometry of the three.js animation. 
+
+I want to play with adding hte monyebutton from the landing page of the themoneybutton.store onto the front page of b0ase.com 
+
+I want to bring all the b0ase.com tokens onto the platform in a special b0ase.com bsv ordinals wallet with private key.. 
+
+I want more music and a cooler three.js landing page. 
+
+I want to hook up the /boardroom to use Yours wallet (and maybe HandCash?) --- maybe Metamask adn Phantom but its' goign to get annoying and tricky. 
+
+I mighti move the user/account tabs into their own pages like /user/account/settings etc. Not sure yet. I dont like having them withotu their own URLs but we might use #section markers instead? This allowss for assignation and direction. 
+
+I might want to clean up the root folder by moving the .md files into the docs folder. Then I migth want to audit teh .mds in teh docs folder to see what has been done and what needs to be done. Consolidating docs and throwing away stale ones as I go. 

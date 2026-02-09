@@ -1,0 +1,174 @@
+{
+  "id": "course-kings-platform",
+  "name": "Course Kings - Education Platform",
+  "description": "Comprehensive online education platform with AI-powered course creation, personalized learning paths, and creator monetization",
+  "category": "Education Technology",
+  "industry": "Education",
+  "type": "EdTech Platform",
+  "complexity": "Enterprise",
+  "estimatedDuration": "12-15 months",
+  "teamSize": "15-22 people",
+  "fundingRequired": "$1.5M - $3.5M",
+  "marketSize": "$350B",
+  
+  "keyFeatures": [
+    "AI-Powered Course Creation",
+    "Personalized Learning Paths",
+    "Interactive Content Tools",
+    "Creator Monetization",
+    "Student Progress Analytics",
+    "Live Session Integration",
+    "Certificate Management",
+    "Community Features"
+  ],
+  
+  "workflow": {
+    "phases": [
+      {
+        "id": "platform-foundation",
+        "name": "Platform Foundation",
+        "duration": "4 months",
+        "description": "Core platform architecture and basic learning management system",
+        "tasks": [
+          "User authentication and profiles",
+          "Course management system",
+          "Content delivery infrastructure",
+          "Payment and subscription system",
+          "Basic analytics framework",
+          "Mobile-responsive design"
+        ],
+        "roles": ["Full-Stack Developers", "System Architects", "UI/UX Designers"],
+        "deliverables": ["Core Platform", "User Management", "Content System"]
+      },
+      {
+        "id": "ai-learning-tools",
+        "name": "AI & Learning Tools",
+        "duration": "5 months",
+        "description": "AI-powered features and advanced learning tools",
+        "tasks": [
+          "AI course generation system",
+          "Personalized learning algorithms",
+          "Interactive content creator",
+          "Automated assessment tools",
+          "Progress tracking and recommendations",
+          "Natural language processing for Q&A"
+        ],
+        "roles": ["AI Engineers", "Educational Technologists", "Data Scientists"],
+        "deliverables": ["AI Course Generator", "Learning Analytics", "Interactive Tools"]
+      },
+      {
+        "id": "creator-tools",
+        "name": "Creator Tools & Monetization",
+        "duration": "3 months",
+        "description": "Advanced creator tools and monetization features",
+        "tasks": [
+          "Advanced course builder",
+          "Live streaming integration",
+          "Creator analytics dashboard",
+          "Revenue sharing system",
+          "Marketing and promotion tools",
+          "Community building features"
+        ],
+        "roles": ["Product Managers", "Frontend Developers", "Payment Engineers"],
+        "deliverables": ["Creator Dashboard", "Monetization Tools", "Live Features"]
+      },
+      {
+        "id": "launch-growth",
+        "name": "Launch & Growth",
+        "duration": "3 months",
+        "description": "Platform launch, user acquisition, and growth optimization",
+        "tasks": [
+          "Beta testing with educators",
+          "Marketing campaign execution",
+          "Creator onboarding program",
+          "Student acquisition strategies",
+          "Performance optimization",
+          "Customer support implementation"
+        ],
+        "roles": ["Marketing Team", "Growth Hackers", "Customer Success"],
+        "deliverables": ["Live Platform", "User Base", "Growth Strategy"]
+      }
+    ]
+  },
+  
+  "organizations": [
+    {
+      "name": "Course Kings Inc",
+      "type": "Education Technology Corporation",
+      "role": "Platform Developer",
+      "equity": "100%"
+    }
+  ],
+  
+  "roles": [
+    { "title": "CEO/Founder", "department": "Executive", "count": 1, "equity": "24%" },
+    { "title": "CTO", "department": "Technology", "count": 1, "equity": "18%" },
+    { "title": "Head of Education", "department": "Education", "count": 1, "equity": "15%" },
+    { "title": "Product Manager", "department": "Product", "count": 2, "equity": "12%" },
+    { "title": "Full-Stack Developers", "department": "Engineering", "count": 5, "equity": "18%" },
+    { "title": "AI/ML Engineers", "department": "AI", "count": 2, "equity": "10%" },
+    { "title": "UI/UX Designers", "department": "Design", "count": 2, "equity": "6%" },
+    { "title": "Educational Technologists", "department": "Education", "count": 2, "equity": "5%" },
+    { "title": "Marketing Team", "department": "Marketing", "count": 3, "equity": "4%" },
+    { "title": "Customer Success", "department": "Support", "count": 2, "equity": "3%" }
+  ],
+  
+  "instruments": [
+    { "name": "Common Stock", "type": "equity", "supply": 6000000, "description": "Founder and employee equity" },
+    { "name": "Preferred Shares Series A", "type": "equity", "supply": 1200000, "description": "EdTech investor funding" },
+    { "name": "Employee Stock Options", "type": "equity", "supply": 800000, "description": "Employee incentive program" },
+    { "name": "CROWN Token", "type": "utility", "supply": 500000000, "description": "Learning rewards and platform currency" },
+    { "name": "Creator Revenue Shares", "type": "revenue", "supply": 100000000, "description": "Course creator revenue distribution" }
+  ],
+  
+  "contracts": [
+    { "type": "Employment Agreements", "parties": ["Employees", "Company"], "duration": "2-4 years" },
+    { "type": "Creator Partnership Agreement", "parties": ["Company", "Course Creators"], "duration": "2 years" },
+    { "type": "Student Terms of Service", "parties": ["Company", "Students"], "duration": "Ongoing" },
+    { "type": "Content Licensing Agreement", "parties": ["Company", "Content Providers"], "duration": "3 years" },
+    { "type": "Technology Licensing", "parties": ["Company", "EdTech Partners"], "duration": "2 years" }
+  ],
+  
+  "integrations": [
+    { "name": "OpenAI", "type": "AI Service", "purpose": "Course content generation" },
+    { "name": "Zoom", "type": "Video", "purpose": "Live class integration" },
+    { "name": "Stripe", "type": "Payment", "purpose": "Course purchases and subscriptions" },
+    { "name": "AWS", "type": "Infrastructure", "purpose": "Video hosting and CDN" },
+    { "name": "Google Classroom", "type": "Integration", "purpose": "Educational tool integration" },
+    { "name": "Calendly", "type": "Scheduling", "purpose": "1-on-1 session booking" },
+    { "name": "Mailchimp", "type": "Email", "purpose": "Student communication" },
+    { "name": "Google Analytics", "type": "Analytics", "purpose": "Learning behavior tracking" }
+  ],
+  
+  "risks": [
+    { "category": "Competition", "description": "Established EdTech platforms", "mitigation": "Focus on AI-powered personalization" },
+    { "category": "Content Quality", "description": "Maintaining high educational standards", "mitigation": "Expert review system and quality metrics" },
+    { "category": "User Acquisition", "description": "Building student and creator base", "mitigation": "Creator incentive programs and student success focus" },
+    { "category": "Technology", "description": "AI accuracy in educational content", "mitigation": "Human oversight and continuous model improvement" }
+  ],
+  
+  "milestones": [
+    { "month": 4, "milestone": "Core Platform MVP", "funding": "$500K" },
+    { "month": 8, "milestone": "AI Features Beta", "funding": "$1.2M" },
+    { "month": 12, "milestone": "Public Launch", "funding": "$2.5M" },
+    { "month": 15, "milestone": "1K Courses & 10K Students", "funding": "$3.5M" }
+  ],
+  
+  "revenue": {
+    "model": "Marketplace + Subscription",
+    "streams": [
+      "Course sales commission (10-30%)",
+      "Premium student subscriptions ($19.99-$49.99/month)",
+      "Creator pro tools ($29.99-$99.99/month)",
+      "Corporate training licenses",
+      "Certification and accreditation fees",
+      "White-label platform licensing"
+    ],
+    "projections": {
+      "year1": "$150K",
+      "year2": "$1.8M",
+      "year3": "$8M",
+      "year5": "$35M+"
+    }
+  }
+}

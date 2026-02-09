@@ -1,0 +1,110 @@
+# $pathd.yaml — Example Configuration
+#
+# A tiny daemon that lets private networks price access to files.
+# Part of the $PATH protocol: https://b0ase.com/exchange
+
+# ----------------------------
+# Node identity & wallet
+# ----------------------------
+
+node:
+  name: my-pathd-node
+  listen: 127.0.0.1:4020
+
+wallet:
+  chain: BSV
+  key_source: file              # file, generate, or env
+  key_file: /var/lib/pathd/keys/node.key
+  receive_address: 1YourBSVAddress...
+  min_confirmations: 0
+  verify_mode: stub             # stub or rpc
+  rpc:
+    url: http://127.0.0.1:8332
+    user: rpcuser
+    password: rpcpassword
+
+# ----------------------------
+# Pricing defaults
+# ----------------------------
+
+pricing:
+  currency: SAT
+  default_curve: sqrt_decay     # sqrt_decay, fixed, log_decay, linear_floor
+  issuer_share: 0.20            # 20% to content creator
+  server_share: 0.80            # 80% to whoever serves it
+
+# ----------------------------
+# Paths served by this node
+# ----------------------------
+
+paths:
+  # Example 1: A blog post
+  - path: "/$blog/$my-first-post"
+    description: "My first $PATH content"
+    content:
+      type: file
+      location: /var/lib/pathd/content/my-first-post.md
+    pricing:
+      base_price: 5             # 5 SAT at supply=0
+      curve: sqrt_decay
+    issuer:
+      name: Your Name
+      payout_address: 1IssuerAddress...
+    permissions:
+      resell: true
+      rehost: true
+
+  # Example 2: Premium content with higher price
+  - path: "/$premium/$exclusive-guide"
+    description: "Exclusive guide to building $PATH daemons"
+    content:
+      type: file
+      location: /var/lib/pathd/content/exclusive-guide.pdf
+    pricing:
+      base_price: 10000         # ~$0.10 at supply=0
+      curve: sqrt_decay
+      max_supply: 1000          # Cap at 1000 copies
+    issuer:
+      name: Your Name
+      payout_address: 1IssuerAddress...
+    permissions:
+      resell: true
+      rehost: false             # Can resell but not rehost
+
+  # Example 3: Inline content
+  - path: "/$api/$endpoint-docs"
+    description: "API documentation"
+    content:
+      type: inline
+      inline: |
+        # API Documentation
+
+        This is inline content served directly from the config.
+        Useful for small, frequently updated content.
+    pricing:
+      base_price: 1
+      curve: fixed              # Always 1 SAT
+
+# ----------------------------
+# Serving & payout rules
+# ----------------------------
+
+serving:
+  ledger: /var/lib/pathd/ledger.db
+  payout_interval: 60s
+  allow_third_party_serving: true
+  token_secret: "change-me"     # HMAC secret for serving tokens
+  token_ttl: 24h
+
+# ----------------------------
+# Security & limits
+# ----------------------------
+
+limits:
+  max_request_size: 100MB
+  rate_limit: 100               # requests per second
+  payment_timeout: 30s          # invoice expiry
+
+logging:
+  level: info                   # debug, info, warn, error
+  file: /var/log/pathd/pathd.log

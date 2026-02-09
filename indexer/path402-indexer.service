@@ -1,0 +1,23 @@
+[Unit]
+Description=PATH402 Token Indexer
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/path402-indexer
+ExecStart=/usr/bin/node index.js
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+
+# Load environment from file
+EnvironmentFile=/opt/path402-indexer/.env
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=path402-indexer
+
+[Install]
+WantedBy=multi-user.target

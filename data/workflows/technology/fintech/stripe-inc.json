@@ -1,0 +1,268 @@
+{
+  "id": "stripe_payment_processing_flow",
+  "name": "Stripe Inc. - Payment Processing & Revenue Flow",
+  "version": "1.0.0",
+  "metadata": {
+    "company": {
+      "name": "Stripe Inc.",
+      "ticker": "STRIPE",
+      "jurisdiction": "US",
+      "website": "https://stripe.com",
+      "description": "Global payment processing platform enabling online transactions for businesses worldwide"
+    },
+    "industry": "Technology",
+    "type": "revenue_model",
+    "created": "2024-01-20T00:00:00Z",
+    "updated": "2024-01-20T00:00:00Z",
+    "author": "Cashboard System",
+    "tags": ["payments", "fintech", "saas", "transaction-processing"],
+    "folder": "technology/fintech"
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Transaction Processing Fees",
+      "type": "payment",
+      "position": { "x": 200, "y": 100 },
+      "handcashHandle": "STRIPE_Processing",
+      "tokenAddress": "1STRIPEProcessingFees123456789",
+      "properties": {
+        "description": "2.9% + 30¢ per transaction",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "transaction_fees"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Subscription Revenue (Stripe Billing)",
+      "type": "payment",
+      "position": { "x": 400, "y": 100 },
+      "handcashHandle": "STRIPE_Billing",
+      "tokenAddress": "1STRIPEBillingRevenue123456789",
+      "properties": {
+        "description": "Monthly subscription management fees",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "subscriptions"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Connect Platform Fees",
+      "type": "payment",
+      "position": { "x": 600, "y": 100 },
+      "handcashHandle": "STRIPE_Connect",
+      "tokenAddress": "1STRIPEConnectFees123456789",
+      "properties": {
+        "description": "Marketplace and platform transaction fees",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "platform_fees"
+      }
+    },
+    {
+      "id": 4,
+      "name": "International Transaction Fees",
+      "type": "payment",
+      "position": { "x": 800, "y": 100 },
+      "handcashHandle": "STRIPE_International",
+      "tokenAddress": "1STRIPEIntlFees123456789",
+      "properties": {
+        "description": "Additional fees for cross-border transactions",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "revenue_source",
+        "category": "international"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Stripe Revenue Pool",
+      "type": "splitter",
+      "position": { "x": 500, "y": 250 },
+      "handcashHandle": "STRIPE_Revenue",
+      "tokenAddress": "1STRIPERevenuePool123456789",
+      "properties": {
+        "description": "Central revenue aggregation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "aggregation",
+        "category": "revenue_pool"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Operating Expenses (70%)",
+      "type": "workflow",
+      "position": { "x": 200, "y": 400 },
+      "handcashHandle": "STRIPE_OpEx",
+      "tokenAddress": "1STRIPEOpEx123456789",
+      "properties": {
+        "percentage": 70,
+        "description": "Technology infrastructure, staff, compliance",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "operations"
+      }
+    },
+    {
+      "id": 16,
+      "name": "R&D Investment (15%)",
+      "type": "trigger",
+      "position": { "x": 400, "y": 400 },
+      "handcashHandle": "STRIPE_RD",
+      "tokenAddress": "1STRIPERND123456789",
+      "properties": {
+        "percentage": 15,
+        "description": "Product development and innovation",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "research"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Profit Margin (10%)",
+      "type": "organization",
+      "position": { "x": 600, "y": 400 },
+      "handcashHandle": "STRIPE_Profit",
+      "tokenAddress": "1STRIPEProfit123456789",
+      "properties": {
+        "percentage": 10,
+        "description": "Net profit for shareholders",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "profit"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Compliance & Risk (5%)",
+      "type": "contract",
+      "position": { "x": 800, "y": 400 },
+      "handcashHandle": "STRIPE_Compliance",
+      "tokenAddress": "1STRIPECompliance123456789",
+      "properties": {
+        "percentage": 5,
+        "description": "Regulatory compliance and risk management",
+        "status": "active"
+      },
+      "metadata": {
+        "tier": "distribution",
+        "category": "compliance"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "processing_to_pool",
+      "from": 1,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Transaction Processing Revenue"
+      }
+    },
+    {
+      "id": "billing_to_pool",
+      "from": 2,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Subscription Revenue"
+      }
+    },
+    {
+      "id": "connect_to_pool",
+      "from": 3,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "Platform Fees"
+      }
+    },
+    {
+      "id": "intl_to_pool",
+      "from": 4,
+      "to": 10,
+      "type": "payment",
+      "properties": {
+        "label": "International Fees"
+      }
+    },
+    {
+      "id": "pool_to_opex",
+      "from": 10,
+      "to": 15,
+      "type": "payment",
+      "properties": {
+        "weight": 70,
+        "label": "70% to Operations"
+      }
+    },
+    {
+      "id": "pool_to_rd",
+      "from": 10,
+      "to": 16,
+      "type": "payment",
+      "properties": {
+        "weight": 15,
+        "label": "15% to R&D"
+      }
+    },
+    {
+      "id": "pool_to_profit",
+      "from": 10,
+      "to": 17,
+      "type": "payment",
+      "properties": {
+        "weight": 10,
+        "label": "10% Profit"
+      }
+    },
+    {
+      "id": "pool_to_compliance",
+      "from": 10,
+      "to": 18,
+      "type": "payment",
+      "properties": {
+        "weight": 5,
+        "label": "5% Compliance"
+      }
+    }
+  ],
+  "layout": {
+    "style": "process",
+    "direction": "top-down",
+    "spacing": {
+      "horizontal": 200,
+      "vertical": 150
+    }
+  },
+  "validation": {
+    "totalPercentage": 100,
+    "requiredNodes": ["revenue_source", "aggregation", "distribution"],
+    "constraints": [
+      {
+        "type": "sum_equals",
+        "value": 100,
+        "message": "Distribution percentages must sum to 100%"
+      }
+    ]
+  }
+}

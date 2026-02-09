@@ -1,31 +1,44 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
-export default {
+const config: Config = {
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        'mobile': {'max': '767px'},
+        'desktop': '768px',
+      },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-jetbrains-mono)', 'JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
-        display: ['var(--font-orbitron)', 'Orbitron', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-ibm-plex-mono)', 'monospace'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif'],
       },
-      backgroundColor: {
-        'surface': 'var(--bg-surface)',
-        'surface-secondary': 'var(--bg-surface-secondary)',
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      textColor: {
-        'primary': 'var(--text-primary)',
-        'secondary': 'var(--text-secondary)',
-        'muted': 'var(--text-muted)',
+      keyframes: {
+        "ping-slow": {
+          "75%, 100%": {
+            transform: "scale(1.5)",
+            opacity: "0",
+          },
+        },
       },
-      borderColor: {
-        'primary': 'var(--border-primary)',
+      animation: {
+        "ping-slow": "ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
     },
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+  darkMode: "class",
+};
+
+export default config;

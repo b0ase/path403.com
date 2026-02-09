@@ -1,0 +1,101 @@
+{
+  "id": "marina3d",
+  "name": "Marina3D - 3D Art Portfolio Platform",
+  "description": "3D art portfolio platform with interactive viewer and AR/VR integration",
+  "category": "3d-art",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Artist Registration",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "Marina3D_Artists"
+    },
+    {
+      "id": "2",
+      "name": "3D Portfolio Management",
+      "type": "workflow",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "Marina3D_Portfolio"
+    },
+    {
+      "id": "3",
+      "name": "Interactive 3D Viewer",
+      "type": "workflow",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "Marina3D_Viewer"
+    },
+    {
+      "id": "4",
+      "name": "AR/VR Integration",
+      "type": "workflow",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "Marina3D_ARVR"
+    },
+    {
+      "id": "5",
+      "name": "3D Art Marketplace",
+      "type": "market",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "Marina3D_Marketplace"
+    },
+    {
+      "id": "10",
+      "name": "Marina3D Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "Marina3D_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Platform Development (40%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "Marina3D_Dev"
+    },
+    {
+      "id": "16",
+      "name": "3D Technology (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "Marina3D_3D_Tech"
+    },
+    {
+      "id": "17",
+      "name": "AR/VR Development (20%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "Marina3D_ARVR_Dev"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "Marina3D_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["3d-art", "portfolio", "ar-vr", "creative-tools"]
+}

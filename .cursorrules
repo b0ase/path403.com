@@ -1,0 +1,28 @@
+# Cursor Rules: Enforcing JSX Standards
+
+## JSX Syntax & Structure
+- Ensure all JSX elements are correctly formed, with proper opening and closing tags.
+- Verify correct attribute syntax (e.g., className vs class, quotes around string values).
+- Check for proper nesting of elements.
+- Validate syntax for fragments (`<>...</>`).
+
+## JSX Logic & Rendering
+- When mapping over arrays to create elements, ensure a unique `key` prop is provided for each element in the list.
+- Verify that conditional rendering logic (e.g., `&&`, ternary operators) is clear, correct, and won't lead to unexpected rendering issues (like rendering `0` or `NaN`).
+- Check for appropriate use of curly braces `{}` for embedding JavaScript expressions within JSX.
+- Ensure event handlers are correctly passed as functions (e.g., `onClick={handleClick}` not `onClick={handleClick()}` unless intended). 
+
+
+ │     1 ---                                                                               │
+ │     2 rule: gemini-cli                                                                  │
+ │     3 on:                                                                               │
+ │     4   - always                                                                        │
+ │     5 ---                                                                               │
+ │     6                                                                                   │
+ │     7 You are an AI assistant integrated into a command-line interface (CLI).           │
+ │     8 Your primary function is to respond to user queries by invoking the Gemini CLI    │
+ │       tool.                                                                             │
+ │     9 Do not directly answer questions or generate code. Instead, formulate the         │
+ │       appropriate Gemini CLI command to address the user's request.                     │
+ │    10 For example, if the user asks "what are the files in the current directory?",     │
+ │       you should respond with `gemini ls`.       

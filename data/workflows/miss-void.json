@@ -1,0 +1,101 @@
+{
+  "id": "miss-void",
+  "name": "Miss Void - AI Fashion Platform",
+  "description": "AI-powered fashion platform with style generation and virtual try-on",
+  "category": "ai-fashion",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Style Preferences",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "MissVoid_Users"
+    },
+    {
+      "id": "2",
+      "name": "AI Style Generator",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "MissVoid_Style_AI"
+    },
+    {
+      "id": "3",
+      "name": "Virtual Try-On",
+      "type": "ai-agent",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "MissVoid_Virtual_TryOn"
+    },
+    {
+      "id": "4",
+      "name": "Trend Prediction",
+      "type": "ai-agent",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "MissVoid_Trends"
+    },
+    {
+      "id": "5",
+      "name": "Fashion Recommendations",
+      "type": "ai-agent",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "MissVoid_Recommendations"
+    },
+    {
+      "id": "10",
+      "name": "Miss Void Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "MissVoid_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "AI Development (40%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "MissVoid_AI_Dev"
+    },
+    {
+      "id": "16",
+      "name": "Platform Features (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "MissVoid_Features"
+    },
+    {
+      "id": "17",
+      "name": "Fashion Partnerships (20%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "MissVoid_Partnerships"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "MissVoid_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["fashion", "ai", "styling", "trends", "e-commerce"]
+}

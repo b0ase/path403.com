@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new repository - GitHub</title>
+    <link rel="stylesheet" href="github-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="github-header">
+        <div class="header-content">
+            <div class="header-left">
+                <i class="fab fa-github github-logo"></i>
+                <span class="github-text">GitHub</span>
+            </div>
+            <div class="header-right">
+                <i class="fas fa-plus plus-icon"></i>
+                <i class="fas fa-bell bell-icon"></i>
+                <div class="user-avatar">b0ase</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="form-container">
+            <h1 class="page-title">Create a new repository</h1>
+            <p class="subtitle">A repository contains all project files, including the revision history. Already have a project repository elsewhere?</p>
+            <a href="#" class="import-link">Import a repository.</a>
+
+            <div class="form-section required-notice">
+                <p>Required fields are marked with an asterisk (*).</p>
+            </div>
+
+            <form class="repo-form">
+                <div class="form-group">
+                    <label class="form-label">
+                        Owner <span class="required">*</span>
+                    </label>
+                    <div class="owner-repo-group">
+                        <div class="owner-select">
+                            <i class="fas fa-user"></i>
+                            <span>b0ase</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <span class="separator">/</span>
+                        <input type="text" class="repo-name-input" placeholder="Repository name">
+                    </div>
+                    <p class="form-help">Great repository names are short and memorable. Need inspiration? How about <span class="suggestion">musical-train</span>?</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description <span class="optional">(optional)</span></label>
+                    <input type="text" class="description-input" placeholder="">
+                </div>
+
+                <div class="form-group visibility-group">
+                    <div class="radio-option">
+                        <input type="radio" id="public" name="visibility" value="public" checked>
+                        <label for="public" class="radio-label">
+                            <div class="radio-content">
+                                <i class="fas fa-book radio-icon"></i>
+                                <div class="radio-text">
+                                    <strong>Public</strong>
+                                    <p>Anyone on the internet can see this repository. You choose who can commit.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="private" name="visibility" value="private">
+                        <label for="private" class="radio-label">
+                            <div class="radio-content">
+                                <i class="fas fa-lock radio-icon"></i>
+                                <div class="radio-text">
+                                    <strong>Private</strong>
+                                    <p>You choose who can see and commit to this repository.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SEPARATE TOKENIZATION SECTION -->
+                <div class="form-group tokenization-group">
+                    <div class="checkbox-option tokenize-option">
+                        <input type="checkbox" id="tokenize-repo" name="tokenize-repo">
+                        <label for="tokenize-repo" class="checkbox-label tokenize-label">
+                            <div class="tokenize-content">
+                                <i class="fas fa-coins tokenize-icon"></i>
+                                <div class="tokenize-text">
+                                    <strong>Tokenize this repository</strong>
+                                    <p>Create blockchain tokens for this repository. Contributors can earn tokens based on their contributions.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- BLOCKCHAIN DROPDOWN (appears when tokenization is enabled) -->
+                    <div class="blockchain-options" id="blockchain-options" style="display: none;">
+                        <label class="form-label">Choose blockchain <span class="required">*</span></label>
+                        <select class="blockchain-select">
+                            <option value="">Select blockchain...</option>
+                            <option value="bitcoin">Bitcoin (BTC)</option>
+                            <option value="bitcoinsv">Bitcoin SV (BSV)</option>
+                            <option value="ethereum">Ethereum (ETH)</option>
+                            <option value="polygon">Polygon (MATIC)</option>
+                            <option value="binance">Binance Smart Chain (BSC)</option>
+                            <option value="solana">Solana (SOL)</option>
+                            <option value="cardano">Cardano (ADA)</option>
+                            <option value="avalanche">Avalanche (AVAX)</option>
+                        </select>
+                        <p class="blockchain-help">
+                            <i class="fas fa-info-circle"></i>
+                            This will create ERC-20 tokens on the selected blockchain. Gas fees and transaction costs may apply.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h3 class="section-title">Initialize this repository with:</h3>
+                    
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="add-readme" name="add-readme">
+                        <label for="add-readme" class="checkbox-label">
+                            <strong>Add a README file</strong>
+                            <p>This is where you can write a long description for your project. <a href="#">Learn more about READMEs.</a></p>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Add .gitignore</label>
+                    <select class="gitignore-select">
+                        <option value="none">None</option>
+                        <option value="node">Node</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="go">Go</option>
+                    </select>
+                    <p class="form-help">Choose which files not to track from a list of templates. <a href="#">Learn more about ignoring files.</a></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Choose a license</label>
+                    <select class="license-select">
+                        <option value="none">None</option>
+                        <option value="mit">MIT License</option>
+                        <option value="apache">Apache License 2.0</option>
+                        <option value="gpl">GNU General Public License v3.0</option>
+                    </select>
+                    <p class="form-help">A license tells others what they can and can't do with your code. <a href="#">Learn more about licenses.</a></p>
+                </div>
+
+                <div class="public-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>You are creating a public repository in your personal account.</span>
+                </div>
+
+                <button type="submit" class="create-button">Create repository</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide blockchain options based on tokenization checkbox
+        document.getElementById('tokenize-repo').addEventListener('change', function() {
+            const blockchainOptions = document.getElementById('blockchain-options');
+            if (this.checked) {
+                blockchainOptions.style.display = 'block';
+            } else {
+                blockchainOptions.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

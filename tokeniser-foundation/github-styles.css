@@ -1,0 +1,485 @@
+/* GitHub-like styling for the repository creation mockup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    background-color: #0d1117;
+    color: #e6edf3;
+    line-height: 1.5;
+}
+
+/* Header Styles */
+.github-header {
+    background-color: #161b22;
+    border-bottom: 1px solid #21262d;
+    padding: 16px 0;
+}
+
+.header-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.github-logo {
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.github-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.plus-icon, .bell-icon {
+    font-size: 16px;
+    color: #7d8590;
+    cursor: pointer;
+}
+
+.plus-icon:hover, .bell-icon:hover {
+    color: #e6edf3;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #21262d;
+    color: #e6edf3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Main Container */
+.main-container {
+    max-width: 1012px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.form-container {
+    max-width: 544px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #7d8590;
+    margin-bottom: 4px;
+}
+
+.import-link {
+    color: #2f81f7;
+    text-decoration: none;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.import-link:hover {
+    text-decoration: underline;
+}
+
+.required-notice {
+    margin-bottom: 16px;
+}
+
+.required-notice p {
+    color: #7d8590;
+    font-size: 14px;
+}
+
+/* Form Styles */
+.repo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.required {
+    color: #f85149;
+}
+
+.optional {
+    color: #7d8590;
+    font-weight: 400;
+}
+
+.owner-repo-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.owner-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #e6edf3;
+    cursor: pointer;
+}
+
+.owner-select:hover {
+    background-color: #30363d;
+}
+
+.separator {
+    color: #7d8590;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.repo-name-input, .description-input {
+    padding: 8px 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #e6edf3;
+    font-size: 14px;
+    flex: 1;
+}
+
+.repo-name-input:focus, .description-input:focus {
+    outline: none;
+    border-color: #2f81f7;
+    box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
+}
+
+.form-help {
+    color: #7d8590;
+    font-size: 12px;
+}
+
+.suggestion {
+    color: #2f81f7;
+}
+
+/* Visibility Options */
+.visibility-group {
+    gap: 12px;
+}
+
+.radio-option {
+    position: relative;
+}
+
+.radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-label {
+    display: block;
+    padding: 16px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.radio-label:hover {
+    border-color: #7d8590;
+}
+
+.radio-option input[type="radio"]:checked + .radio-label {
+    border-color: #2f81f7;
+    background-color: rgba(47, 129, 247, 0.1);
+}
+
+.radio-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.radio-icon {
+    font-size: 16px;
+    color: #7d8590;
+    margin-top: 2px;
+}
+
+.tokenize-icon {
+    color: #f1c40f;
+}
+
+.radio-text strong {
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.radio-text p {
+    color: #7d8590;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Tokenization Section */
+.tokenization-group {
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    background-color: #161b22;
+}
+
+.tokenize-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #f1c40f;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(241, 196, 15, 0.05));
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tokenize-option:hover {
+    border-color: #f39c12;
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.08));
+}
+
+.tokenize-option input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+.tokenize-label {
+    flex: 1;
+    cursor: pointer;
+}
+
+.tokenize-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.tokenize-text {
+    flex: 1;
+}
+
+.tokenize-text strong {
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.tokenize-text p {
+    color: #7d8590;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Blockchain Options */
+.blockchain-options {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blockchain-select {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #e6edf3;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.blockchain-select:focus {
+    outline: none;
+    border-color: #f1c40f;
+    box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.3);
+}
+
+.blockchain-help {
+    color: #7d8590;
+    font-size: 12px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.blockchain-help i {
+    color: #f1c40f;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 12px;
+}
+
+/* Checkbox Options */
+.checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+.checkbox-label {
+    flex: 1;
+}
+
+.checkbox-label strong {
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.checkbox-label p {
+    color: #7d8590;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.checkbox-label a {
+    color: #2f81f7;
+    text-decoration: none;
+}
+
+.checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+/* Select Inputs */
+.gitignore-select, .license-select {
+    padding: 8px 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #e6edf3;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.gitignore-select:focus, .license-select:focus {
+    outline: none;
+    border-color: #2f81f7;
+    box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
+}
+
+/* Public Notice */
+.public-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: rgba(47, 129, 247, 0.1);
+    border: 1px solid rgba(47, 129, 247, 0.3);
+    border-radius: 6px;
+    color: #2f81f7;
+    font-size: 14px;
+}
+
+/* Create Button */
+.create-button {
+    padding: 12px 20px;
+    background-color: #238636;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.create-button:hover {
+    background-color: #2ea043;
+}
+
+.create-button:active {
+    background-color: #1f7734;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 16px;
+    }
+    
+    .main-container {
+        padding: 16px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .owner-repo-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .separator {
+        display: none;
+    }
+} 

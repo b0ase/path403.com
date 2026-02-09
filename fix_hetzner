@@ -1,0 +1,105 @@
+ ssh root@5.78.77.125
+  grep DISCORD /root/supabase/docker/.env
+
+cd /root/supabase/docker
+  grep -i discord .env
+  grep -i twitter .env
+  docker compose ps
+
+
+
+  The fix needed - make sure the Discord scopes are not duplicated:
+  # Should look like:
+  GOTRUE_EXTERNAL_DISCORD_ENABLED=true
+  GOTRUE_EXTERNAL_DISCORD_CLIENT_ID=1459741448864927924
+  GOTRUE_EXTERNAL_DISCORD_SECRET=your_secret_here
+
+  Also check if there's a scopes setting that's doubled up. After fixing, restart the auth container:
+  cd /root/supabase/docker && docker compose up -d auth --force-recreate
+
+  Additionally, make sure https://api.b0ase.com/auth/v1/callback is added as a redirect URI in your Discord Developer Portal at https://discord.com/developers/applications/1459741448864927924/oauth2root
+
+
+
+  TWITTER AND KONG 
+
+   The Kong login dialog means the API gateway is blocking requests before they reach the auth service. This is a Supabase server config issue on Hetzner.
+
+  When you SSH in, check:
+
+  # Check if Kong is properly configured
+  cd /root/supabase/docker
+  docker compose logs kong | tail -50
+
+  # Check if auth service is healthy
+  docker compose ps
+  docker compose logs auth | tail -50
+
+  The issue is likely that the external URL or Kong routes aren't properly configured. Check these in .env:
+
+  # These should all use https://api.b0ase.com
+  API_EXTERNAL_URL=https://api.b0ase.com
+  KONG_HTTP_PORT=8000
+  KONG_HTTPS_PORT=8443
+
+  # Make sure anon/service keys are set
+  ANON_KEY=your_anon_key
+  SERVICE_ROLE_KEY=your_service_role_key
+
+  Also check docker/volumes/api/kong.yml - the auth routes should be accessible without authentication for the OAuth callback endpoints.
+
+  If Kong is requesting basic auth, it might be a misconfiguration where the public routes aren't marked as public. Can you SSH in and share what you see?
+
+
+grep -E "(TWITTER|DISCORD)" .env
+
+
+
+You're right. The dashboard should stay protected. The issue is we need to add more explicit open routes for OAuth before the catch-all.
+
+  Check what path is triggering the basic-auth. When you try Twitter login, what URL is shown in the browser when the login popup appears?
+
+  In the meantime, let's add explicit open routes for OAuth. Edit kong.yml:
+
+  nano volumes/api/kong.yml
+
+  Find the auth section and make sure these routes exist before the dashboard-all section, with NO auth plugins (just CORS):
+
+    ## Open OAuth routes (no auth required)
+    - name: auth-v1-callback
+      url: http://auth:9999/callback
+      routes:
+        - name: auth-v1-callback
+          strip_path: true
+          paths:
+            - /auth/v1/callback
+      plugins:
+        - name: cors
+
+    - name: auth-v1-authorize
+      url: http://auth:9999/authorize
+      routes:
+        - name: auth-v1-open-authorize
+          strip_path: true
+          paths:
+            - /auth/v1/authorize
+      plugins:
+        - name: cors
+
+    - name: auth-v1-token
+      url: http://auth:9999/token
+      routes:
+        - name: auth-v1-token
+          strip_path: true
+          paths:
+            - /auth/v1/token
+      plugins:
+        - name: cors
+
+  The /auth/v1/token endpoint might be what's missing - it's used during the OAuth code exchange.
+
+  After editing:
+  docker compose up -d kong --force-recreate
+
+
+ssh -i ~/.ssh/hetzner root@REDACTED_HOST

@@ -1,0 +1,78 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/login",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/logout",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/site-index",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap",
+      "destination": "/site-index",
+      "permanent": true
+    },
+    {
+      "source": "/pages",
+      "destination": "/site-index",
+      "permanent": true
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/agent-tasks",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/finalize-proposals",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/expire-purchases",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/twitter-post",
+      "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/cron/blog-post",
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron/collect-content",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-book",
+      "schedule": "0 2 * * 0"
+    },
+    {
+      "path": "/api/cron/database-backup",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/bwriter/confirm-deposits",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/bwriter/distribute-dividends",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

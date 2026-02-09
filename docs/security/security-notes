@@ -1,0 +1,58 @@
+# Security Checklist Status - b0ase.com
+# Last Updated: 2026-01-20
+
+## COMPLETED
+
+### API Security
+- [x] Rate limiting on public POST endpoints (client-request, boardroom/chat, client-login, invite-client)
+- [x] Authorization headers required (admin routes via middleware)
+- [x] IP block list (fail2ban + UFW on Hetzner)
+- [x] CORS configured (Vercel handles, no wildcard *)
+- [x] Security headers in next.config.js (HSTS, X-Frame-Options, CSP, X-XSS-Protection, Referrer-Policy, Permissions-Policy)
+- [x] File upload limits audited (content-assets: 5GB for video, brand-assets: 5MB - both require auth)
+- [x] ORM for DB (Prisma + Supabase parameterized queries)
+- [x] Password hashing (Supabase Auth + bcrypt)
+
+### Auth & Authz
+- [x] Session management secure (Supabase Auth + httpOnly cookies)
+- [x] Admin routes protected (middleware checks session + ADMIN_EMAIL)
+- [x] No hardcoded credentials
+- [x] API keys in env vars only
+- [x] Token expiry configured (Supabase handles refresh)
+
+### Data Protection
+- [x] XSS prevention (DOMPurify + chat message sanitization)
+- [x] CSRF protection (Next.js + Supabase)
+- [x] SQL injection prevention (Prisma + parameterized queries)
+
+### Infrastructure (Hetzner)
+- [x] SSH key-only auth (password auth disabled)
+- [x] Firewall configured (UFW + iptables)
+- [x] Fail2ban active (24hr ban after 3 failures)
+- [x] Admin UIs not exposed (Adminer removed, Studios blocked)
+- [x] HTTPS only (Vercel enforces SSL)
+
+---
+
+## REMAINING TODO
+
+### MEDIUM Priority
+- [ ] Add Zod validation to remaining API routes (partial coverage currently)
+- [ ] Review console.log statements for sensitive data leakage
+- [ ] Review error messages for information leakage
+
+### LOW Priority
+- [ ] Set up error logging/monitoring (alerting for anomalies)
+- [ ] Set up failed login alerts
+- [ ] Set up rate limit breach alerts (429s spike)
+- [ ] Enable automatic security updates on Hetzner (unattended-upgrades)
+- [ ] SSH key rotation schedule
+
+### SUPABASE/DATABASE (Review Needed)
+- [ ] Audit SECURITY DEFINER functions (get_or_create_unified_user, merge_unified_users, token balance functions)
+- [ ] Review USING (true) RLS policies for intentionality (user_profiles, chat_rooms, boardroom_members, video schema)
+- [ ] Generate and add BOARDROOM_BOT_API_KEY to environment
+
+---
+
+See docs/security/SECURITY_AUDIT.md for full details.

@@ -1,0 +1,13 @@
+# Ignore heavy binaries
+node_modules/
+.venv/
+prisma/generated/
+
+# Ignore large assets that the AI doesn't need to 'read'
+public/models/
+public/videos/
+public/images/clientprojects/
+
+# Antigravity artifacts
+.antigravity/
+.agent/

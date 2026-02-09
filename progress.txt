@@ -1,0 +1,93 @@
+PROJECT PROGRESS REPORT
+Date: Jan 8, 2026
+Topic: Exchange 2.0 & Corporate Structure
+
+STATUS: COMPLETED
+
+1. EXCHANGE REFINEMENT
+   [x] Market Selector Tabs (Companies, Projects, Audio, Writing)
+   [x] Trading Panel Integration
+   [x] Asset List with filtering logic
+
+2. CORPORATE STRUCTURE
+   [x] "Companies" Tab: Lists Regulated Shares ($BOASE, $BCORP, $NPG)
+   [x] "Projects" Tab: Lists Venture Tokens ($AIVJ, $NPGRED, etc.)
+   [x] Logic: Company Tickers normalized and deduplicated.
+
+3. CONTENT MARKETS
+   [x] Audio Market API & UI
+   [x] Writing Market API & UI
+
+4. FUTURE ARCHITECTURE
+   [ ] Multisig Vaults (Phase 6): Architecture Documented in CUSTODY_ARCHITECTURE.md
+
+NEXT STEPS:
+- Deploy using `git push`
+- Begin backend implementation of Multisig Vaults (when ready).
+
+---
+
+DATA CLEANUP NEEDED (Jan 9, 2026)
+=================================
+
+FIXED:
+[x] Osinka Kalaso - removed wrong $bMail token
+[x] Bitcoin Writer - corrected to "Word processing on the blockchain"
+[x] Zero Dice - corrected to "AI Influencer"
+[x] Miss Void - removed wrong Vex Void image
+
+TODO - CHECK TOMORROW:
+[ ] Review ALL project descriptions on /mint page for accuracy
+[ ] Check all token assignments are correct
+[ ] Verify Vex Void description is accurate
+[ ] Check for any other mixed up images/data
+[ ] Review Zero Dice and Bitcoin Writer descriptions site-wide
+[ ] Add proper images for Miss Void if available
+
+---
+
+TOKEN REGISTRY - SINGLE SOURCE OF TRUTH (Jan 9, 2026)
+======================================================
+
+GOAL: Create lib/token-registry.ts as the single source of truth for ALL token data
+
+CURRENT PROBLEM:
+- Token data scattered across lib/data.ts (~50+ projects with tokenName fields)
+- Pricing data separate in lib/token-pricing.ts (only 3 real tokens)
+- No central place to manage token metadata, status, pricing
+
+PLAN:
+1. [x] Create lib/token-registry.ts with:
+   - TokenInfo interface (symbol, name, status, projectId, marketUrl, pricing)
+   - TOKEN_REGISTRY object with all tokens
+   - Helper functions: getToken(), getTokensByStatus(), etc.
+
+2. [x] Migrate REAL_TOKENS from token-pricing.ts into registry
+
+3. [x] Extract all tokenName values from data.ts projects into registry
+
+4. [x] Update token-pricing.ts to use registry as source
+
+5. [x] Update data.ts projects to reference registry (DONE)
+
+STATUS: FULLY COMPLETED
+
+CREATED FILES:
+- lib/token-registry.ts - Single source of truth with 60+ tokens
+
+UPDATED FILES:
+- lib/token-pricing.ts - Now imports from token-registry (REAL_TOKENS derived from registry)
+- lib/data.ts - Now imports token-registry, uses registry for $BOASE data, added validation
+
+TOKENS IN REGISTRY:
+- 3 minted company tokens: $BOASE, $NPG, $bCorp
+- 8 bApps ecosystem tokens: $bMail, $bOs, $bDrive, $bSheets, $bWriter, $bApps, $bMusic, $bFile
+- 45+ venture/project tokens
+- 5 utility/investment tokens: $TECH, $COMPONENT, $MUSIC, $FLIX, $BOARDROOM
+
+VALIDATION:
+- 58 project tokens checked
+- 0 missing from registry
+- Dev mode will warn if any project uses an unregistered token
+
+BUILD: PASSED

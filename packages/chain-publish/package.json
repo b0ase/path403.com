@@ -1,0 +1,28 @@
+{
+  "name": "@b0ase/chain-publish",
+  "version": "0.1.0",
+  "description": "Unified blockchain publishing for BSV (OP_RETURN, Ordinals, B://, D://, Bcat)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "keywords": ["blockchain", "bsv", "ordinals", "inscription", "op-return", "b-protocol", "d-protocol", "bcat"],
+  "license": "MIT"
+}

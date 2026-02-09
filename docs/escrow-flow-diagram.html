@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>b0ase.com - Developer Payout System Flow</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 { color: #06b6d4; margin-bottom: 10px; }
+    h2 { color: #8b5cf6; margin-top: 40px; }
+    .mermaid {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    .key-numbers {
+      background: #1a1a2e;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .key-numbers li { margin: 8px 0; }
+    code {
+      background: #2d2d2d;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #06b6d4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Developer Payout System</h1>
+  <p>Investor → Project Escrow Pool → Developer Contract Cycle</p>
+
+  <div class="key-numbers" style="margin-bottom: 20px;">
+    <h3>Quick Links to Test</h3>
+    <ul>
+      <li><a href="/moneybutton/dashboard" style="color: #06b6d4;">MoneyButton Dashboard</a> - Buy tokens (start here)</li>
+      <li><a href="/dashboard/projects" style="color: #06b6d4;">Project Dashboard</a> - Manage escrow pools</li>
+      <li><a href="/developers/contracts" style="color: #06b6d4;">Developer Contracts</a> - Browse/create contracts</li>
+    </ul>
+  </div>
+
+  <h2>System Overview</h2>
+  <div class="mermaid">
+flowchart TB
+    subgraph Investors["💰 INVESTOR FLOW"]
+        I1[Investor clicks MoneyButton]
+        I2[Pays via HandCash]
+        I3[Gets tokens INSTANTLY]
+        I1 --> I2 --> I3
+    end
+
+    subgraph EscrowPool["🏦 PROJECT ESCROW POOL"]
+        E1[(Escrow Pool)]
+        E2[Available Balance]
+        E3[Escrowed in Contracts]
+        E4[Paid to Developers]
+        E1 --> E2
+        E1 --> E3
+        E1 --> E4
+    end
+
+    subgraph DevContract["👨‍💻 DEVELOPER CONTRACT CYCLE"]
+        D1[Project creates contract]
+        D2[Developer accepts]
+        D3[Developer links PR to milestone]
+        D4[Developer works & merges PR]
+        D5{GitHub Webhook}
+        D6[Milestone auto-submitted]
+        D7{Client approves?}
+        D8[Developer gets 95% cash]
+        D9[Developer gets token bonus]
+        D10[Contract complete]
+
+        D1 --> D2 --> D3 --> D4 --> D5
+        D5 -->|PR merged| D6 --> D7
+        D7 -->|Yes| D8 --> D9 --> D10
+    end
+
+    subgraph FailedContract["❌ FAILED CONTRACT"]
+        F1[Contract terminated]
+        F2[Funds return to pool]
+        F3[Contract re-tendered]
+        F4[New developer bids]
+
+        F1 --> F2 --> F3 --> F4
+    end
+
+    I2 -->|95% to project| E1
+    I2 -->|5% platform fee| Platform[Platform]
+    E2 -->|Allocate funds| D1
+    D7 -->|No - developer fails| F1
+    F4 --> D2
+    E3 -->|On approval| D8
+    E3 -->|On failure| F2
+  </div>
+
+  <h2>Sequence Diagram</h2>
+  <div class="mermaid">
+sequenceDiagram
+    participant Investor
+    participant MoneyButton
+    participant EscrowPool
+    participant Developer
+    participant GitHub
+    participant Client
+
+    rect rgb(20, 40, 60)
+    Note over Investor,Client: 💰 INVESTMENT FLOW
+    Investor->>MoneyButton: Click button ($X)
+    MoneyButton->>Investor: Credit X×1000 tokens (instant)
+    MoneyButton->>EscrowPool: Add 95% to pool
+    MoneyButton->>Platform: 5% platform fee
+    end
+
+    rect rgb(40, 20, 60)
+    Note over Investor,Client: 👨‍💻 DEVELOPMENT FLOW
+    Client->>EscrowPool: Create contract ($Y)
+    EscrowPool->>EscrowPool: Allocate $Y to contract
+    Developer->>Client: Accept contract
+    Developer->>GitHub: Link PR to milestone
+    Developer->>GitHub: Work & merge PR
+    GitHub->>System: Webhook: PR merged
+    System->>Client: Auto-submit milestone
+    end
+
+    alt ✅ Approved
+        Client->>Developer: Approve milestone
+        EscrowPool->>Developer: Release 95% cash
+        System->>Developer: Credit token bonus (Y×1000)
+    else ❌ Rejected/Failed
+        Client->>EscrowPool: Terminate contract
+        EscrowPool->>EscrowPool: Return funds to pool
+        Client->>EscrowPool: Re-tender contract
+        Note over Developer: New developer can bid
+    end
+  </div>
+
+  <h2>Database Tables</h2>
+  <div class="mermaid">
+erDiagram
+    project_escrow_pools ||--o{ escrow_pool_contributions : has
+    project_escrow_pools ||--o{ escrow_pool_allocations : has
+    marketplace_contracts ||--o{ contract_milestones : has
+    marketplace_contracts ||--o| contract_terminations : may_have
+    contract_milestones ||--o{ github_pr_milestones : linked_to
+    contract_milestones ||--o{ developer_token_bonuses : earns
+
+    project_escrow_pools {
+        uuid id PK
+        string project_slug UK
+        decimal total_invested_usd
+        decimal available_balance_usd
+        decimal escrowed_in_contracts_usd
+        decimal paid_to_developers_usd
+    }
+
+    escrow_pool_contributions {
+        uuid id PK
+        uuid pool_id FK
+        string contributor_handcash
+        decimal contribution_amount_usd
+        uuid moneybutton_purchase_id
+    }
+
+    escrow_pool_allocations {
+        uuid id PK
+        uuid pool_id FK
+        uuid contract_id FK
+        decimal allocated_amount_usd
+        string status
+    }
+
+    developer_token_bonuses {
+        uuid id PK
+        uuid developer_user_id FK
+        uuid contract_id FK
+        uuid milestone_id FK
+        string token_symbol
+        bigint tokens_earned
+        decimal cash_amount_usd
+    }
+
+    github_pr_milestones {
+        uuid id PK
+        string github_repo
+        int github_pr_number
+        uuid milestone_id FK
+        string status
+    }
+
+    contract_terminations {
+        uuid id PK
+        uuid contract_id FK
+        string termination_type
+        string escrow_action
+        decimal refunded_amount_usd
+        boolean eligible_for_retender
+    }
+  </div>
+
+  <div class="key-numbers">
+    <h3>Key Numbers</h3>
+    <ul>
+      <li><strong>1 token = $0.01 USD</strong> (b0ase.com incubate standard - founders can customize)</li>
+      <li><strong>Investor payment split:</strong> 95% to project pool, 5% platform</li>
+      <li><strong>Developer payout:</strong> 95% cash + equivalent tokens</li>
+      <li><strong>Token calculation:</strong> <code>tokens = cash_amount / token_price</code></li>
+      <li><strong>Example:</strong> $10 investment = 1,000 tokens (at $0.01/token)</li>
+    </ul>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#06b6d4',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#8b5cf6',
+        lineColor: '#8b5cf6',
+        secondaryColor: '#1e1e3f',
+        tertiaryColor: '#2d2d4d'
+      }
+    });
+  </script>
+</body>
+</html>

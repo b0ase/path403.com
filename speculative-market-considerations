@@ -1,0 +1,147 @@
+# $PATH — Late Night Notes, 2 Feb 2026
+
+## What we built today
+
+1. **path402-mcp-server** — complete, builds, runs, delivered as tarball
+1. **b0ase.com/exchange spec** — full product spec with account-based ledger, registry, KYC, cap table, withdrawal mechanics, Companies House alignment
+1. **“Every URL Is a $PATH” blog post** — the memetic brand piece, article eight
+1. **README addendum** — connecting path402-mcp-server to the $PATH brand
+1. **The naming stack is settled:**
+- $PATH = the protocol (public name)
+- $402 = the spec (technical name)
+- $pathd = the daemon (standalone node software, started with ChatGPT)
+- path402-mcp-server = the agent tool
+- b0ase.com/exchange = the hosted marketplace
+
+-----
+
+## Three architectural shifts discovered tonight
+
+### 1. Account-based ledger, not on-chain tokens
+
+You can’t send tokens to buyers via HandCash reliably. So the model is:
+
+- User signs in with HandCash, pays
+- b0ase.com credits their account (database row = the token)
+- Serving revenue, dividends, voting — all happen in the database
+- User CAN withdraw to chain (1Sat ordinal or BRC-100) but loses dividends/voting
+- Re-registration requires presenting the on-chain token + KYC
+- The blockchain is the escape hatch, not the primary ledger
+- This is how every successful exchange actually works
+
+**Status:** Specced and included in the exchange spec. Database schema written. Ready to build.
+
+### 2. Liability follows majority ownership
+
+If content tokens are equity-like (conferring dividends and voting), then the majority holder looks like the publisher. Publishers have liability.
+
+The scenario that breaks things:
+
+- Alice creates content, mints tokens
+- Bob buys 50% of supply (majority holder)
+- Bob can now serve content at his own price, undercut Alice
+- If the content is defamatory/illegal, Bob as majority distributor is exposed
+- Alice sold her position, has no tokens, but authored the content
+- Who is liable? The author or the majority distributor?
+
+**Two sub-problems:**
+
+**Undercutting:** If token holders can set their own serving price, the issuer’s pricing curve is meaningless. Secondary sellers undercut primary. Race to the bottom.
+
+**Possible fix:** Token holders serve but don’t set price. Price is always governed by the protocol curve. Serving revenue is distributed by formula, not negotiated. You hold tokens, you serve when asked, you earn your share. You don’t get to be an independent reseller.
+
+**Liability transfer:** Tokens confer economic rights (revenue) and access rights (read), NOT editorial or publishing rights. The issuer is always the publisher of record regardless of token distribution. Majority holder is majority beneficiary, not majority owner in a legal sense.
+
+**Status:** UNSOLVED. Needs fresh thinking. This is the hardest problem in the design.
+
+### 3. Speculative data market, not a paywall
+
+This is the big one. The thing $PATH actually is.
+
+A paywall says: pay X or leave.
+A speculative data market says: pay X now, the price changes with demand, your position determines what you earn.
+
+**The research paper example:**
+
+- Team spends 3 years, billions in funding, produces breakthrough
+- Published as a $PATH, price starts high
+- Speculators bid for early access — VCs, pharma, intelligence, research labs
+- They’re not buying a PDF. They’re buying TIME ADVANTAGE. First access to information that moves markets.
+- As supply grows, price decays. Public eventually gets near-free access.
+- Speculative premium captured by issuer and early buyers. Everyone got what they wanted.
+
+**What’s being speculated on:** The value of knowing something before other people know it. This is the oldest market in the world. It’s what Bloomberg terminals charge $24k/year for. It’s what insider trading laws regulate. $PATH makes that market native to any URL.
+
+**How this differs from what we’ve been building:**
+
+- Paywall model: creator sets price, it decays passively with supply
+- Speculative model: market sets price through competitive bidding for early positions
+- These might not be the same mechanism
+
+**The “public market”:** b0ase.com/exchange becomes a Bloomberg terminal for information. Every piece of priced content visible, with price, supply, momentum, holder data. Not a content platform. An information market.
+
+**Status:** CONCEPTUAL. Changes the framing of everything. Doesn’t necessarily change the implementation (the pricing curves still work) but changes what we’re selling and to whom.
+
+-----
+
+## The fixed supply question
+
+Raised tonight but not resolved:
+
+- What if total supply is fixed at creation? (e.g. 8 billion tokens = one per human)
+- First buyer pays £1000, receives 4bn tokens (50% of supply)
+- Second buyer pays £500, receives 2bn tokens
+- Price halves, allocation halves, each buyer gets a shrinking slice of a fixed pie
+- Your serving revenue share = your fraction of 8bn
+
+**Differs from current model:** Current model mints one token per buyer, supply grows forever. Fixed supply model has a finite pie, each buyer gets a slice proportional to their payment and timing.
+
+**Open questions:**
+
+- Does fixed supply create artificial scarcity or useful scarcity?
+- What happens when all 8bn are distributed? (No more primary sales, only secondary)
+- Is 8bn the right number or does it need to be dynamic?
+- IPv4 ran out. Do $PATH tokens run out?
+
+**Status:** EXPLORATORY. Interesting but not urgent. Current unbounded model works for v1.
+
+-----
+
+## Questions to answer tomorrow
+
+1. **Is $PATH a paywall protocol or a speculative data market?** (This changes the pitch, the audience, and possibly the pricing mechanics)
+1. **Can token holders set their own serving price, or is price always governed by the protocol curve?** (This determines whether undercutting is possible)
+1. **Who is the publisher of record when content tokens change hands?** (This determines liability)
+1. **Is supply fixed or unbounded?** (This determines whether the model is shares-in-a-pie or positions-on-a-curve)
+1. **Does the $pathd daemon need its own spec document separate from the exchange spec?** (Yes, almost certainly)
+
+-----
+
+## What’s ready to build right now (regardless of the above)
+
+None of the open questions block Phase 1-3 of the exchange:
+
+- Phase 1: Static exchange listing (display only) — NO BLOCKERS
+- Phase 2: Payments + account ledger — NO BLOCKERS
+- Phase 3: Agent access via MCP — NO BLOCKERS
+- Phase 4: Serving protocol — BLOCKED by question 2 (who sets price)
+- Phase 5: Registry + KYC — BLOCKED by question 3 (liability)
+- Phase 6: Withdrawal — NO BLOCKERS
+
+You can build weeks 1-3 while thinking about the hard problems. The hard problems only matter when you get to serving and governance.
+
+-----
+
+## Files produced today
+
+|File                          |Description                                         |
+|------------------------------|----------------------------------------------------|
+|`path402-mcp-server.tar.gz` |Complete MCP server (from earlier session)          |
+|`b0ase-exchange-spec.md`      |Full product spec v0.2 (with registry/KYC/cap table)|
+|`every-url-is-a-path.md`      |Article 8: “Every URL Is a $PATH”                   |
+|`path402-readme-addendum.md`|README updates for npm package                      |
+|`path-late-night-notes.md`    |This file                                           |
+
+-----
+
+*Written at midnight. Read with coffee. The speculative data market framing feels like the real thing. Don’t lose it.*

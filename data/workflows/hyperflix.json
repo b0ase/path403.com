@@ -1,0 +1,101 @@
+{
+  "id": "hyperflix",
+  "name": "HYPERFLIX - Next-Gen Streaming Platform",
+  "description": "Next-generation streaming platform with AI curation and VR integration",
+  "category": "media-technology",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Registration",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "HYPERFLIX_Users"
+    },
+    {
+      "id": "2",
+      "name": "AI Content Curation",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "HYPERFLIX_AI_Curation"
+    },
+    {
+      "id": "3",
+      "name": "4K/8K Streaming",
+      "type": "workflow",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "HYPERFLIX_Streaming"
+    },
+    {
+      "id": "4",
+      "name": "Creator Monetization",
+      "type": "workflow",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "HYPERFLIX_Creator_Monetization"
+    },
+    {
+      "id": "5",
+      "name": "VR Integration",
+      "type": "workflow",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "HYPERFLIX_VR"
+    },
+    {
+      "id": "10",
+      "name": "HYPERFLIX Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "HYPERFLIX_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "Platform Development (35%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "HYPERFLIX_Dev"
+    },
+    {
+      "id": "16",
+      "name": "AI Research (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "HYPERFLIX_Research"
+    },
+    {
+      "id": "17",
+      "name": "Content Partnerships (25%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "HYPERFLIX_Partnerships"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "HYPERFLIX_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["streaming", "ai", "vr", "entertainment"]
+}

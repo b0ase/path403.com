@@ -1,0 +1,12 @@
+{
+  "name": "path402-indexer",
+  "version": "1.0.0",
+  "description": "Simple BSV-20 indexer for PATH402 token",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "id": "beauty-queen-ai",
+  "name": "Beauty Queen AI - AI Beauty Platform",
+  "description": "AI-powered beauty platform with virtual try-on and skin analysis",
+  "category": "beauty-technology",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "User Beauty Profile",
+      "type": "member",
+      "x": 100,
+      "y": 100,
+      "handcashHandle": "BeautyQueen_Users"
+    },
+    {
+      "id": "2",
+      "name": "Virtual Try-On",
+      "type": "ai-agent",
+      "x": 300,
+      "y": 100,
+      "handcashHandle": "BeautyQueen_Virtual_TryOn"
+    },
+    {
+      "id": "3",
+      "name": "Skin Analysis",
+      "type": "ai-agent",
+      "x": 500,
+      "y": 100,
+      "handcashHandle": "BeautyQueen_Skin_Analysis"
+    },
+    {
+      "id": "4",
+      "name": "AI Recommendations",
+      "type": "ai-agent",
+      "x": 700,
+      "y": 100,
+      "handcashHandle": "BeautyQueen_AI_Recommendations"
+    },
+    {
+      "id": "5",
+      "name": "Beauty Product Marketplace",
+      "type": "market",
+      "x": 900,
+      "y": 100,
+      "handcashHandle": "BeautyQueen_Marketplace"
+    },
+    {
+      "id": "10",
+      "name": "Beauty Queen Revenue Pool",
+      "type": "splitter",
+      "x": 500,
+      "y": 250,
+      "handcashHandle": "BeautyQueen_Revenue"
+    },
+    {
+      "id": "15",
+      "name": "AI Development (40%)",
+      "type": "organization",
+      "x": 300,
+      "y": 400,
+      "handcashHandle": "BeautyQueen_AI_Dev"
+    },
+    {
+      "id": "16",
+      "name": "Platform Features (30%)",
+      "type": "workflow",
+      "x": 500,
+      "y": 400,
+      "handcashHandle": "BeautyQueen_Features"
+    },
+    {
+      "id": "17",
+      "name": "Beauty Partnerships (20%)",
+      "type": "workflow",
+      "x": 700,
+      "y": 400,
+      "handcashHandle": "BeautyQueen_Partnerships"
+    },
+    {
+      "id": "18",
+      "name": "Marketing (10%)",
+      "type": "workflow",
+      "x": 900,
+      "y": 400,
+      "handcashHandle": "BeautyQueen_Marketing"
+    }
+  ],
+  "edges": [
+    { "id": "e1-2", "source": "1", "target": "2" },
+    { "id": "e2-3", "source": "2", "target": "3" },
+    { "id": "e3-4", "source": "3", "target": "4" },
+    { "id": "e4-5", "source": "4", "target": "5" },
+    { "id": "e1-10", "source": "1", "target": "10" },
+    { "id": "e10-15", "source": "10", "target": "15" },
+    { "id": "e10-16", "source": "10", "target": "16" },
+    { "id": "e10-17", "source": "10", "target": "17" },
+    { "id": "e10-18", "source": "10", "target": "18" }
+  ],
+  "tags": ["beauty", "ai", "virtual-try-on", "e-commerce"]
+}
