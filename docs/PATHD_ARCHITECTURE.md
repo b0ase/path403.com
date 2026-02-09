@@ -83,33 +83,43 @@ Incentive alignment:
   → More tokens = More serving capacity = More revenue
 ```
 
-## PoW20 Integration
+## HTM (Hash-to-Mint) Mining
+
+> **Full specification**: [HTM_TOKEN.md](HTM_TOKEN.md) — the complete $402 mining token spec.
 
 ### Reward Mechanism
 
-path402d nodes earn $402 tokens through PoW20 (proof-of-work token minting):
+path402d nodes earn $402 tokens through **Proof-of-Indexing** — a Hash-to-Mint (HTM) smart contract deployed on BSV that combines PoW mining with verifiable work commitments:
 
 ```
-1. path402d node indexes blockchain         → computational work
-2. path402d node serves content to users    → network work
-3. path402d node solves hash puzzle         → proof of work
-4. Node earns $402 tokens                 → reward
+1. path402d node indexes blockchain         → generates work items
+2. path402d node serves content to users    → generates work items
+3. path402d builds merkle root of work      → work commitment (32 bytes)
+4. path402d solves hash puzzle including    → proof of work
+   the work commitment in the preimage
+5. path402d submits to HTM contract on-chain → $402 tokens minted
 
-Formula: double_sha256(solution) < difficulty
+Formula: double_sha256(contractTxId + workCommitment + minerAddr + nonce) < target
 
-Where solution = $402:ADDRESS:BLOCK_HEADER:NONCE
+Anti-frontrun: minerAddr in preimage prevents mempool theft
+Anti-precompute: contractTxId changes with every mint
 ```
 
-### PoW20 Parameters
+### HTM Contract: `Path402HTM`
+
+The $402 mining token is an sCrypt smart contract (`Path402HTM extends BSV20V2`). The entire 21M supply is locked at deployment and released only via valid PoW solutions. The contract is packaged as `@path402/htm`.
+
+### Token Parameters
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
-| `p` | `bsv-20` | Protocol identifier |
-| `op` | `deploy+mint` | BSV-21 operation |
-| `tick` | `$402` | Token identifier |
-| `difficulty` | 4 | Leading zeros required |
-| `block_reward` | 1000 | Tokens per successful mine |
-| `halving_interval` | 210000 | Blocks between halvings |
+| **Standard** | BSV-21 (sCrypt smart contract) | On-chain verification, not inscription-based |
+| **Symbol** | `402` | |
+| **Max Supply** | 21,000,000 | Bitcoin-inspired cap |
+| **Mint Limit** | 1,000 per solution | Before halving |
+| **Difficulty** | 5 leading zero hex chars | ~1 in 1,048,576 per hash |
+| **Halving** | Every 10,500 solutions | 1000 → 500 → 250 → ... |
+| **Distribution** | 100% to miners | No pre-mine, no treasury |
 
 ### Why PoW for Indexers?
 
@@ -328,8 +338,10 @@ docker run -d \
 | `PATHD_PORT` | 8402 | HTTP server port |
 | `PATHD_DATA_DIR` | `~/.pathd` | Data directory |
 | `PATHD_BSV_NODE` | `https://api.whatsonchain.com` | BSV node endpoint |
-| `PATHD_WALLET_KEY` | (required) | Node wallet private key |
-| `PATHD_POW_ENABLED` | `true` | Enable PoW20 mining |
+| `PATHD_WALLET_KEY` | (required) | Node wallet private key (WIF) |
+| `HTM_TOKEN_ID` | (required for mining) | Deployed HTM contract token ID |
+| `MINER_ADDRESS` | (derived from wallet) | BSV address for mined tokens |
+| `PATHD_POW_ENABLED` | `true` | Enable HTM mining |
 | `PATHD_POW_THREADS` | `4` | Mining thread count |
 
 ### Config File
@@ -535,17 +547,24 @@ GET /health
 - [x] BSV-21 token indexing
 - [x] Basic content serving
 - [x] BRC-100 signature verification
-- [ ] PoW20 mining integration
+- [x] HTM smart contract (`Path402HTM extends BSV20V2`)
+- [x] `@path402/htm` package with `HtmBroadcaster`
+- [x] Proof-of-Indexing mining service
+- [x] P2P gossip network (libp2p GossipSub)
+- [x] AI-powered speculation engine
+- [ ] HTM mainnet deployment
 
 ### v1.1 (Q2 2026)
-- [ ] Peer-to-peer networking
+- [ ] Peer work verification via gossip
 - [ ] Hierarchical path support
 - [ ] Stake-weighted content delivery
+- [ ] Difficulty adjustment
 
 ### v2.0 (Q3 2026)
 - [ ] Native MCP server integration
 - [ ] AI agent optimization
 - [ ] Enterprise clustering
+- [ ] Parallel contract UTXOs for high contention
 
 ## References
 
@@ -557,5 +576,5 @@ GET /health
 
 ---
 
-**Last Updated**: February 3, 2026
+**Last Updated**: February 9, 2026
 **Maintained By**: PATH402 Team

@@ -57,7 +57,26 @@ At scale (1B tx/month): **$16.2M annual revenue**
 
 ## Token Economics
 
-### The PATH402.com Token
+### Two-Token Model
+
+The $402 ecosystem uses **two distinct tokens** with different purposes:
+
+| | **$402 (Mining Token)** | **$PATH402 (Equity Token)** |
+|---|---|---|
+| **Purpose** | Reward path402d operators | Protocol revenue share |
+| **Supply** | 21,000,000 | 1,000,000,000 |
+| **Distribution** | 100% mined (no pre-mine) | Treasury sale via sqrt_decay |
+| **Standard** | BSV-21 HTM smart contract (sCrypt) | BSV-20 |
+| **How to get** | Run path402 client | Buy from treasury |
+| **Dividends** | No | Yes (Tier 2, KYC required) |
+| **Regulatory** | Commodity-like (pure PoW) | Security-like (equity) |
+| **Docs** | [HTM_TOKEN.md](HTM_TOKEN.md) | [TOKEN_ARCHITECTURE.md](TOKEN_ARCHITECTURE.md) |
+
+> **Important**: $402 is earned by mining. $PATH402 is purchased for equity. They are not the same token.
+
+The $402 mining token uses a Hash-to-Mint (HTM) smart contract — see [HTM_TOKEN.md](HTM_TOKEN.md) for full details on the `Path402HTM` contract, `@path402/htm` package, and Proof-of-Indexing system.
+
+### The PATH402.com Equity Token
 
 - **Symbol**: PATH402.com (on-chain BSV-20)
 - **Total Supply**: 1,000,000,000
