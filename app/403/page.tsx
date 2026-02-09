@@ -43,13 +43,13 @@ export default function Page403() {
 
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden bg-black">
-        {/* Background video */}
+        {/* Background video — fits inside HUD corner brackets */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute top-6 left-6 right-6 bottom-6 object-cover opacity-30"
         >
           <source src="/403-hero.mp4" type="video/mp4" />
         </video>
