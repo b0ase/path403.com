@@ -1,0 +1,31 @@
+⏺ No ffmpeg installed. Two quick options:                                                                   
+                                                                                                            
+  1. Install ffmpeg (brew install ffmpeg) and compress the videos to ~3MB each                              
+  2. Move videos to an external host — you could upload them to Cloudflare R2 or any CDN and reference them
+  by URL                                                                                                    
+  
+  Want me to install ffmpeg and compress them, or would you rather host them externally?                    
+                                                                         
+❯ how do I link to cloudflare?                                                                              
+                                                                                                            
+⏺ Easiest path is Cloudflare R2 (S3-compatible object storage, free egress):                                
+                                                                                                            
+  1. Create R2 bucket (in Cloudflare dashboard)                                                             
+  - Dashboard > R2 Object Storage > Create bucket                                                           
+  - Name it something like path402-assets                                                                   
+                                                                                                            
+  2. Enable public access                                                                                   
+  - Bucket settings > Public access > Enable                                                                
+  - Connect a custom domain like assets.path402.com (or use the default *.r2.dev URL)
+
+  3. Upload the videos
+  # Install wrangler if you don't have it
+  npx wrangler r2 object put path402-assets/402-video-1.mp4 --file=public/402-video-1.mp4
+  npx wrangler r2 object put path402-assets/402-video-2.mp4 --file=public/402-video-2.mp4
+
+  4. Update the code — swap /402-video-1.mp4 to https://assets.path402.com/402-video-1.mp4
+
+  5. Remove from git — delete them from public/ so Vercel doesn't choke
+
+  R2 pricing: free for storage up to 10GB, free egress (no bandwidth charges). It's basically free for this
+  use case.

@@ -1,251 +1,125 @@
-import './globals.css';
-import type { Metadata, Viewport } from 'next';
-import {
-  Inter,
-  Space_Grotesk,
-  JetBrains_Mono,
-  Orbitron
-} from 'next/font/google';
-import ConditionalProviders from '@/components/ConditionalProviders';
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
+import "./globals.css";
+import Link from "next/link";
+import { WalletProvider } from "@/components/WalletProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ClientNavigation } from "@/components/ClientNavigation";
+import { Sticky402Button } from "@/components/Sticky402Button";
 
-// Core fonts only - reduced from 14+ to 3 essential fonts
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  preload: true
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'], 
-  variable: '--font-space-grotesk',
-  display: 'swap',
-  preload: true
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-  preload: true
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 const orbitron = Orbitron({
-  subsets: ['latin'],
-  variable: '--font-orbitron',
-  display: 'swap',
-  preload: false
+  subsets: ["latin"],
+  variable: "--font-orbitron",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'b0ase.com',
-  description: 'Venture studio building companies from concept to exit. Web development, blockchain integration, AI agents, and digital products.',
-  metadataBase: new URL('https://b0ase.com'),
-  icons: {
-    icon: '/boase_icon.png',
-    shortcut: '/boase_icon.png',
-    apple: '/boase_icon.png',
-  },
-  keywords: [
-    'venture studio',
-    'startup builder',
-    'web development',
-    'blockchain integration',
-    'AI agents',
-    'React',
-    'Next.js',
-    'digital products',
-    'tokenization',
-    'portfolio'
-  ],
-  authors: [{ name: 'B0ASE', url: 'https://b0ase.com' }],
-  creator: 'B0ASE',
-  publisher: 'B0ASE',
+  metadataBase: new URL('https://path402.com'),
+  title: "$402 — Access Tokens for the Open Web",
+  description: "Mint an access token for anything addressable: your attention, your API, your content. The protocol for AI-native micropayments on BSV.",
+  keywords: ["$402", "path protocol", "BSV", "micropayments", "AI payments", "tokenization", "HTTP 402", "MCP", "AI agents", "attention economy"],
+  authors: [{ name: "b0ase", url: "https://x.com/b0ase" }],
+  creator: "b0ase",
   openGraph: {
-    title: 'b0ase.com',
-    description: 'Venture studio building companies from concept to exit. Web development, blockchain integration, AI agents, and digital products.',
-    url: 'https://b0ase.com',
-    siteName: 'B0ASE',
-    images: [
-      {
-        url: 'https://b0ase.com/og-fallback.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'B0ASE - Venture Studio',
-      }
-    ],
-    locale: 'en_US',
-    type: 'website',
+    title: "$402 — Access Tokens for the Open Web",
+    description: "Mint an access token for anything addressable: your attention, your API, your content.",
+    url: "https://path402.com",
+    siteName: "$402 Protocol",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'b0ase.com',
-    description: 'Venture studio building companies from concept to exit.',
-    images: ['https://b0ase.com/og-fallback.jpg'],
-    creator: '@b0ase',
-  },
-  alternates: {
-    canonical: 'https://b0ase.com',
+    card: "summary_large_image",
+    title: "$402 — Access Tokens for the Open Web",
+    description: "Mint an access token for anything addressable.",
+    creator: "@b0ase",
+    site: "@b0ase",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: 'cover',
+  other: {
+    "ai-content-declaration": "This website provides tokenised content services for AI agents via MCP",
+    "ai-integration": "MCP server available via npm: path402",
+    "ai-plugin": "https://path402.com/.well-known/ai-plugin.json",
+    "llms-txt": "https://path402.com/llms.txt",
+  },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        {/* Critical inline CSS for instant theme application before external CSS loads */}
-        {/* SECURITY: Safe to use dangerouslySetInnerHTML - static CSS written by developers, no user input */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              html[data-color-theme="white"],
-              html[data-color-theme="white"] body {
-                background-color: #ffffff !important;
-                color: #000000 !important;
-              }
-              html[data-color-theme="white"] .bg-black {
-                background-color: #ffffff !important;
-              }
-              html[data-color-theme="white"] .text-white {
-                color: #000000 !important;
-              }
-              html[data-color-theme="white"] .dark\\:text-white {
-                color: #000000 !important;
-              }
-              html[data-color-theme="white"] .dark\\:bg-black {
-                background-color: #ffffff !important;
-              }
-            `,
-          }}
-        />
-        {/* Inline script to prevent flash of wrong theme on page load */}
-        {/* SECURITY: Safe to use dangerouslySetInnerHTML - static JavaScript written by developers, no user input */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var validThemes = ['black', 'white', 'yellow', 'red', 'green', 'blue', 'pink'];
-                  var lightTextThemes = ['white', 'yellow', 'red', 'green', 'blue', 'pink'];
-
-                  // Check if user manually set a theme
-                  var manuallySet = localStorage.getItem('b0ase-theme-manual') === 'true';
-                  var savedTheme = localStorage.getItem('b0ase-color-theme');
-
-                  var colorTheme;
-                  if (manuallySet && savedTheme && validThemes.includes(savedTheme)) {
-                    // User manually chose - respect their choice
-                    colorTheme = savedTheme;
-                  } else {
-                    // Auto-detect based on time of day (6am-6pm = white, otherwise black)
-                    var hour = new Date().getHours();
-                    colorTheme = (hour >= 6 && hour < 18) ? 'white' : 'black';
-                  }
-
-                  document.documentElement.setAttribute('data-color-theme', colorTheme);
-                  // Set dark class based on theme
-                  if (lightTextThemes.includes(colorTheme)) {
-                    document.documentElement.classList.remove('dark');
-                  } else {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-        {/* Structured Data - Organization Schema */}
-        {/* SECURITY: Safe to use dangerouslySetInnerHTML - JSON.stringify() safely encodes all data, no XSS risk */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "B0ASE",
-              "description": "Venture studio building companies from concept to exit. Web development, blockchain integration, AI agents, and digital products.",
-              "url": "https://b0ase.com",
-              "logo": "https://b0ase.com/boase_icon.png",
-              "foundingDate": "2020",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "GB"
-              },
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "email": "richard@b0ase.com",
-                "contactType": "customer service"
-              },
-              "sameAs": [
-                "https://github.com/b0ase",
-                "https://twitter.com/b0ase"
-              ],
-              "offers": {
-                "@type": "Service",
-                "serviceType": [
-                  "Web Development",
-                  "Venture Building",
-                  "Blockchain Integration",
-                  "AI Agent Development",
-                  "Tokenization"
-                ]
-              }
-            })
-          }}
-        />
-
-        {/* Structured Data - Website Schema */}
-        {/* SECURITY: Safe to use dangerouslySetInnerHTML - JSON.stringify() safely encodes all data, no XSS risk */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "B0ASE",
-              "description": "Venture studio building companies from concept to exit",
-              "url": "https://b0ase.com",
-              "publisher": {
-                "@type": "Organization",
-                "name": "B0ASE"
-              },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://b0ase.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            })
-          }}
-        />
-        
+        <link rel="ai-plugin" href="https://path402.com/.well-known/ai-plugin.json" />
+        <link rel="alternate" type="text/plain" href="https://path402.com/llms.txt" title="LLMs.txt" />
       </head>
-      <body className={`${inter.className} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${orbitron.variable}`} suppressHydrationWarning>
-        <ConditionalProviders>
-          {children}
-        </ConditionalProviders>
+      <body className={`${inter.variable} ${mono.variable} ${orbitron.variable} font-mono antialiased`}>
+        <ThemeProvider>
+          <WalletProvider>
+            <ClientNavigation />
+            {children}
+            <Sticky402Button />
+
+            {/* Footer */}
+            <footer className="border-t border-zinc-200 dark:border-zinc-800 py-16 mt-20 bg-white dark:bg-black">
+              <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  <div>
+                    <h3 className="font-bold mb-4 text-zinc-900 dark:text-white text-sm uppercase tracking-widest">$402</h3>
+                    <p className="text-zinc-500 text-sm">
+                      Access tokens for anything addressable. Run a node, earn $402 through Proof of Work.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold text-zinc-400 dark:text-zinc-600 mb-4 uppercase tracking-widest">Resources</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><Link href="/docs" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">Documentation</Link></li>
+                      <li><Link href="/402" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">Whitepaper</Link></li>
+                      <li><a href="https://github.com/b0ase/path402" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">GitHub</a></li>
+                      <li><a href="https://www.npmjs.com/package/path402" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">npm Package</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold text-zinc-400 dark:text-zinc-600 mb-4 uppercase tracking-widest">Ecosystem</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><Link href="/download" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">Download Client</Link></li>
+                      <li><Link href="/token" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">POW20 Token</Link></li>
+                      <li><Link href="/protocol" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">Protocol Economics</Link></li>
+                      <li><a href="https://fnews.online" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">F.NEWS</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold text-zinc-400 dark:text-zinc-600 mb-4 uppercase tracking-widest">Contact</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><a href="mailto:hello@b0ase.com" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">hello@b0ase.com</a></li>
+                      <li><a href="https://t.me/b0ase_com" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">Telegram</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="border-t border-zinc-200 dark:border-zinc-800 mt-12 pt-8 text-center text-zinc-400 dark:text-zinc-600 text-xs uppercase tracking-widest">
+                  © 2026 b0ase. Open BSV License v4.
+                </div>
+              </div>
+            </footer>
+          </WalletProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

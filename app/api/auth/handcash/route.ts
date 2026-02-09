@@ -1,59 +1,34 @@
-import { handCashConnect } from '@/lib/handcash';
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
-    try {
-        const url = new URL(request.url);
-        const returnTo = url.searchParams.get('returnTo') || '/user/account';
+// HandCash OAuth configuration
+const HANDCASH_APP_ID = process.env.HANDCASH_APP_ID?.trim();
+const HANDCASH_AUTH_URL = 'https://market.handcash.io';
 
-        // Use the request origin to build callback URL
-        // This allows both localhost and production to work
-        const origin = url.origin;
-        const callbackUrl = `${origin}/api/auth/handcash/callback`;
-
-        // For HandCash, we need to use a registered callback URL
-        // In production, HandCash only accepts pre-registered URLs
-        // ALWAYS use non-www canonical URL in production to match HandCash registration
-        const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1') || origin.includes('192.168');
-        const productionCallbackUrl = 'https://b0ase.com/api/auth/handcash/callback';
-        const baseUrl = isLocalhost ? callbackUrl : (process.env.NEXT_PUBLIC_HANDCASH_REDIRECT_URL || productionCallbackUrl);
-
-        console.log('[HandCash] isLocalhost check:', { isLocalhost, origin, callbackUrl, baseUrl });
-
-        console.log('[HandCash] Initiating redirect...');
-        console.log('[HandCash] Request origin:', origin);
-        console.log('[HandCash] Configured NEXT_PUBLIC_HANDCASH_REDIRECT_URL:', process.env.NEXT_PUBLIC_HANDCASH_REDIRECT_URL || 'NOT SET');
-        console.log('[HandCash] Calculated callbackUrl:', callbackUrl);
-        console.log('[HandCash] Using baseUrl:', baseUrl);
-        console.log('[HandCash] returnTo:', returnTo);
-        console.log('[HandCash] App ID:', process.env.HANDCASH_APP_ID);
-
-        if (!handCashConnect) throw new Error('HandCash service not initialized');
-
-        const redirectUrl = handCashConnect.getRedirectionUrl({
-            referrerUrl: baseUrl,
-            permissions: ['PAY', 'USER_PUBLIC_PROFILE'] as any
-        });
-
-        console.log('[HandCash] Generated redirect URL:', redirectUrl);
-        console.log('[HandCash] Redirect URL host:', new URL(redirectUrl).host);
-        const response = NextResponse.redirect(redirectUrl);
-
-        // Store the FULL return URL (not just path) so callback knows where to go
-        // This is critical for cross-origin scenarios (localhost -> production callback)
-        const fullReturnUrl = returnTo.startsWith('http') ? returnTo : `${origin}${returnTo}`;
-        response.cookies.set('kintsugi_auth_return', fullReturnUrl, {
-            path: '/',
-            maxAge: 300,
-            sameSite: 'lax'
-        });
-
-        return response;
-    } catch (error) {
-        console.error('❌ HandCash Redirect Error:', error);
-        return NextResponse.json({
-            error: 'Failed to initiate HandCash login',
-            details: error instanceof Error ? error.message : String(error)
-        }, { status: 500 });
+export async function GET() {
+  try {
+    if (!HANDCASH_APP_ID) {
+      return NextResponse.json({
+        error: 'HandCash not configured',
+        message: 'HANDCASH_APP_ID environment variable not set'
+      }, { status: 500 });
     }
+
+    // Build HandCash authorization URL (new format: market.handcash.io/connect)
+    const authUrl = new URL(`${HANDCASH_AUTH_URL}/connect`);
+    authUrl.searchParams.set('appId', HANDCASH_APP_ID);
+
+    // Get the base URL for the callback - MUST match HandCash dashboard exactly
+    const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://path402.com').trim();
+    // Note: HandCash dashboard has this registered as the callback URL
+    const callbackUrl = `${baseUrl}/api/auth/callback/handcash`;
+    authUrl.searchParams.set('redirectUrl', callbackUrl);
+
+    // Request PAY permission for token purchases
+    authUrl.searchParams.set('permissions', 'PAY');
+
+    return NextResponse.redirect(authUrl.toString());
+  } catch (error) {
+    console.error('HandCash auth error:', error);
+    return NextResponse.json({ error: 'Authentication failed' }, { status: 500 });
+  }
 }

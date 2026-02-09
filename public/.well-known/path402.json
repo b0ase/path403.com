@@ -1,7 +1,0 @@
-{
-    "issuer": "$BOASE",
-    "issuer_address": "$BOASE",
-    "domain_message": "path402:b0ase.com:$BOASE:$BOASE:04b5f2aee038095cb8a36ff97c51cf53",
-    "domain_signature_tx_id": "pending_04b5f2aee038095c",
-    "domain_signature": "sig_c45096b72ab5db4ee3ca11d23ed450b4"
-}

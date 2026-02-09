@@ -1,69 +1,59 @@
-# Project Image Generation Script
+# Smoke Scripts
 
-This script generates professional images for the service project showcases using the Stability AI API. The images are saved to the appropriate directories in `/public/images/services/` and used in the respective service pages.
-
-## Prerequisites
-
-- Node.js installed
-- Stability AI API key
-- Required NPM packages: `axios`, `fs`, and `path`
-
-## Setup
-
-1. Install the required packages:
-   ```
-   npm install axios
-   ```
-
-2. Set up your Stability AI API key:
-   - Create a `.env.local` file in the root of your project
-   - Add your API key: `STABILITY_AI_API=your-api-key-here`
-   - Make sure `.env.local` is in your `.gitignore` file to keep your API key private
+These scripts provide a **curlable smoke test** for staging and production.
 
 ## Usage
 
-To generate the images for all service projects:
-
-```
-# First, set the environment variable
-export STABILITY_AI_API=your-api-key-here
-
-# Then run the script
-node scripts/generate-service-images.js
+```bash
+./scripts/smoke-staging.sh
+./scripts/smoke-prod.sh
+./scripts/smoke-x402-real.sh
 ```
 
-## Image Configuration
+## Make Targets
 
-The script is configured to generate 9 images across three service categories:
+```bash
+make smoke-staging
+make smoke-prod
+make smoke-x402-real
+```
 
-### Web Development
-- E-commerce Platform
-- Corporate Web Portal
-- Progressive Web App
+## Environment Variables
 
-### Software Development
-- Crypto Trading Platform
-- Smart Contract Audit Tool
-- AI-Powered Analytics Dashboard
+You can override defaults by setting environment variables:
 
-### Content Copywriting
-- Tech Industry Whitepaper
-- E-commerce Product Descriptions
-- Finance Blog Series
+```bash
+BASE_URL=https://staging.path402.com \
+DOMAIN=staging.path402.com \
+HANDLE=@staging \
+ISSUER_ADDRESS=1ABC... \
+./scripts/smoke-staging.sh
+```
 
-## Image Storage
+```bash
+BASE_URL=https://path402.com \
+DOMAIN=path402.com \
+HANDLE=@path402 \
+ISSUER_ADDRESS=1ABC... \
+./scripts/smoke-prod.sh
+```
 
-Generated images are saved to:
-- `/public/images/services/web-development/`
-- `/public/images/services/software-development/`
-- `/public/images/services/content-copywriting/`
+### Real x402 Transaction
 
-## Implementation
+```bash
+BASE_URL=https://path402.com \
+X402_TX_ID=<bsv_txid> \
+X402_TO_ADDRESS=<recipient_address> \
+X402_AMOUNT_SATS=1000 \
+INSCRIBE=false \
+./scripts/smoke-x402-real.sh
+```
 
-The images are displayed in the service pages using the `ProjectImage` component, which handles fallback behavior if an image is not yet generated.
+## What’s Checked
 
-## Notes
-
-- Images are only generated once; the script checks if an image already exists before making an API call
-- The Stability AI API has usage limits; check your account for details
-- Image prompts can be adjusted in the script to generate different visual styles 
+1. `/` (homepage)
+2. `/.well-known/$402.json`
+3. `/api/domain/verify-template`
+4. `/api/domain/verify`
+5. `/api/x402/verify` (sample payload, `inscribe=false`)
+6. `/docs`

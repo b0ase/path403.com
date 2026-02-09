@@ -64,7 +64,7 @@ x-bsv-payment-desc: "Access to premium blog post"
 
 The "ticket" for access can be any spendable instrument validated by the server, including:
 *   BSV Satoshis (standard)
-*   **$PATH402 Tokens** (BSV-20 / Native)
+*   **$402 Tokens** (BSV-21 PoW20)
 *   Access Tokens (minted by the creator)
 
 The server defines accepted instruments in the 402 response capabilities.
@@ -124,13 +124,14 @@ Operators (Facilitators) earn reputation and revenue shares by:
 
 ## $402 Token Details (The Asset)
 
-"The Token" refers specifically to **$PATH402**, the equity token of the `PATH402.com` facilitator business.
+"The Token" refers to **$402**, a PoW20 Hash-to-Mint token on BSV-21 (BRC-114 Proof of Indexing).
 
-*   **Supply**: 1,000,000,000
-*   **Mint**: 1Sat Ordinal Inscription (BSV)
-*   **Utility**: Staking for Facilitator Revenue (Verification Fees, Settlement Fees).
+*   **Supply**: 21,000,000 (mirrors Bitcoin exactly)
+*   **Decimals**: 8 (same as Bitcoin satoshis)
+*   **Distribution**: 100% mined, 0% pre-mine, 50 tokens per mint, halving every 210,000 mints
+*   **Utility**: Stake $402 + complete $401 KYC to earn 100% of serving revenue (proportional to stake)
 
-*Note: "BSV21" tokens mentioned in previous drafts are treated as generic payment instruments under BRC-105 capabilities.*
+*Note: The legacy $PATH402 BSV-20 equity token (1B supply) has been deprecated. $402 is the only protocol token.*
 
 ---
 

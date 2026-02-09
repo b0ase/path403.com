@@ -300,15 +300,15 @@ Get or create a BSV inscription proof for a payment.
 
 The MCP server calls these PATH402.com endpoints:
 
-### Single Token ($PATH402)
+### $402 Protocol Token
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/token/stats` | GET | $PATH402 token statistics |
+| `/api/token/stats` | GET | $402 token statistics |
 | `/api/token/preview` | POST | Preview purchase cost |
-| `/api/token/buy` | POST | Acquire $PATH402 tokens |
-| `/api/token/holding` | GET | User's $PATH402 holdings |
-| `/api/token/cap-table` | GET | All $PATH402 holders |
+| `/api/token/buy` | POST | Acquire $402 tokens |
+| `/api/token/holding` | GET | User's $402 holdings |
+| `/api/token/cap-table` | GET | All $402 holders |
 
 ### Multi-Tenant Marketplace (Any $address)
 

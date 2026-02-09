@@ -1,8 +1,8 @@
-# $PATH402 MCP Server
+# $402 MCP Server
 
 > **Turn AI agents into autonomous economic actors.**
 
-The PATH402 MCP Server enables AI agents (Claude, GPT, etc.) to discover, evaluate, acquire, and serve tokenized content through the $402 protocol. Agents can operate autonomously, managing budgets, making investment decisions, and earning revenue.
+The $402 MCP Server enables AI agents (Claude, GPT, etc.) to discover, evaluate, acquire, and serve tokenized content through the $402 protocol. Agents can operate autonomously, managing budgets, making investment decisions, and earning revenue.
 
 [![npm version](https://badge.fury.io/js/path402-mcp-server.svg)](https://www.npmjs.com/package/path402-mcp-server)
 [![License: Open BSV](https://img.shields.io/badge/License-Open%20BSV-blue.svg)](https://github.com/b0ase/path402-mcp-server/blob/main/LICENSE)
@@ -428,12 +428,12 @@ BSV is the settlement layer. Payments from other chains are verified and inscrib
 
 ### PATH402.com Endpoints
 
-**$PATH402 Token (PATH402's own token)**
+**$402 Protocol Token**
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api/token/stats` | GET | $PATH402 statistics & pricing |
-| `/api/token/buy` | POST | Acquire $PATH402 tokens |
-| `/api/token/holding` | GET | User's $PATH402 holdings |
+| `/api/token/stats` | GET | $402 statistics & pricing |
+| `/api/token/buy` | POST | Acquire $402 tokens |
+| `/api/token/holding` | GET | User's $402 holdings |
 
 **Multi-Tenant Marketplace (any $address)**
 | Endpoint | Method | Description |

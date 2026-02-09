@@ -1,64 +1,100 @@
-import { MetadataRoute } from 'next';
-import { blogPosts } from '@/lib/blog';
+import { MetadataRoute } from 'next'
+import fs from 'fs'
+import path from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.b0ase.com';
+  const baseUrl = 'https://path402.com'
 
-    // Use static blog posts only - no async fetching to avoid pathname errors
-    const blogPostEntries: MetadataRoute.Sitemap = blogPosts.flatMap((post) => {
-        // Validate post has required fields before creating URLs
-        if (!post || !post.slug || typeof post.slug !== 'string') {
-            console.warn('Skipping invalid blog post in sitemap:', post);
-            return [];
-        }
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/whitepaper`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/whitepaper/academic`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/token`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/exchange`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/docs`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/registry`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/account`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/site-index`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+  ]
 
+  // Add blog posts dynamically
+  try {
+    const blogDir = path.join(process.cwd(), 'public/blog')
+    if (fs.existsSync(blogDir)) {
+      const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.md'))
+      const blogRoutes = files.flatMap(file => {
+        const slug = file.replace('.md', '')
         return [
-            {
-                url: `${baseUrl}/blog/${post.slug}`,
-                lastModified: new Date(post.date),
-                changeFrequency: 'weekly' as const,
-                priority: post.featured ? 0.8 : 0.6,
-            },
-            {
-                url: `${baseUrl}/blog/${post.slug}.md`,
-                lastModified: new Date(post.date),
-                changeFrequency: 'weekly' as const,
-                priority: post.featured ? 0.7 : 0.5,
-            },
-        ];
-    });
-
-    return [
-        {
-            url: baseUrl,
+          {
+            url: `${baseUrl}/blog/${slug}`,
             lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}/blog`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/portfolio`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/mint`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: 'weekly' as const,
             priority: 0.7,
-        },
-        {
-            url: `${baseUrl}/kintsugi`,
+          },
+          {
+            url: `${baseUrl}/blog/${slug}.md`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        ...blogPostEntries,
-    ];
+            changeFrequency: 'weekly' as const,
+            priority: 0.5,
+          }
+        ]
+      })
+      return [...staticRoutes, ...blogRoutes]
+    }
+  } catch (e) {
+    console.error('Error generating sitemap for blog:', e)
+  }
+
+  return staticRoutes
 }

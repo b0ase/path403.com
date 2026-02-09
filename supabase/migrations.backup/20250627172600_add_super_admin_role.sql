@@ -1,1 +1,0 @@
-ALTER TYPE user_role_type ADD VALUE 'super_admin'; 

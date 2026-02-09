@@ -48,7 +48,7 @@ Hetzner VPS (ubuntu-4gb-hel1-1)
 | Setting | Value |
 |---------|-------|
 | Treasury Address | `1BrbnQon4uZPSxNwt19ozwtgHPDbgvaeD1` |
-| Token Tick | `$PATH402` |
+| Token Tick | `$402` |
 | Poll Interval | 30 seconds |
 | API | WhatsOnChain (mainnet) |
 
@@ -124,7 +124,7 @@ CREATE INDEX idx_transfers_address ON path402_transfers(to_address);
 
 1. **Poll Treasury** - Every 30 seconds, fetch recent transactions from treasury address via WhatsOnChain
 2. **Parse Transactions** - Look for BSV-20 transfer inscriptions in outputs
-3. **Extract Data** - Parse the JSON payload: `{"p":"bsv-20","op":"transfer","tick":"$PATH402","amt":"..."}`
+3. **Extract Data** - Parse the JSON payload: `{"p":"bsv-21","op":"transfer","tick":"$402","amt":"..."}`
 4. **Match Holder** - Look up the recipient address in `user_wallets` to find the holder
 5. **Record Transfer** - Insert into `path402_transfers` if not already recorded
 
@@ -193,7 +193,7 @@ ssh hetzner 'curl -s http://localhost:8000/rest/v1/ -H "apikey: eyJhbGciOiJIUzI1
 ## Future Improvements
 
 - [ ] WebSocket connection for real-time tx monitoring (instead of polling)
-- [ ] Track all BSV-20 tokens, not just PATH402
+- [ ] Track all BSV-21 tokens, not just $402
 - [ ] Alert on large transfers
 - [ ] Sync historical transfers on startup
 - [ ] Health check endpoint

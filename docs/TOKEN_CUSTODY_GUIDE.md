@@ -1,8 +1,8 @@
-# $PATH402 Token Custody & Staking Guide
+# $402 Token Custody & Staking Guide
 
 ## For Token Holders
 
-This guide explains how your $PATH402 tokens are stored, secured, and how you can stake them for dividends and voting rights.
+This guide explains how your $402 tokens are stored, secured, and how you can stake them with $401 identity verification to earn serving revenue.
 
 ---
 
@@ -10,7 +10,7 @@ This guide explains how your $PATH402 tokens are stored, secured, and how you ca
 
 ### The Short Version
 
-When you buy $PATH402 tokens:
+When you acquire $402 tokens:
 
 1. **You pay** via HandCash (or Yours Wallet)
 2. **We send tokens** to an address **you control**
@@ -49,11 +49,11 @@ Yes. You can withdraw tokens to any BSV address you control. Your derived addres
 
 Your tokens can be in three states:
 
-| State | Location | Dividends | Voting | KYC Required |
-|-------|----------|-----------|--------|--------------|
-| **Unstaked** | Your address | No | No | No |
-| **Staked** | Your address (same!) | Yes | Yes | Yes |
-| **Withdrawn** | External address | No | No | No |
+| State | Location | Revenue Share | $401 KYC Required |
+|-------|----------|---------------|-------------------|
+| **Unstaked** | Your address | No | No |
+| **Staked** | Your address (same!) | Yes (100% serving revenue) | Yes |
+| **Withdrawn** | External address | No | No |
 
 **Key insight:** Staking does NOT move your tokens. It's a signed declaration that grants you additional rights.
 
@@ -90,14 +90,13 @@ Your tokens can be in three states:
 ## How to Stake Tokens
 
 Staking gives you:
-- ✅ Dividends from facilitator revenue
-- ✅ Voting rights on protocol decisions
-- ✅ Listing on the public cap table
+- 100% of serving revenue (proportional to your stake)
+- Listing on the public cap table
 
 ### Step 1: Prerequisites
 
 - Have tokens in your account
-- Be ready to provide KYC (name, email, jurisdiction)
+- Be ready to complete $401 identity verification (name, email, jurisdiction)
 
 ### Step 2: Initiate Staking
 
@@ -110,14 +109,14 @@ Staking gives you:
 Your wallet will ask you to sign a message like:
 
 ```
-I am staking 1,000,000 PATH402 tokens.
-I agree to provide KYC.
+I am staking 1,000,000 $402 tokens.
+I agree to complete $401 identity verification.
 Timestamp: 2026-02-03T12:00:00Z
 ```
 
 This signature proves you authorized the stake.
 
-### Step 4: Complete KYC
+### Step 4: Complete $401 Identity Verification
 
 - Enter your legal name
 - Enter your email address
@@ -125,17 +124,16 @@ This signature proves you authorized the stake.
 
 ### Step 5: Confirmation
 
-Once KYC is complete:
+Once $401 KYC is complete:
 - You're added to the cap table
-- You start earning dividends
-- You gain voting rights
+- You start earning serving revenue (100%, proportional to stake)
 
 ---
 
 ## How to Unstake
 
 You can unstake anytime. Unstaking:
-- Suspends your dividends and voting
+- Suspends your revenue share
 - Keeps you on the cap table (until tokens change hands)
 - Does NOT move your tokens
 
@@ -169,46 +167,34 @@ Withdrawal moves tokens to an external address you control.
 
 ---
 
-## Dividends
+## Serving Revenue
 
-### How They Work
+### How It Works
 
 The facilitator (PATH402.com) earns fees from:
 - Payment verification services
 - Inscription fees
 - Settlement fees
 
-These fees accumulate in a dividend pool. When distributed:
+100% of serving revenue goes to staked $402 holders. When distributed:
 
 ```
-Your Share = (Your Staked Tokens / Total Staked Tokens) × Dividend Pool
+Your Share = (Your Staked Tokens / Total Staked Tokens) × Serving Revenue Pool
 ```
 
 ### How to Claim
 
 1. Go to **Account**
-2. See **Pending Dividends** amount
-3. Click **Claim Dividends**
+2. See **Pending Revenue** amount
+3. Click **Claim Revenue**
 4. Sign the claim message
 5. BSV is sent to your derived address
 
 ### Distribution Schedule
 
-- Dividends accumulate continuously
+- Revenue accumulates continuously
 - Distributions happen monthly (or on-demand)
-- Only ACTIVE stakers qualify (not suspended/unstaked)
-
----
-
-## Voting Rights
-
-Staked token holders can vote on:
-- Protocol upgrades
-- Fee adjustments
-- Treasury allocations
-- Governance decisions
-
-Voting power is proportional to staked tokens.
+- Only ACTIVE stakers with $401 KYC qualify (not suspended/unstaked)
 
 ---
 
@@ -219,7 +205,7 @@ Voting power is proportional to staked tokens.
 - Treasury address (receives payments)
 - Encrypted key storage
 - Cap table and stake records
-- Dividend distribution
+- Revenue distribution
 
 ### What You Control
 
@@ -249,7 +235,7 @@ If you can sign with your HandCash account, you can recover everything:
 
 ### Q: Do I need to stake to hold tokens?
 
-**No.** Staking is optional. You can hold unstaked tokens indefinitely. You just won't receive dividends or voting rights.
+**No.** Staking is optional. You can hold unstaked tokens indefinitely. You just won't receive serving revenue.
 
 ### Q: Can I stake partial amounts?
 
@@ -257,18 +243,18 @@ If you can sign with your HandCash account, you can recover everything:
 
 ### Q: What's the minimum stake?
 
-**1 token.** There's no minimum, but dividends may be negligible for very small stakes.
+**1 token.** There's no minimum, but revenue share may be negligible for very small stakes.
 
-### Q: Are dividends automatic?
+### Q: Is revenue automatic?
 
-**No.** You must claim dividends when distributions occur. Unclaimed dividends accumulate until claimed.
+**No.** You must claim revenue when distributions occur. Unclaimed revenue accumulates until claimed.
 
 ### Q: Can I transfer staked tokens?
 
 **Yes**, but if you transfer tokens while staked:
 - Your stake is automatically suspended (tokens left your address)
 - You stay on cap table until new owner stakes
-- The new owner can stake to get dividends/voting
+- The new owner can stake + $401 KYC to get revenue share
 
 ### Q: Is my name public on the cap table?
 
@@ -280,7 +266,7 @@ If you can sign with your HandCash account, you can recover everything:
 
 This is required for regulatory compliance and transparency.
 
-### Q: What KYC is required?
+### Q: What $401 KYC is required?
 
 - Legal name
 - Email address
@@ -293,7 +279,7 @@ We do NOT collect:
 
 ### Q: Can I use a different wallet?
 
-**Yes.** You can export your private key and import to any BSV wallet that supports ordinals. The tokens are standard BSV-20.
+**Yes.** You can export your private key and import to any BSV wallet that supports ordinals. The tokens are BSV-21 (PoW20 HTM).
 
 ---
 
@@ -304,8 +290,8 @@ We do NOT collect:
 Your address is derived deterministically:
 
 ```
-1. You sign: "I am creating my PATH402 wallet for @{handle}. Timestamp: {time}"
-2. We compute: seed = HMAC-SHA256(key: "PATH402-v1", data: signature + handle)
+1. You sign: "I am creating my $402 wallet for @{handle}. Timestamp: {time}"
+2. We compute: seed = HMAC-SHA256(key: "$402-v1", data: signature + handle)
 3. Private key = seed (first 32 bytes)
 4. Address = P2PKH(publicKey(privateKey))
 ```
@@ -317,11 +303,12 @@ This means:
 
 ### Token Standard
 
-$PATH402 uses the BSV-20 fungible token standard:
-- Protocol: `bsv-20`
-- Inscription ID: `5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d_1`
-- Total supply: 1,000,000,000
-- Decimal places: 0
+$402 uses the BSV-21 PoW20 Hash-to-Mint standard:
+- Protocol: `bsv-21` (BRC-114 Proof of Indexing)
+- Total supply: 21,000,000 (mirrors Bitcoin)
+- Decimal places: 8 (same as Bitcoin satoshis)
+- Distribution: 100% mined, 0% pre-mine
+- Mining: 50 tokens per mint, halving every 210,000 mints
 
 ### On-Chain Verification
 
@@ -329,7 +316,7 @@ Verify your tokens on any BSV explorer:
 - [WhatsOnChain](https://whatsonchain.com)
 - [GorillaPool](https://ordinals.gorillapool.io)
 
-Enter your address to see BSV-20 token holdings.
+Enter your address to see BSV-21 token holdings.
 
 ---
 
@@ -345,4 +332,4 @@ Enter your address to see BSV-20 token holdings.
 
 ---
 
-**Last Updated**: February 3, 2026
+**Last Updated**: February 8, 2026

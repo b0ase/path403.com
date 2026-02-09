@@ -1,26 +1,26 @@
-# PRD: $PATH402 Token Custody & Staking System
+# PRD: $402 Token Custody & Staking System
 
-**Version:** 1.0
-**Date:** 2026-02-03
+**Version:** 2.0
+**Date:** 2026-02-08
 **Author:** Richard Boase / Claude
 
 ---
 
 ## Executive Summary
 
-This document specifies the token custody and staking system for $PATH402. The system enables users to purchase, hold, stake, and withdraw BSV-20 tokens while maintaining proper custody boundaries and regulatory compliance.
+This document specifies the token custody and staking system for $402. The system enables users to mine, hold, stake, and withdraw BSV-21 PoW20 tokens while maintaining proper custody boundaries and regulatory compliance.
 
-**Core Principle:** Tokens are bearer instruments. When users pay, they receive bearer instruments to an address they control.
+**Core Principle:** Tokens are bearer instruments. $402 tokens are 100% mined (PoW20 Hash-to-Mint). Staking requires $401 identity verification (KYC) to earn serving revenue.
 
 ---
 
 ## Problem Statement
 
 Current issues:
-1. **HandCash cannot receive ordinals** - Users pay with HandCash but can't receive BSV-20 tokens there
+1. **HandCash cannot receive ordinals** - Users pay with HandCash but can't receive BSV-21 tokens there
 2. **Database-only credits are risky** - We could accidentally burn tokens, get hacked, or face custody liability
-3. **No clear staking mechanism** - Unclear how users claim dividends/voting rights
-4. **KYC timing unclear** - When do we require identity verification?
+3. **No clear staking mechanism** - Unclear how users claim serving revenue
+4. **$401 KYC timing unclear** - When do we require identity verification?
 
 ---
 
@@ -39,10 +39,10 @@ Current issues:
 │                                                                  │
 │  4. HOLD (unstaked)  5. STAKE            6. CLAIM                │
 │  ─────────────────   ─────────           ─────────               │
-│  Tokens in address   Sign to stake  →    Dividends               │
-│  Withdraw anytime    Provide KYC         Voting rights           │
-│  No dividends        Added to cap table  Registry listing        │
-│  No voting                                                       │
+│  Tokens in address   Sign to stake  →    Serving revenue         │
+│  Withdraw anytime    Complete $401 KYC   Registry listing        │
+│  No revenue          Added to cap table                          │
+│                                                                  │
 │                                                                  │
 │  7. UNSTAKE          8. WITHDRAW         9. TRANSFER             │
 │  ──────────          ──────────          ──────────              │
@@ -63,7 +63,7 @@ Current issues:
 
 **Flow:**
 1. User connects with HandCash OAuth
-2. System presents message to sign: `"I am creating my PATH402 wallet for @{handle}. Timestamp: {ISO8601}"`
+2. System presents message to sign: `"I am creating my $402 wallet for @{handle}. Timestamp: {ISO8601}"`
 3. User signs with HandCash
 4. System derives keypair deterministically from signature
 5. **CRITICAL:** System returns the WIF private key to user AND stores encrypted version
@@ -81,7 +81,7 @@ interface DerivedWallet {
 
 **Key Derivation:**
 ```
-seed = HMAC-SHA256(key: "PATH402-v1", data: signature + handle)
+seed = HMAC-SHA256(key: "$402-v1", data: signature + handle)
 privateKey = seed (first 32 bytes)
 address = P2PKH(publicKey(privateKey))
 ```
@@ -116,7 +116,7 @@ CREATE TABLE user_wallets (
 2. User selects amount to spend (BSV)
 3. System calculates tokens via sqrt_decay curve
 4. User confirms and pays via HandCash to treasury
-5. **On payment success:** System sends BSV-20 transfer to user's derived address
+5. **On payment success:** System sends BSV-21 transfer to user's derived address
 6. User now holds bearer instruments they control
 
 **Key Points:**
@@ -137,7 +137,7 @@ Response:
   purchaseId: string,
   tokenAmount: number,
   txId: string,           // HandCash payment tx
-  transferTxId: string,   // BSV-20 transfer to user's address
+  transferTxId: string,   // BSV-21 transfer to user's address
   address: string,        // User's derived address
   status: "completed"
 }
@@ -147,11 +147,11 @@ Response:
 
 ### 3. Token States
 
-| State | Location | Dividends | Voting | KYC Required | Cap Table |
-|-------|----------|-----------|--------|--------------|-----------|
-| **Unstaked** | User's derived address | No | No | No | No |
-| **Staked** | User's derived address (same) | Yes | Yes | Yes | Yes |
-| **Withdrawn** | External address | No | No | No | No |
+| State | Location | Revenue Share | KYC Required | Cap Table |
+|-------|----------|---------------|--------------|-----------|
+| **Unstaked** | User's derived address | No | No | No |
+| **Staked** | User's derived address (same) | Yes (100% serving revenue) | Yes ($401) | Yes |
+| **Withdrawn** | External address | No | No | No |
 
 **Key Insight:** Staking does NOT move tokens. It's a signed declaration + KYC that grants rights.
 
@@ -159,23 +159,23 @@ Response:
 
 ### 4. Staking Mechanism
 
-**Goal:** User stakes tokens to receive dividends and voting rights. Requires KYC.
+**Goal:** User stakes tokens to receive serving revenue. Requires $401 identity verification (KYC).
 
 **Flow:**
 1. User has tokens in their derived address (prerequisite)
 2. User clicks "Stake"
 3. System prompts: Sign message to stake
-4. Message: `"I am staking {amount} PATH402 tokens. I agree to provide KYC. Timestamp: {ISO8601}"`
+4. Message: `"I am staking {amount} $402 tokens. I agree to complete $401 identity verification. Timestamp: {ISO8601}"`
 5. User signs with HandCash
 6. System verifies signature and token balance
-7. System prompts KYC collection (name, email, jurisdiction)
+7. System prompts $401 KYC collection (name, email, jurisdiction)
 8. On KYC completion: User added to cap table
 
 **What Staking IS:**
 - A signed declaration of intent
-- Permission to collect KYC
+- Permission to collect $401 KYC
 - Registration on the cap table
-- Eligibility for dividends and voting
+- Eligibility for serving revenue share (100%, proportional to stake)
 
 **What Staking IS NOT:**
 - Moving tokens to a different address
@@ -227,11 +227,11 @@ CREATE TABLE cap_table (
 **Flow:**
 1. User clicks "Unstake"
 2. System prompts: Sign message to unstake
-3. Message: `"I am unstaking {amount} PATH402 tokens. Timestamp: {ISO8601}"`
+3. Message: `"I am unstaking {amount} $402 tokens. Timestamp: {ISO8601}"`
 4. User signs
 5. Stake marked as `unstaked`
 6. **User REMAINS on cap table** (they still hold the tokens)
-7. Dividends and voting rights suspended
+7. Revenue share suspended
 
 **Cap Table Update Rules:**
 - Unstaking: User stays on cap table, rights suspended
@@ -248,10 +248,10 @@ CREATE TABLE cap_table (
 1. User enters destination address
 2. User enters amount to withdraw
 3. System prompts: Sign message to authorize withdrawal
-4. Message: `"Withdraw {amount} PATH402 to {destination}. Timestamp: {ISO8601}"`
+4. Message: `"Withdraw {amount} $402 to {destination}. Timestamp: {ISO8601}"`
 5. User signs
 6. System decrypts user's WIF using signature-derived key
-7. System builds and broadcasts BSV-20 transfer
+7. System builds and broadcasts BSV-21 transfer
 8. Tokens leave our system
 
 **Security:**
@@ -285,7 +285,7 @@ Response:
 
 **Rules:**
 1. **Add to cap table:** When user stakes + completes KYC
-2. **Suspend rights:** When user unstakes (stays on table, no dividends/voting)
+2. **Suspend rights:** When user unstakes (stays on table, no revenue share)
 3. **Remove from cap table:** When NEW owner stakes the same tokens
 4. **Transfer tracking:** We monitor on-chain transfers from staked addresses
 
@@ -312,31 +312,31 @@ User B stakes 100 tokens + KYC → User A removed, User B added
 
 ---
 
-### 8. Dividends
+### 8. Serving Revenue Distribution
 
-**Goal:** Distribute facilitator revenue to staked token holders.
+**Goal:** Distribute 100% of serving revenue to staked token holders.
 
 **Flow:**
 1. Facilitator earns fees (verification, inscription, settlement)
-2. Revenue accumulates in dividend pool
+2. Revenue accumulates in serving revenue pool
 3. On distribution (monthly or on-demand):
    - Calculate pro-rata share per staked token
-   - Only ACTIVE stakes qualify (not suspended)
+   - Only ACTIVE stakes with $401 KYC qualify (not suspended)
    - Send BSV to each staker's derived address
 
 **Distribution Formula:**
 ```
-userShare = (userStakedTokens / totalStakedTokens) * dividendPool
+userShare = (userStakedTokens / totalStakedTokens) * servingRevenuePool
 ```
 
 **API:**
 ```
-POST /api/dividends/distribute  (admin only)
+POST /api/revenue/distribute  (admin only)
 {
   poolAmount: number  // Sats to distribute
 }
 
-GET /api/dividends/pending
+GET /api/revenue/pending
 {
   pendingAmount: number,
   stakedTokens: number,
@@ -352,7 +352,7 @@ GET /api/dividends/pending
 - Treasury address (for receiving payments)
 - Encrypted WIF storage
 - Cap table and stake records
-- Dividend distribution
+- Revenue distribution
 
 **What Users Control:**
 - Their derived private key (via signature)
@@ -383,8 +383,8 @@ GET /api/dividends/pending
 | `/api/stake/unstake` | POST | Signature | Unstake tokens |
 | `/api/stake/status` | GET | HandCash | Get stake status |
 | `/api/captable` | GET | Public | View cap table registry |
-| `/api/dividends/pending` | GET | HandCash | Check pending dividends |
-| `/api/dividends/claim` | POST | Signature | Claim dividends |
+| `/api/revenue/pending` | GET | HandCash | Check pending revenue |
+| `/api/revenue/claim` | POST | Signature | Claim revenue |
 
 ---
 
@@ -393,37 +393,36 @@ GET /api/dividends/pending
 **Account Page:**
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Your PATH402 Wallet                                    │
+│  Your $402 Wallet                                    │
 │  ─────────────────────                                  │
 │  Address: 19NHocpx2SxtN5JBHP5rBip8n5U37oWsPC           │
 │  [Copy] [Export Private Key] [View on Explorer]         │
 │                                                         │
-│  Balance: 10,000,000 PATH402                           │
-│  Staked:  0 PATH402                                    │
+│  Balance: 10,000,000 $402                           │
+│  Staked:  0 $402                                    │
 │  ─────────────────────                                  │
 │  [Stake Tokens]  [Withdraw]                            │
 │                                                         │
 │  ─────────────────────                                  │
-│  Pending Dividends: 0 sats                             │
-│  (Stake tokens to earn dividends)                      │
+│  Pending Revenue: 0 sats                               │
+│  (Stake tokens + $401 KYC to earn revenue)             │
 └─────────────────────────────────────────────────────────┘
 ```
 
 **Stake Modal:**
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Stake PATH402 Tokens                                   │
+│  Stake $402 Tokens                                   │
 │  ─────────────────────                                  │
 │  Amount to stake: [___________] [Max]                  │
 │                                                         │
 │  Staking gives you:                                    │
-│  ✓ Dividends from facilitator revenue                  │
-│  ✓ Voting rights on protocol decisions                 │
+│  ✓ 100% serving revenue share (proportional to stake)  │
 │  ✓ Listing on public cap table                         │
 │                                                         │
 │  Requirements:                                          │
 │  • Sign with HandCash to authorize                     │
-│  • Provide KYC (name, email, jurisdiction)             │
+│  • Complete $401 identity verification (KYC)           │
 │                                                         │
 │  [Cancel]                      [Sign & Continue →]      │
 └─────────────────────────────────────────────────────────┘
@@ -432,9 +431,9 @@ GET /api/dividends/pending
 **Registry/Cap Table Page:**
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  PATH402 Registry                                       │
+│  $402 Registry                                       │
 │  ─────────────────────                                  │
-│  Total Staked: 150,000,000 PATH402                     │
+│  Total Staked: 150,000,000 $402                     │
 │  Registered Holders: 47                                 │
 │                                                         │
 │  Handle          Staked          Since                 │
@@ -457,13 +456,13 @@ GET /api/dividends/pending
 - [ ] Verify user can spend from derived address
 
 **Phase 2: Purchase Flow** (Priority: Critical)
-- [ ] On purchase success, send BSV-20 to user's derived address
+- [ ] On purchase success, send BSV-21 to user's derived address
 - [ ] Remove database-only token credits
 - [ ] Show on-chain balance, not database balance
 
 **Phase 3: Withdrawal** (Priority: High)
 - [ ] Implement signature-authorized withdrawal
-- [ ] Build BSV-20 transfer from user's address
+- [ ] Build BSV-21 transfer from user's address
 - [ ] Add withdrawal UI
 
 **Phase 4: Staking** (Priority: High)
@@ -472,9 +471,9 @@ GET /api/dividends/pending
 - [ ] Create cap table entries
 - [ ] Build registry page
 
-**Phase 5: Dividends** (Priority: Medium)
-- [ ] Implement dividend pool tracking
-- [ ] Build distribution mechanism
+**Phase 5: Revenue Distribution** (Priority: Medium)
+- [ ] Implement serving revenue pool tracking
+- [ ] Build distribution mechanism ($401 KYC required)
 - [ ] Add claim flow
 
 ---
@@ -489,7 +488,7 @@ GET /api/dividends/pending
 **Migration Steps:**
 1. Notify existing users to create derived addresses
 2. For each user with database credits:
-   - Send BSV-20 transfer to their derived address
+   - Send BSV-21 transfer to their derived address
    - Clear database credits
 3. Update UI to show on-chain balance only
 4. Deprecate database credit system
@@ -500,9 +499,9 @@ GET /api/dividends/pending
 
 1. **Users control their tokens:** Can export private key and spend independently
 2. **We have no custody:** Cannot spend user tokens without their signature
-3. **Staking is opt-in:** Requires explicit signature + KYC
-4. **Cap table is accurate:** Reflects actual staked, KYC'd holders
-5. **Dividends flow correctly:** Only to active stakers
+3. **Staking is opt-in:** Requires explicit signature + $401 KYC
+4. **Cap table is accurate:** Reflects actual staked, $401-verified holders
+5. **Revenue flows correctly:** 100% of serving revenue to active stakers
 
 ---
 
@@ -511,19 +510,19 @@ GET /api/dividends/pending
 ```typescript
 const MESSAGES = {
   DERIVE: (handle: string, timestamp: string) =>
-    `I am creating my PATH402 wallet for @${handle}. Timestamp: ${timestamp}`,
+    `I am creating my $402 wallet for @${handle}. Timestamp: ${timestamp}`,
 
   STAKE: (amount: number, timestamp: string) =>
-    `I am staking ${amount} PATH402 tokens. I agree to provide KYC. Timestamp: ${timestamp}`,
+    `I am staking ${amount} $402 tokens. I agree to provide KYC. Timestamp: ${timestamp}`,
 
   UNSTAKE: (amount: number, timestamp: string) =>
-    `I am unstaking ${amount} PATH402 tokens. Timestamp: ${timestamp}`,
+    `I am unstaking ${amount} $402 tokens. Timestamp: ${timestamp}`,
 
   WITHDRAW: (amount: number, destination: string, timestamp: string) =>
-    `Withdraw ${amount} PATH402 to ${destination}. Timestamp: ${timestamp}`,
+    `Withdraw ${amount} $402 to ${destination}. Timestamp: ${timestamp}`,
 
   EXPORT: (timestamp: string) =>
-    `Export my PATH402 private key. Timestamp: ${timestamp}`,
+    `Export my $402 private key. Timestamp: ${timestamp}`,
 };
 ```
 

@@ -1,5 +1,0 @@
-https://github.com/ComposioHQ/open-claude-cowork/
-
-ssh hetzner "docker exec supabase-db psql -U postgres -d postgres" database/migrations/20260131_kintsugi_proposals.sql
-
-ssh hetzner "docker exec -i supabase-db psql -U postgres -d postgres" < database/migrations/20260131_kintsugi_proposals.sql

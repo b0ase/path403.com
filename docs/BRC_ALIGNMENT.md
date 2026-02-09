@@ -28,7 +28,7 @@ The following components of Path402 are **additive** to the BRC stack. They do n
 |-----------|--------|-------------|
 | **EARN / Proof-of-Serve** | **New Proposal** | An incentive layer for operators. Defines *why* an operator should run BRC-22/24 nodes. Uses BRC-103 identity to track reputation. |
 | **$path Namespace** | **UX Convention** | The `$path` URL scheme is a human-readable convention, not a technical replacement for BRC protocols. |
-| **$PATH402 Token** | **Asset** | The equity token of the centralized facilitator business. Not a protocol primitive. |
+| **$402 Token** | **Asset** | PoW20 Hash-to-Mint (BSV-21) protocol token. Earned by running nodes. Stake with $401 KYC to earn serving revenue. Not a protocol primitive. |
 
 ---
 

@@ -1,601 +1,152 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { portfolioData } from '@/lib/data';
-import { getTokenPricing } from '@/lib/token-pricing';
-import { FaGithub, FaSort, FaSortUp, FaSortDown, FaTwitter, FaTelegram } from 'react-icons/fa';
-import { FiArrowRight, FiGlobe, FiBriefcase } from 'react-icons/fi';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import PortfolioMoneyButton from '@/components/portfolio/PortfolioMoneyButton';
+import { motion } from 'framer-motion';
 
-type SortField = 'title' | 'token' | 'price' | 'supply' | 'circulation' | 'marketCap' | 'volume' | 'status';
-type SortDirection = 'asc' | 'desc';
+function formatSats(sats: number): string {
+  if (Math.abs(sats) >= 1000000) return `${(sats / 1000000).toFixed(2)}M`;
+  if (Math.abs(sats) >= 1000) return `${(sats / 1000).toFixed(1)}K`;
+  return sats.toLocaleString();
+}
+
+const DEMO_HOLDINGS = [
+  { token_id: '402_BONES', name: 'ALEX BONES', balance: 420, total_spent_sats: 8400, total_revenue_sats: 12600, pnl_sats: 4200 },
+  { token_id: '402_CARLSBERG', name: 'FUCKER CARLSBERG', balance: 69, total_spent_sats: 4761, total_revenue_sats: 3200, pnl_sats: -1561 },
+  { token_id: '402_KWEG', name: 'KWEG WONG ESQ.', balance: 1000, total_spent_sats: 21000, total_revenue_sats: 34500, pnl_sats: 13500 },
+  { token_id: '402_HOENS', name: 'CANDY HOENS', balance: 88, total_spent_sats: 7744, total_revenue_sats: 9680, pnl_sats: 1936 },
+  { token_id: '402_FLUENZA', name: 'DICK FLUENZA', balance: 500, total_spent_sats: 7000, total_revenue_sats: 5500, pnl_sats: -1500 },
+  { token_id: '402_FAYLOOR', name: 'MICHAEL FAYLOOR', balance: 21, total_spent_sats: 441000, total_revenue_sats: 500000, pnl_sats: 59000 },
+];
 
 export default function PortfolioPage() {
-  const [sortField, setSortField] = useState<SortField>('title');
-  const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
-  const [highlightedToken, setHighlightedToken] = useState<string | null>(null);
-
-  // All portfolio projects (excluding $BOASE which is shown separately as the index token)
-  const allProjects = portfolioData.projects.filter(p => p.tokenName !== '$BOASE');
-
-  // Handle URL anchors for direct token navigation
-  useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-      const element = document.getElementById(hash);
-      if (element) {
-        // Highlight the token temporarily
-        setHighlightedToken(hash);
-        setTimeout(() => setHighlightedToken(null), 3000); // Remove highlight after 3 seconds
-
-        // Smooth scroll to element at top of page
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
-    }
-  }, []);
-
-  // Listen for hash changes (if user clicks another token link while on page)
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const element = document.getElementById(hash);
-        if (element) {
-          setHighlightedToken(hash);
-          setTimeout(() => setHighlightedToken(null), 3000);
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // Helper function to generate financial data for each project using global token pricing
-  const getFinancialData = (project: any, index: number) => {
-    if (!project.tokenName) return null;
-
-    const tokenPricing = getTokenPricing(project.tokenName);
-    if (!tokenPricing) return null;
-
-    return {
-      price: tokenPricing.priceFormatted,
-      priceGBP: tokenPricing.priceFormattedGBP,
-      supply: tokenPricing.supply,
-      circulation: tokenPricing.circulation,
-      marketCap: tokenPricing.marketCap,
-      marketCapGBP: tokenPricing.marketCapGBP,
-      volume: tokenPricing.volume,
-      volumeGBP: tokenPricing.volumeGBP,
-      priceValue: tokenPricing.price,
-      supplyValue: tokenPricing.supplyValue,
-      circulationValue: tokenPricing.circulationValue,
-      marketCapValue: tokenPricing.marketCapValue,
-      volumeValue: tokenPricing.volumeValue,
-      isReal: tokenPricing.isReal
-    };
-  };
-
-  // $BOASE index token data
-  const boaseIndexData = {
-    id: 0,
-    title: 'b0ase.com',
-    description: 'Venture studio building companies from concept to exit. Web development, blockchain, AI agents, and digital products.',
-    tokenName: '$BOASE',
-    status: 'Live',
-    githubUrl: 'https://github.com/b0ase',
-    liveUrl: 'https://1sat.market/market/bsv21/c3bf2d7a4519ddc633bc91bbfd1022db1a77da71e16bb582b0acc0d8f7836161_1',
-    tokenMarketUrl: 'https://1sat.market/bsv21/boase',
-    slug: 'boase-index'
-  };
-
-  // Get BOASE financial data from global pricing system
-  const boaseTokenPricing = getTokenPricing('$BOASE');
-  const boaseFinancialData = boaseTokenPricing ? {
-    price: boaseTokenPricing.priceFormatted,
-    priceGBP: boaseTokenPricing.priceFormattedGBP,
-    supply: boaseTokenPricing.supply,
-    circulation: boaseTokenPricing.circulation,
-    marketCap: boaseTokenPricing.marketCap,
-    marketCapGBP: boaseTokenPricing.marketCapGBP,
-    volume: boaseTokenPricing.volume,
-    volumeGBP: boaseTokenPricing.volumeGBP,
-    priceValue: boaseTokenPricing.price,
-    supplyValue: boaseTokenPricing.supplyValue,
-    circulationValue: boaseTokenPricing.circulationValue,
-    marketCapValue: boaseTokenPricing.marketCapValue,
-    volumeValue: boaseTokenPricing.volumeValue
-  } : {
-    // Fallback values
-    price: '$0.0125',
-    priceGBP: '£0.0099',
-    supply: '1,000M',
-    circulation: '85%',
-    marketCap: '$310k',
-    marketCapGBP: '£245k',
-    volume: '$2,450',
-    volumeGBP: '£1,936',
-    priceValue: 0.0125,
-    supplyValue: 1000000000,
-    circulationValue: 85,
-    marketCapValue: 310000,
-    volumeValue: 2450
-  };
-
-  // Sort function
-  const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortField(field);
-      setSortDirection('asc');
-    }
-  };
-
-  // Get sort icon
-  const getSortIcon = (field: SortField) => {
-    if (sortField !== field) return <FaSort className="ml-1 text-gray-500" size={12} />;
-    return sortDirection === 'asc' ?
-      <FaSortUp className="ml-1 text-gray-400" size={12} /> :
-      <FaSortDown className="ml-1 text-gray-400" size={12} />;
-  };
-
-  // Sort projects - live tokens always at top, then by selected field
-  const sortedProjects = [...allProjects].sort((a, b) => {
-    const aData = getFinancialData(a, 0);
-    const bData = getFinancialData(b, 0);
-
-    // Live tokens always cluster at the top
-    const aIsLive = aData?.isReal ? 1 : 0;
-    const bIsLive = bData?.isReal ? 1 : 0;
-    if (aIsLive !== bIsLive) {
-      return bIsLive - aIsLive; // Live tokens first
-    }
-
-    let aValue: any, bValue: any;
-
-    switch (sortField) {
-      case 'title':
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
-        break;
-      case 'token':
-        aValue = a.tokenName || '';
-        bValue = b.tokenName || '';
-        break;
-      case 'price':
-        aValue = aData?.priceValue || 0;
-        bValue = bData?.priceValue || 0;
-        break;
-      case 'supply':
-        aValue = aData?.supplyValue || 0;
-        bValue = bData?.supplyValue || 0;
-        break;
-      case 'circulation':
-        aValue = aData?.circulationValue || 0;
-        bValue = bData?.circulationValue || 0;
-        break;
-      case 'marketCap':
-        aValue = aData?.marketCapValue || 0;
-        bValue = bData?.marketCapValue || 0;
-        break;
-      case 'volume':
-        aValue = aData?.volumeValue || 0;
-        bValue = bData?.volumeValue || 0;
-        break;
-      case 'status':
-        aValue = a.status.toLowerCase();
-        bValue = b.status.toLowerCase();
-        break;
-      default:
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
-    }
-
-    if (sortDirection === 'asc') {
-      return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-    } else {
-      return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-    }
-  });
+  const totalValue = DEMO_HOLDINGS.reduce((sum, h) => sum + h.total_revenue_sats, 0);
+  const totalCost = DEMO_HOLDINGS.reduce((sum, h) => sum + h.total_spent_sats, 0);
+  const totalPnL = DEMO_HOLDINGS.reduce((sum, h) => sum + h.pnl_sats, 0);
 
   return (
-    <motion.div
-      className="min-h-screen bg-black text-white relative"
-      data-theme="dark"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <style jsx global>{`
-        tr[id] {
-          scroll-margin-top: 20px;
-        }
-      `}</style>
-
-
-      {/* Main Content */}
-      <motion.section
-        className="px-4 md:px-8 py-16 relative"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <div className="w-full">
-          {/* Standardized Header */}
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-mono">
+      <main className="w-full px-4 md:px-8 py-16 max-w-[1920px] mx-auto">
+        {/* PageHeader */}
+        <header className="mb-8 border-b border-zinc-200 dark:border-zinc-900 pb-6 flex items-end justify-between overflow-hidden relative">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center gap-3 mb-4 text-zinc-500 text-xs tracking-widest uppercase"
+            >
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              Main Ledger / Holdings
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-6xl font-black tracking-tighter mb-2"
+            >
+              PORTFOLIO<span className="text-zinc-300 dark:text-zinc-800">.SYS</span>
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-zinc-500 max-w-lg"
+            >
+              <b>Asset Performance.</b> Real-time valuation of acquired content tokens.
+            </motion.div>
+          </div>
           <motion.div
-            className="mb-12 border-b border-zinc-900 pb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+            animate={{ opacity: 0.1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "backOut" }}
+            className="hidden md:block text-6xl"
           >
-            <div className="flex flex-col md:flex-row md:items-end gap-8 mb-8">
-              <div className="bg-zinc-900/50 p-6 border border-zinc-800 self-start">
-                <FiBriefcase className="text-4xl md:text-6xl text-zinc-500" />
-              </div>
-              <div className="flex items-end gap-6">
-                <h1 className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tighter uppercase">
-                  PORTFOLIO_MANIFEST
-                </h1>
-                <div className="text-[10px] text-zinc-600 mb-2 font-mono uppercase tracking-[0.3em] font-bold">
-                  ACTIVE_HOLDINGS
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-              <p className="text-zinc-400 max-w-2xl text-sm uppercase tracking-tight leading-relaxed">
-                b0ase.com's institutional portfolio of entities and protocols. Browse {allProjects.length} strategic holdings,
-                analyze tokenomics, and establish positions alongside b0ase.com.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all font-mono whitespace-nowrap"
-              >
-                ESTABLISH_POSITION <FiArrowRight size={12} />
-              </Link>
-            </div>
+            📊
           </motion.div>
+        </header>
 
-          <div className="w-full">
-            {/* Disclaimer */}
-            <div className="mb-8 p-4 border border-gray-800 bg-gray-900/30 text-xs text-gray-500">
-              <strong className="text-gray-400">Disclaimer:</strong> Tokens are sold as-is without any guarantees of return.
-              Only tokens marked as "Live" are currently minted and tradeable. Others can be minted on demand.
+        {/* Demo Banner */}
+        <div className="mb-8 border border-amber-500/30 bg-amber-500/5 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 bg-amber-500 rounded-full" />
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              Demo Data — Download the desktop client for live portfolio tracking
+            </span>
+          </div>
+          <Link href="/download" className="text-[10px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 hover:text-black dark:hover:text-white transition-colors">
+            Download →
+          </Link>
+        </div>
+
+        {/* Portfolio Summary - Sharp Grid */}
+        <section className="mb-12">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-4 border-b border-zinc-200 dark:border-zinc-900 pb-2">
+            Ledger Summary
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
+            <div className="border-r border-b md:border-b-0 border-zinc-200 dark:border-zinc-800 p-8">
+              <div className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mb-2">Total Value</div>
+              <div className="text-3xl md:text-4xl font-black tracking-tighter">{formatSats(totalValue)} <span className="text-base text-zinc-500 font-normal">SAT</span></div>
             </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead className="sticky top-0 z-20">
-                  <tr className="border-b border-zinc-900 bg-black">
-                    <th className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest font-mono">
-                      {/* MONEY_BUTTON_NODE */}
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('title')}
-                    >
-                      <div className="flex items-center gap-2">
-                        PROTO_PROJECT
-                        {getSortIcon('title')}
-                      </div>
-                    </th>
-                    <th className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest font-mono">MANIFEST_DESC</th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('token')}
-                    >
-                      <div className="flex items-center gap-2">
-                        TOKEN_ID
-                        {getSortIcon('token')}
-                      </div>
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('price')}
-                    >
-                      <div className="flex items-center gap-2">
-                        UNIT_VALUATION
-                        {getSortIcon('price')}
-                      </div>
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('supply')}
-                    >
-                      <div className="flex items-center gap-2">
-                        EMISSIONS
-                        {getSortIcon('supply')}
-                      </div>
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('circulation')}
-                    >
-                      <div className="flex items-center gap-2">
-                        UTILIZATION
-                        {getSortIcon('circulation')}
-                      </div>
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('marketCap')}
-                    >
-                      <div className="flex items-center gap-2">
-                        MARKET_CAP
-                        {getSortIcon('marketCap')}
-                      </div>
-                    </th>
-                    <th
-                      className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest cursor-pointer hover:text-white transition-colors font-mono"
-                      onClick={() => handleSort('status')}
-                    >
-                      <div className="flex items-center gap-2">
-                        STATUS_ID
-                        {getSortIcon('status')}
-                      </div>
-                    </th>
-                    <th className="px-4 py-4 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-widest font-mono">
-                      <FiGlobe size={10} className="inline" />
-                    </th>
-                    <th className="px-4 py-4 text-center text-[10px] font-bold text-zinc-600 uppercase tracking-widest font-mono">
-                      <FaTwitter size={10} className="inline" />
-                    </th>
-                    <th className="px-4 py-4 text-left text-[10px] font-bold text-zinc-600 uppercase tracking-widest font-mono">OPERATIONS</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-800">
-                  {/* $BOASE Index Token - Always at the top and sticky */}
-                  <tr id="boase" className={`sticky top-[58px] z-10 hover:bg-zinc-900/30 bg-zinc-900/10 border-l border-zinc-500 transition-all duration-1000 ${highlightedToken === 'boase' ? 'ring-1 ring-zinc-500 bg-zinc-900/40' : ''}`}>
-                    <td className="px-4 py-6">
-                      <PortfolioMoneyButton
-                        project={boaseIndexData as any}
-                        index={0}
-                        isDark={true}
-                        size="md"
-                      />
-                    </td>
-                    <td className="px-4 py-6">
-                      <div className="flex flex-col">
-                        <div className="font-bold text-white mb-1 uppercase tracking-tight text-sm">
-                          <a
-                            href={boaseIndexData.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-zinc-300 transition-colors"
-                          >
-                            {boaseIndexData.title}
-                          </a>
-                        </div>
-                        <div className="text-[10px] text-zinc-500 font-mono uppercase tracking-tighter">
-                          1SAT_DATA_LAYER
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-6 text-[11px] text-zinc-400 max-w-sm uppercase tracking-tight leading-tight">{boaseIndexData.description}</td>
-                    <td className="px-4 py-6">
-                      <a
-                        href={boaseIndexData.tokenMarketUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 border border-zinc-800 bg-zinc-900/50 text-zinc-200 font-mono text-[10px] font-bold uppercase tracking-widest hover:border-zinc-600 transition-all"
-                      >
-                        {boaseIndexData.tokenName}
-                      </a>
-                    </td>
-                    <td className="px-4 py-6 text-sm font-bold font-mono">
-                      <span className="text-green-500">{boaseFinancialData.price}</span>
-                    </td>
-                    <td className="px-4 py-6 text-sm font-bold font-mono text-zinc-300">
-                      1,000M
-                    </td>
-                    <td className="px-4 py-6 text-[10px] text-zinc-500 font-mono font-bold uppercase tracking-widest">
-                      {boaseFinancialData.circulation}
-                    </td>
-                    <td className="px-4 py-6 text-sm font-bold font-mono text-amber-500">
-                      {boaseFinancialData.marketCap}
-                    </td>
-                    <td className="px-4 py-6">
-                      <span className="inline-block border border-green-900 bg-green-950/20 px-2 py-1 text-[9px] font-bold text-green-500 uppercase tracking-widest font-mono">
-                        STATUS_LIVE
-                      </span>
-                    </td>
-                    <td className="px-4 py-6 text-center">
-                      <a href="https://b0ase.com" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white transition-colors">
-                        <FiGlobe size={14} className="inline" />
-                      </a>
-                    </td>
-                    <td className="px-4 py-6 text-center">
-                      <a href="https://twitter.com/b0ase" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white transition-colors">
-                        <FaTwitter size={14} className="inline" />
-                      </a>
-                    </td>
-                    <td className="px-4 py-6">
-                      <a
-                        href={boaseIndexData.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all font-mono"
-                      >
-                        TRADE_PROTOCOL
-                      </a>
-                    </td>
-                  </tr>
-
-                  {/* Portfolio Projects - Sorted */}
-                  {sortedProjects.map((project, index) => {
-                    const financialData = getFinancialData(project, index);
-
-                    return (
-                      <tr
-                        key={project.id}
-                        id={project.tokenName ? project.tokenName.replace('$', '').toLowerCase() : `project-${project.id}`}
-                        className={`hover:bg-zinc-900/30 transition-all duration-500 border-b border-zinc-900/50 ${highlightedToken === (project.tokenName ? project.tokenName.replace('$', '').toLowerCase() : `project-${project.id}`)
-                          ? 'bg-zinc-900/40'
-                          : ''
-                          }`}
-                      >
-                        <td className="px-4 py-6">
-                          <PortfolioMoneyButton
-                            project={project}
-                            index={index + 1}
-                            isDark={true}
-                            size="md"
-                          />
-                        </td>
-                        <td className="px-4 py-6">
-                          <div className="flex flex-col">
-                            <div className="font-bold text-white mb-1 uppercase tracking-tight text-sm">
-                              {project.liveUrl ? (
-                                <a
-                                  href={project.liveUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="hover:text-zinc-300 transition-colors"
-                                >
-                                  {project.title}
-                                </a>
-                              ) : (
-                                project.title
-                              )}
-                            </div>
-                            {project.liveUrl && (
-                              <div className="text-[10px] text-zinc-600 font-mono uppercase tracking-tighter">
-                                {project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-                              </div>
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-4 py-6 text-[11px] text-zinc-400 max-w-sm uppercase tracking-tight leading-tight">{project.description}</td>
-                        <td className="px-4 py-6">
-                          {project.tokenName ? (
-                            <span className="px-2 py-1 border border-zinc-900/50 bg-zinc-900/20 text-zinc-500 font-mono text-[10px] uppercase tracking-widest font-bold">
-                              {project.tokenName}
-                            </span>
-                          ) : (
-                            <span className="text-zinc-800 font-mono text-[10px]">---</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-6 font-mono text-sm">
-                          {financialData?.isReal ? (
-                            <span className="text-green-500 font-bold">{financialData.price}</span>
-                          ) : <span className="text-zinc-700 text-[10px] font-mono uppercase tracking-widest">PRIVATE_VAL</span>}
-                        </td>
-                        <td className="px-4 py-6 font-mono text-sm text-zinc-400">
-                          {financialData?.isReal ? '1,000M' : <span className="text-zinc-700 text-[10px] font-mono uppercase tracking-widest">PRIVATE_EM</span>}
-                        </td>
-                        <td className="px-4 py-6 font-mono text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
-                          {financialData?.isReal ? financialData.circulation : <span className="text-zinc-700 font-mono tracking-widest">---</span>}
-                        </td>
-                        <td className="px-4 py-6 font-mono text-sm">
-                          {financialData?.isReal ? (
-                            <span className="text-amber-500 font-bold">{financialData.marketCap}</span>
-                          ) : <span className="text-zinc-700 text-[10px] font-mono uppercase tracking-widest">PRIVATE_MC</span>}
-                        </td>
-                        <td className="px-4 py-6">
-                          {financialData?.isReal ? (
-                            <span className="inline-block border border-green-900/50 bg-green-950/20 px-2 py-1 text-[9px] font-bold text-green-500 uppercase tracking-widest font-mono">
-                              STATUS_LIVE
-                            </span>
-                          ) : project.tokenName ? (
-                            <span className="inline-block border border-zinc-900 bg-zinc-900/50 px-2 py-1 text-[9px] font-bold text-zinc-600 uppercase tracking-widest font-mono">
-                              MINT_PENDING
-                            </span>
-                          ) : (
-                            <span className={`inline-block border px-2 py-1 text-[9px] font-bold uppercase tracking-widest font-mono ${project.status === 'active' || project.status === 'Live'
-                              ? 'border-green-900/50 bg-green-950/20 text-green-500'
-                              : 'border-amber-900/50 bg-amber-950/20 text-amber-600'
-                              }`}>
-                              {project.status === 'active' ? 'STATUS_ACTIVE' : project.status.toUpperCase()}
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-4 py-6 text-center">
-                          {project.liveUrl ? (
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white transition-colors">
-                              <FiGlobe size={14} className="inline" />
-                            </a>
-                          ) : (
-                            <span className="text-zinc-800">-</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-6 text-center">
-                          {(project as any).twitterUrl ? (
-                            <a href={(project as any).twitterUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white transition-colors">
-                              <FaTwitter size={14} className="inline" />
-                            </a>
-                          ) : (
-                            <span className="text-zinc-800">-</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-6">
-                          {financialData?.isReal ? (
-                            <a
-                              href={`https://1sat.market/bsv21/${project.tokenName?.replace('$', '').toLowerCase()}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-4 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all font-mono"
-                            >
-                              TRADE_PROTOCOL
-                            </a>
-                          ) : project.tokenName ? (
-                            <button
-                              className="px-4 py-2 border border-zinc-900 text-zinc-700 text-[10px] font-bold uppercase tracking-widest cursor-not-allowed font-mono"
-                              title="Coming soon"
-                            >
-                              MINT_RESOURCE
-                            </button>
-                          ) : (
-                            <Link
-                              href={`/portfolio/${project.slug}`}
-                              className="px-4 py-2 border border-zinc-800 text-zinc-300 text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-900 transition-all font-mono"
-                            >
-                              VIEW_MANIFEST
-                            </Link>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="border-b md:border-b-0 md:border-r border-zinc-200 dark:border-zinc-800 p-8">
+              <div className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mb-2">Total Cost</div>
+              <div className="text-3xl md:text-4xl font-black tracking-tighter text-zinc-400">{formatSats(totalCost)} <span className="text-base text-zinc-500 font-normal">SAT</span></div>
             </div>
-
-            {/* CTA */}
-            <div className="mt-12 border border-zinc-900 bg-zinc-900/20 p-12">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12">
-                <div>
-                  <h3 className="text-2xl font-bold uppercase tracking-tight mb-4">
-                    INITIALIZE_INVESTMENT_PHASE
-                  </h3>
-                  <p className="text-zinc-500 text-sm uppercase tracking-tight leading-relaxed max-w-xl">
-                    Participate in targeted protocol growth or establish a diversified position across the entire b0ase.com index via $BOASE emissions.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-                  <Link
-                    href="/market"
-                    className="px-8 py-4 border border-zinc-800 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-900 transition-all font-mono text-center"
-                  >
-                    BROWSE_SECONDARY_MARKET
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all font-mono text-center"
-                  >
-                    ESTABLISH_CONTACT_TUNNEL <FiArrowRight size={12} />
-                  </Link>
-                </div>
+            <div className="border-r border-zinc-200 dark:border-zinc-800 p-8">
+              <div className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mb-2">Net P&L</div>
+              <div className={`text-3xl md:text-4xl font-black tracking-tighter ${totalPnL >= 0 ? 'text-black dark:text-white' : 'text-red-500'}`}>
+                {totalPnL >= 0 ? '+' : ''}{formatSats(totalPnL)} <span className="text-base text-zinc-500 font-normal">SAT</span>
               </div>
+            </div>
+            <div className="p-8">
+              <div className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mb-2">Asset Count</div>
+              <div className="text-3xl md:text-4xl font-black tracking-tighter">{DEMO_HOLDINGS.length}</div>
             </div>
           </div>
-        </div>
-      </motion.section>
-    </motion.div>
+        </section>
+
+        {/* Holdings Table */}
+        <section>
+          <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-4 border-b border-zinc-200 dark:border-zinc-900 pb-2">
+            Asset Inventory
+          </div>
+          <div className="border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500">Token ID</th>
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500 text-right">Balance</th>
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500 text-right">Cost Basis</th>
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500 text-right">Revenue</th>
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500 text-right">P&L</th>
+                  <th className="py-4 px-6 text-[9px] uppercase tracking-widest font-bold text-zinc-500 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                {DEMO_HOLDINGS.map((holding) => (
+                  <tr key={holding.token_id} className="group hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">
+                    <td className="py-4 px-6">
+                      <div className="font-bold text-sm tracking-tight">{holding.name}</div>
+                      <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">{holding.token_id}</div>
+                    </td>
+                    <td className="py-4 px-6 text-right font-mono text-sm">{holding.balance.toLocaleString()}</td>
+                    <td className="py-4 px-6 text-right font-mono text-sm text-zinc-500">{formatSats(holding.total_spent_sats)}</td>
+                    <td className="py-4 px-6 text-right font-mono text-sm text-zinc-500">{formatSats(holding.total_revenue_sats)}</td>
+                    <td className={`py-4 px-6 text-right font-mono text-sm font-bold ${holding.pnl_sats >= 0 ? 'text-black dark:text-white' : 'text-red-500'}`}>
+                      {holding.pnl_sats >= 0 ? '+' : ''}{formatSats(holding.pnl_sats)}
+                    </td>
+                    <td className="py-4 px-6 text-right">
+                      <Link href="/download" className="px-4 py-2 border border-zinc-200 dark:border-zinc-800 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                        MANAGE
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
   );
-} 
+}
