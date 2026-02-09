@@ -25,7 +25,7 @@ bitcoind                 path402d
 ```
 Layer 0: BitcoinSV           ← 1M+ TPS base layer (payment rails)
     ↓
-Layer 1: BSV-21 + PoW20      ← Token standard + mining rewards
+Layer 1: BSV-21 + HTM         ← Token standard + mining rewards
     ↓
 Layer 2: path402d Network      ← Indexers serving paid content
     ↓

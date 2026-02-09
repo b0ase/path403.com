@@ -14,14 +14,13 @@
 
 | Document | Description |
 |----------|-------------|
-| **[TOKEN_CUSTODY_GUIDE.md](TOKEN_CUSTODY_GUIDE.md)** | How to buy, stake, and manage your $PATH402 tokens |
+| **[HTM_TOKEN.md](HTM_TOKEN.md)** | $402 Hash-to-Mint mining token — how to earn $402 by running the client |
 
 ## For Developers
 
 | Document | Description |
 |----------|-------------|
 | **[CODEBASE_MAP.md](CODEBASE_MAP.md)** | Complete codebase architecture, file purposes, API reference |
-| **[PRD-TOKEN-CUSTODY-STAKING.md](PRD-TOKEN-CUSTODY-STAKING.md)** | Product requirements for the custody and staking system |
 | **[INDEXER.md](INDEXER.md)** | Self-hosted BSV-20 token indexer (polls treasury, updates balances) |
 | **[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)** | Production deploy + npm publish checklist |
 | **[DEPLOY_PLAYBOOK.md](DEPLOY_PLAYBOOK.md)** | Staging + production deploy playbook with environment checks |
@@ -38,7 +37,7 @@
 | Document | Description | Alignment Status |
 |----------|-------------|------------------|
 | **[PROTOCOL_VISION.md](PROTOCOL_VISION.md)** | Canonical $402 protocol (10 steps) | ✓ Source of truth |
-| **[HTM_TOKEN.md](HTM_TOKEN.md)** | **$402 Hash-to-Mint mining token** — sCrypt contract, PoW mining, Proof of Indexing | ✓ New |
+| **[HTM_TOKEN.md](HTM_TOKEN.md)** | **$402 Hash-to-Mint mining token** — sCrypt contract, PoW mining, Proof of Indexing | ✓ Aligned |
 | **[TREE_MODEL.md](TREE_MODEL.md)** | The 6 rules: paths, revenue flow, non-dilution, roots as index funds | ✓ New |
 | **[$402-STANDARD.md]($402-STANDARD.md)** | HTTP 402 implementation spec v2.0.0 | ✓ Aligned |
 | **[DOMAIN_VERIFICATION.md](DOMAIN_VERIFICATION.md)** | DNS + well-known + on-chain signature proof for issuers | ✓ New |
@@ -52,7 +51,6 @@
 | Document | Description |
 |----------|-------------|
 | **[BUSINESS_MODEL.md](BUSINESS_MODEL.md)** | Revenue model, fee structure, facilitator economics |
-| **[TOKEN_ARCHITECTURE.md](TOKEN_ARCHITECTURE.md)** | $PATH402 equity token details, allocation, governance |
 | **[HTM_TOKEN.md](HTM_TOKEN.md)** | $402 mining token — the PoW reward for running the client |
 
 ## MCP Server
@@ -67,11 +65,7 @@
 
 ## Quick Links
 
-**Buy tokens**: [path402.com/token](https://path402.com/token)
-
-**View holdings**: [path402.com/account](https://path402.com/account)
-
-**Cap table**: [path402.com/registry](https://path402.com/registry)
+**Run the client**: `npx path402 agent start`
 
 **Protocol docs**: [path402.com/docs](https://path402.com/docs)
 

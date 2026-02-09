@@ -15,9 +15,7 @@ Coinbase's x402 protocol (launched May 2025) has processed 100M+ payments across
 
 **PATH402.com solves this** by becoming the universal notary and settlement layer.
 
-## Business Model
-
-### Revenue Streams
+## Revenue Streams
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -44,7 +42,7 @@ Coinbase's x402 protocol (launched May 2025) has processed 100M+ payments across
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Revenue Projections
+## Revenue Projections
 
 | Monthly Volume | Inscription | Settlement (0.1%) | Verification | Total Revenue |
 |----------------|-------------|-------------------|--------------|---------------|
@@ -55,135 +53,33 @@ Coinbase's x402 protocol (launched May 2025) has processed 100M+ payments across
 
 At scale (1B tx/month): **$16.2M annual revenue**
 
-## Token Economics
+## The Token: $402
 
-### Two-Token Model
+One token. Simple.
 
-The $402 ecosystem uses **two distinct tokens** with different purposes:
+- **$402** is a PoW mining token on BSV (21M supply, 100% mined, no pre-mine)
+- Run the path402 client → earn $402 by mining
+- Mining uses a Hash-to-Mint (HTM) sCrypt smart contract with Proof-of-Indexing
+- Nodes buy content tokens they want to serve (like BitTorrent)
+- Nodes earn from serving content they've bought
 
-| | **$402 (Mining Token)** | **$PATH402 (Equity Token)** |
-|---|---|---|
-| **Purpose** | Reward path402d operators | Protocol revenue share |
-| **Supply** | 21,000,000 | 1,000,000,000 |
-| **Distribution** | 100% mined (no pre-mine) | Treasury sale via sqrt_decay |
-| **Standard** | BSV-21 HTM smart contract (sCrypt) | BSV-20 |
-| **How to get** | Run path402 client | Buy from treasury |
-| **Dividends** | No | Yes (Tier 2, KYC required) |
-| **Regulatory** | Commodity-like (pure PoW) | Security-like (equity) |
-| **Docs** | [HTM_TOKEN.md](HTM_TOKEN.md) | [TOKEN_ARCHITECTURE.md](TOKEN_ARCHITECTURE.md) |
+See [HTM_TOKEN.md](HTM_TOKEN.md) for the full mining token spec.
 
-> **Important**: $402 is earned by mining. $PATH402 is purchased for equity. They are not the same token.
+### Node Economics
 
-The $402 mining token uses a Hash-to-Mint (HTM) smart contract — see [HTM_TOKEN.md](HTM_TOKEN.md) for full details on the `Path402HTM` contract, `@path402/htm` package, and Proof-of-Indexing system.
+| Cost | Typical |
+|------|---------|
+| VPS hosting | ~$5-20/month |
+| BSV transaction fees | ~0.5 sat/byte |
+| Bandwidth | Variable (content serving) |
+| Electricity (PoW) | Negligible (CPU mining) |
 
-### The PATH402.com Equity Token
-
-- **Symbol**: PATH402.com (on-chain BSV-20)
-- **Total Supply**: 1,000,000,000
-- **Treasury**: 500,000,000 (for sale via sqrt_decay curve)
-- **Protocol**: BSV-20
-
-### Two-Tier System
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     TOKEN TIERS                              │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  TIER 1: BEARER INSTRUMENT                                  │
-│  ─────────────────────────                                  │
-│  • Buy, hold, transfer freely                               │
-│  • No KYC required                                          │
-│  • Trade on any exchange/OTC                                │
-│  • No dividends, no voting                                  │
-│  • Pure bearer asset                                        │
-│                                                              │
-│  TIER 2: REGISTERED SHAREHOLDER                             │
-│  ───────────────────────────────                            │
-│  • Complete KYC verification                                │
-│  • Stake tokens on PATH402.com                              │
-│  • Receive quarterly dividends                              │
-│  • Voting rights on protocol changes                        │
-│  • Access to shareholder communications                     │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Dividend Distribution
-
-```
-Quarterly Protocol Revenue
-          │
-          ▼
-    ┌─────────────┐
-    │  Revenue    │
-    │  Pool       │
-    └─────┬───────┘
-          │
-    ┌─────┴─────┐
-    │           │
-    ▼           ▼
-┌───────┐  ┌───────────┐
-│ 30%   │  │ 70%       │
-│ Ops   │  │ Dividends │
-└───────┘  └─────┬─────┘
-                 │
-                 ▼
-    ┌────────────────────┐
-    │ Pro-rata to staked │
-    │ token holders with │
-    │ completed KYC      │
-    └────────────────────┘
-```
-
-**Example**:
-- Q1 Revenue: $100,000
-- Operating costs: $30,000 (30%)
-- Dividend pool: $70,000 (70%)
-- Total staked (KYC'd): 10,000,000 tokens
-- Dividend per token: $0.007
-
-### Shareholder Rights
-
-| Right | Tier 1 (Bearer) | Tier 2 (Registered) |
-|-------|-----------------|---------------------|
-| Own tokens | ✓ | ✓ |
-| Transfer freely | ✓ | ✓ |
-| Receive dividends | ✗ | ✓ |
-| Vote on proposals | ✗ | ✓ |
-| Attend meetings | ✗ | ✓ |
-| Financial reports | ✗ | ✓ |
-
-## Capital Strategy
-
-### Fundraising via Token Sale
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    SQRT_DECAY TOKEN SALE                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Formula: price = 100,000,000 / sqrt(remaining + 1)        │
-│                                                              │
-│  Early buyers (500M remaining): ~4,472 sats/token          │
-│  Mid buyers (250M remaining):   ~6,325 sats/token          │
-│  Late buyers (100M remaining):  ~10,000 sats/token         │
-│                                                              │
-│  If all 500M sold:                                          │
-│  Total raised: ~$760,000 (at $45/BSV)                      │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Use of Funds
-
-| Allocation | Percentage | Amount (if $500K raised) |
-|------------|------------|--------------------------|
-| Development | 40% | $200,000 |
-| Marketing | 30% | $150,000 |
-| Operations | 15% | $75,000 |
-| Legal/Compliance | 10% | $50,000 |
-| Reserve | 5% | $25,000 |
+| Revenue Stream | Currency |
+|---------------|----------|
+| Mining $402 | $402 tokens → sell for BSV |
+| Content serving | BSV (via ticket resale) |
+| Content trading | BSV |
+| Market making | BSV (arbitrage) |
 
 ## Competitive Advantage
 
@@ -196,7 +92,7 @@ Quarterly Protocol Revenue
 | Permanent record | No | Yes (BSV inscription) |
 | Fees | 0 (subsidized) | 0.1% (sustainable) |
 | Scaling | Limited | Unlimited (BSV) |
-| Token/Equity | No | Yes (PATH402.com) |
+| Mining token | No | Yes ($402) |
 
 ### The Endgame
 
@@ -222,26 +118,6 @@ Phase 4: Standard
 └── Protocol revenue funds ongoing development
 ```
 
-## Legal Structure
-
-### Token Classification
-
-- **Tier 1 (Bearer)**: Utility token / bearer instrument
-- **Tier 2 (Registered)**: Security token / equity equivalent
-
-### KYC Requirements (Tier 2)
-
-- Government ID verification
-- Proof of address
-- AML/CFT screening
-- Accredited investor status (if required by jurisdiction)
-
-### Jurisdiction
-
-- Company: [TBD - likely Switzerland or Singapore]
-- Token: BSV blockchain (decentralized)
-- Dividends: Paid in BSV or stablecoin
-
 ## Summary
 
 PATH402.com is building the **universal notary layer** for HTTP 402 payments:
@@ -250,10 +126,10 @@ PATH402.com is building the **universal notary layer** for HTTP 402 payments:
 2. **Multi-chain** - Verify payments on any chain
 3. **Permanent record** - Inscribe on BSV forever
 4. **Cheapest settlement** - BSV as final layer
-5. **Tokenized equity** - Shareholders earn dividends
+5. **One token ($402)** - Mine by running the client
 
 > "Every x402 payment. Verified. Inscribed. Forever."
 
 ---
 
-*This document is for informational purposes. Consult legal counsel before participating in token sales.*
+**Last Updated**: February 9, 2026

@@ -10,23 +10,6 @@ $402 is a **Proof-of-Work mining token** on the BSV blockchain. It incentivizes 
 
 $402 is earned exclusively through mining. There is no pre-mine, no ICO, no treasury allocation, and no team reserve. 100% of supply goes to miners who do useful work for the network.
 
-## Two-Token Model
-
-The $402 ecosystem has **two distinct tokens**. They serve different purposes and have completely different economics:
-
-| | **$402 (Mining Token)** | **$PATH402 (Equity Token)** |
-|---|---|---|
-| **Purpose** | Reward network operators | Protocol revenue share |
-| **Supply** | 21,000,000 | 1,000,000,000 |
-| **Distribution** | 100% mined via PoW | Treasury sale (sqrt_decay) |
-| **Standard** | BSV-21 HTM smart contract | BSV-20 |
-| **Dividends** | No | Yes (Tier 2, KYC required) |
-| **How to get** | Run path402 client, mine | Buy from treasury or OTC |
-| **Regulatory** | Commodity (no issuer) | Security (equity-like) |
-| **Docs** | This document | [TOKEN_ARCHITECTURE.md](TOKEN_ARCHITECTURE.md) |
-
-**These are separate tokens.** $402 is what you earn by running the network. $PATH402 is what you buy if you want equity in the protocol company.
-
 ## HTM Smart Contract
 
 ### What is HTM?

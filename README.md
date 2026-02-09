@@ -6,26 +6,31 @@ The official website for the **$402 protocol**.
 
 $402 is a protocol that turns any URL path into a priced, tokenised market. Put a `$` in front of a path segment and it becomes an economic object with a price curve, holders, and revenue distribution.
 
-The name combines:
-- **$PATH** — the namespace/directory concept (every `$address` is a path)
-- **402** — HTTP 402 Payment Required (the response that triggers payment)
+## The Token: $402
 
-## Two Tokens
+One token. Simple.
 
-The ecosystem has two distinct tokens:
+- **$402** is a PoW mining token on BSV (21M supply, 100% mined, no pre-mine)
+- Run the path402 client → earn $402 by mining
+- Mining uses a Hash-to-Mint (HTM) sCrypt smart contract with Proof-of-Indexing
+- Nodes buy content tokens they want to serve (like BitTorrent — you choose what you propagate)
+- Nodes earn from serving content they've bought
+- You only serve what you buy — no acting as a conduit for traffic you don't agree with
 
-| | **$402** | **$PATH402** |
-|---|---|---|
-| **What** | PoW mining token | Equity token |
-| **Supply** | 21M (mined via HTM contract) | 1B (treasury sale) |
-| **How** | Run path402 client, mine | Buy from treasury |
-| **Standard** | BSV-21 sCrypt smart contract | BSV-20 |
+See [HTM_TOKEN.md](docs/HTM_TOKEN.md) for the full mining token spec.
 
-**$402** is the mining reward — earned by running the path402 client that indexes, serves, and trades content tokens. It uses a Hash-to-Mint (HTM) sCrypt smart contract (`Path402HTM extends BSV20V2`) with Proof-of-Indexing.
+## How It Works
 
-**$PATH402** is the equity instrument — buy it for protocol revenue share (70/30 split, KYC required for dividends).
+```
+1. Run path402 client         → Join the P2P network
+2. Client indexes BSV-21 tokens → Useful work for the network
+3. Client mines $402           → Proof-of-Indexing rewards
+4. Buy content tokens          → Choose what to serve
+5. Serve content to peers      → Earn from serving
+6. Audit your content          → Only propagate what you approve
+```
 
-See [HTM_TOKEN.md](docs/HTM_TOKEN.md) for full mining token details.
+The network is **permissioned by the operator**: each node decides what content to buy, index, and serve. No node is forced to serve anything. Like BitTorrent, curation happens at the operator level.
 
 ## Documentation
 
@@ -33,17 +38,12 @@ See [HTM_TOKEN.md](docs/HTM_TOKEN.md) for full mining token details.
 |----------|-------------|
 | **[DOC_INDEX.md](docs/DOC_INDEX.md)** | Full documentation index |
 | **[HTM_TOKEN.md](docs/HTM_TOKEN.md)** | $402 Hash-to-Mint mining token spec |
-| **[PROTOCOL_VISION.md](docs/PROTOCOL_VISION.md)** | Canonical protocol design (10 steps) |
+| **[PROTOCOL_VISION.md](docs/PROTOCOL_VISION.md)** | Canonical protocol design |
 | **[PATHD_ARCHITECTURE.md](docs/PATHD_ARCHITECTURE.md)** | path402d client architecture |
 | **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** | Five-layer system architecture |
 | **[$402-STANDARD.md](docs/$402-STANDARD.md)** | HTTP 402 protocol specification |
-| **[BUSINESS_MODEL.md](docs/BUSINESS_MODEL.md)** | Revenue model and economics |
-| **[TOKEN_ARCHITECTURE.md](docs/TOKEN_ARCHITECTURE.md)** | $PATH402 equity token details |
-| **[TOKEN_CUSTODY_GUIDE.md](docs/TOKEN_CUSTODY_GUIDE.md)** | User guide for token holders |
 
 ## Running the Client
-
-The path402 client mines $402 tokens while indexing and serving content:
 
 ```bash
 # Set environment
@@ -57,19 +57,9 @@ npx path402 agent start
 The client:
 1. Connects to the P2P gossip network (libp2p)
 2. Indexes BSV-21 token transfers
-3. Serves content to peers
+3. Serves content to peers who hold valid tokens
 4. Mines $402 via Proof-of-Indexing (HTM contract)
-5. Optionally runs AI-powered speculation
-
-## Pages
-
-- `/` — Homepage with protocol overview
-- `/token` — Buy, stake, and manage $PATH402 tokens
-- `/account` — User dashboard and holdings
-- `/registry` — Cap table and holder registry
-- `/docs` — Full documentation
-- `/exchange` — Token marketplace
-- `/whitepaper` — Protocol whitepaper
+5. Optionally runs AI-powered content speculation
 
 ## Ecosystem
 
@@ -80,24 +70,18 @@ The client:
 | **@path402/htm** | HTM smart contract package | `path402/packages/htm` |
 | **@path402/core** | Core client library | `path402/packages/core` |
 | **path402 desktop** | Electron desktop client | `path402/apps/desktop` |
-| **Live Exchange** | Trade tokens | [b0ase.com/exchange](https://b0ase.com/exchange) |
 
 ## Development
 
 ```bash
-# Install dependencies
 pnpm install
-
-# Run development server
 pnpm dev
-
-# Build for production
 pnpm build
 ```
 
 ## Deployment
 
-This site is deployed on Vercel at [path402.com](https://path402.com).
+Deployed on Vercel at [path402.com](https://path402.com).
 
 Also serves as the codebase for:
 - [path401.com](https://path401.com) — `NEXT_PUBLIC_SITE_VARIANT=401`
