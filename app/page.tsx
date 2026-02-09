@@ -1260,9 +1260,9 @@ function DashboardPanel() {
         <div className="section-label">Live Metrics</div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-zinc-200 dark:border-zinc-800">
           {[
-            { label: '$PATH402', value: formatNumber(holding?.balance), color: '' },
+            { label: '$402', value: formatNumber(holding?.balance), color: '' },
             { label: 'Staked', value: formatNumber(holding?.stakedBalance), color: 'text-purple-600 dark:text-purple-400' },
-            { label: 'Dividends', value: formatNumber(holding?.pendingDividends), color: 'text-green-600 dark:text-green-400' },
+            { label: 'Revenue', value: formatNumber(holding?.pendingDividends), color: 'text-green-600 dark:text-green-400' },
             { label: 'Library', value: String(libraryCount), color: '' },
           ].map((m, i) => (
             <div key={m.label} className={`p-6 ${i < 3 ? 'border-r border-zinc-200 dark:border-zinc-800' : ''}`}>

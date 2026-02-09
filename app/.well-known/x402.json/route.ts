@@ -60,7 +60,7 @@ export async function GET() {
         },
       },
 
-      // PATH402.com Token Info
+      // $402 Protocol Token Info
       token: {
         symbol: TOKEN_CONFIG.symbol,
         name: TOKEN_CONFIG.name,
@@ -88,17 +88,17 @@ export async function GET() {
         holding: 'https://path402.com/api/token/holding',
       },
 
-      // Shareholder Benefits
-      shareholderBenefits: {
+      // Staking Tiers
+      stakingTiers: {
         tier1: {
-          name: 'Bearer Instrument',
+          name: 'Bearer (Permissionless)',
           requirements: ['Hold tokens'],
-          benefits: ['Transfer freely', 'Trade on exchanges'],
+          benefits: ['Transfer freely', 'Trade on exchanges', 'Serve content'],
         },
         tier2: {
-          name: 'Registered Shareholder',
-          requirements: ['Hold tokens', 'Complete KYC', 'Stake tokens'],
-          benefits: ['Quarterly dividends', 'Voting rights', 'Financial reports'],
+          name: 'Staker ($401 KYC Required)',
+          requirements: ['Hold tokens', 'Complete $401 identity verification', 'Stake tokens'],
+          benefits: ['Serving revenue share', 'Revenue proportional to stake'],
         },
       },
 
@@ -108,7 +108,7 @@ export async function GET() {
         bsvInscription: true,
         crossChainSettlement: true,
         cheapestRouting: true,
-        dividendDistribution: true,
+        servingRevenueShare: true,
       },
 
       // Legal

@@ -294,7 +294,7 @@ export default function AccountPage() {
       }
 
       // Step 2: Sign the withdrawal message
-      const withdrawMessage = `Withdraw ${amount.toLocaleString()} $PATH402 to ${destination}. Timestamp: ${timestamp}`;
+      const withdrawMessage = `Withdraw ${amount.toLocaleString()} $402 to ${destination}. Timestamp: ${timestamp}`;
       const signRes = await fetch('/api/auth/sign', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -391,7 +391,7 @@ export default function AccountPage() {
             className="text-zinc-400"
             variants={fadeIn}
           >
-            Manage your $PATH402 holdings and wallet
+            Manage your $402 token holdings and wallet
           </motion.p>
         </motion.div>
 
@@ -440,7 +440,7 @@ export default function AccountPage() {
           {derivedAddress ? (
             <div className="space-y-4">
               <div className="p-4 bg-green-500/10 border border-green-500/30 ">
-                <div className="text-green-400 text-sm mb-1">Your $PATH402 Address</div>
+                <div className="text-green-400 text-sm mb-1">Your $402 Address</div>
                 <div className="font-mono text-zinc-900 dark:text-white break-all">{derivedAddress.address}</div>
                 <p className="text-zinc-500 text-xs mt-2">
                   You control this address. Tokens sent here are yours.
@@ -672,7 +672,7 @@ export default function AccountPage() {
           </div>
 
           <p className="text-zinc-500 text-xs mt-4">
-            Tier 2 staking with dividends and governance will require KYC verification.
+            Tier 2 staking with serving revenue share requires $401 identity verification (KYC).
           </p>
         </motion.div>
 
@@ -684,7 +684,7 @@ export default function AccountPage() {
           transition={{ delay: 0.3 }}
           whileHover={{ borderColor: "rgba(96, 165, 250, 0.5)" }}
         >
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-6">$PATH402 Holdings</h2>
+          <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-6">$402 Holdings</h2>
 
           {loading ? (
             <div className="text-zinc-400">Loading...</div>
@@ -696,7 +696,7 @@ export default function AccountPage() {
                 <div className="text-4xl font-bold text-zinc-900 dark:text-white">
                   {formatNumber(holding.balance)}
                 </div>
-                <div className="text-sm text-zinc-500">$PATH402</div>
+                <div className="text-sm text-zinc-500">$402</div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -735,7 +735,7 @@ export default function AccountPage() {
             </div>
           ) : (
             <div className="text-center py-8">
-              <div className="text-zinc-400 mb-4">You don't hold any $PATH402 tokens yet.</div>
+              <div className="text-zinc-400 mb-4">You don't hold any $402 tokens yet.</div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -808,7 +808,7 @@ export default function AccountPage() {
                   Withdrawal successful!
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
-                  {withdrawResult.amount.toLocaleString()} $PATH402 sent to your on-chain address.
+                  {withdrawResult.amount.toLocaleString()} $402 sent to your on-chain address.
                 </div>
                 <a
                   href={`https://whatsonchain.com/tx/${withdrawResult.txId}`}

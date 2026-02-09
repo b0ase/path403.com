@@ -21,8 +21,8 @@ graph TB
         EX2[b0ase.com/exchange]
     end
 
-    subgraph L3["Layer 3: $PATH402 Token"]
-        TOK[BSV-20 Token<br/>1B Supply]
+    subgraph L3["Layer 3: $402 PoW20 Token"]
+        TOK[BSV-21 HTM<br/>21M Supply]
     end
 
     subgraph L2["Layer 2: Facilitator"]
@@ -62,7 +62,7 @@ path402-com/
 │   │   ├── auth/              # HandCash OAuth
 │   │   ├── price/             # BSV price oracle
 │   │   ├── stake/             # Staking operations
-│   │   ├── token/             # $PATH402 token operations
+│   │   ├── token/             # $402 token operations
 │   │   ├── tokens/            # Token marketplace (future)
 │   │   ├── wallet/            # Wallet registration
 │   │   └── x402/              # Facilitator endpoints
@@ -256,9 +256,7 @@ sequenceDiagram
 
 6. **Yours Wallet Detection**: Browser extension loads slowly. Check `window.yours` after delay.
 
-7. **Two Tokens Exist**:
-   - `5bf47d...` = $PATH402 (1B, equity)
-   - `7a1d...` = $402 (1B, separate)
+7. **One Token**: $402 PoW20 HTM (21M, mined). Legacy $PATH402 equity token deprecated.
 
 ---
 

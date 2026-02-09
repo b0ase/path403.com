@@ -1,21 +1,26 @@
 // Token Configuration
-// PATH402.com = On-chain BSV-20 token ticker (as deployed)
-// $PATH402 = User-friendly display name
-// See docs/ARCHITECTURE.md for full token architecture
+// $402 = PoW20 Hash-to-Mint token on BSV-21
+// Earned by running path402d and indexing BSV-21 tokens (Proof of Indexing)
+// Mirrors Bitcoin: 21M supply, 8 decimals, 50/mint, 210K halving, 33 eras
 export const TOKEN_CONFIG = {
-  symbol: 'PATH402.com',  // Must match on-chain ticker exactly for transfers
-  displaySymbol: '$PATH402',  // Human-friendly display name
-  name: 'PATH402.com Facilitator Equity',
-  description: 'Equity in the PATH402.com x402 facilitator business. Stake to earn dividends from facilitator fees.',
-  totalSupply: 1_000_000_000, // 1 billion
-  treasuryAllocation: 500_000_000, // 50% retained by business
-  publicAllocation: 500_000_000, // 50% on sale via treasury curve
-  decimals: 0,
-  inscriptionId: '5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d_1',
-  txId: '5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d',
-  protocol: 'bsv-20',
-  marketUrl: 'https://1sat.market/outpoint/5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d_1/timeline',
-  treasuryAddress: '1BrbnQon4uZPSxNwt19ozwtgHPDbgvaeD1',
+  symbol: '402',  // On-chain BSV-21 ticker
+  displaySymbol: '$402',  // Human-friendly display name
+  name: '$402 Protocol Token',
+  description: 'PoW20 mining token for the $402 network. Earned by running nodes and indexing BSV-21 tokens. Stake with $401 KYC to earn serving revenue.',
+  totalSupply: 21_000_000, // 21 million (8 decimal places)
+  decimals: 8,
+  // Mainnet token not yet deployed — inscription details will be updated after deployment
+  inscriptionId: '', // Set after mainnet deploy
+  txId: '', // Set after mainnet deploy
+  protocol: 'bsv-21',
+  marketUrl: '', // Set after mainnet deploy
+  // Legacy $PATH402 equity token (deprecated — kept for reference)
+  legacy: {
+    symbol: 'PATH402.com',
+    inscriptionId: '5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d_1',
+    txId: '5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d',
+    treasuryAddress: '1BrbnQon4uZPSxNwt19ozwtgHPDbgvaeD1',
+  },
 };
 
 // Wallet types

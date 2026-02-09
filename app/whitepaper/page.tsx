@@ -114,9 +114,9 @@ function WhitepaperContent() {
             We propose a protocol where any addressable endpoint—a person, a domain, an API—can become a <em className="text-zinc-900 dark:text-white">tokenized market</em>.
             Mint <span className="text-blue-400 font-mono">$YOURNAME</span> and tokenize your attention. Mint <span className="text-blue-400 font-mono">$yourdomain.com</span> and tokenize your content.
             Holders who stake become <em className="text-zinc-900 dark:text-white">partners</em>—running infrastructure,
-            indexing the blockchain, serving the registry, and receiving dividends. The result is a self-sustaining flywheel where buying, serving, and staking
-            are the same activity at different stages. No separate classes. No central infrastructure.
-            Just aligned incentives all the way down.
+            indexing the blockchain, serving the registry, and earning serving revenue. The $402 protocol token is earned through Proof-of-Work mining (PoW20),
+            and stakers who complete $401 identity verification receive a share of content revenue.
+            No separate classes. No central infrastructure. Just aligned incentives all the way down.
           </p>
         </div>
       </section>
@@ -191,7 +191,7 @@ function WhitepaperContent() {
     │                 │                       │
     │                 ▼                       │
     │   4. EARN REVENUE                       │
-    │      Entry fees + API fees + Dividends  │
+    │      Serving revenue + Mining rewards   │
     │                 │                       │
     │                 ▼                       │
     │   5. NEW BUYERS REPEAT                  │
@@ -275,7 +275,7 @@ function WhitepaperContent() {
           <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Compliance and Dividends</h3>
 
           <p className="text-zinc-400 leading-relaxed mb-6">
-            Bearer shares are permissionless—anyone can hold and trade them. But dividends require compliance.
+            Bearer shares are permissionless—anyone can hold and trade them. But serving revenue requires identity compliance via the $401 protocol.
           </p>
 
           <div className="overflow-x-auto mb-6">
@@ -283,8 +283,8 @@ function WhitepaperContent() {
               <thead>
                 <tr className="border-b border-zinc-800">
                   <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Tier</th>
-                  <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">KYC</th>
-                  <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Dividends</th>
+                  <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">$401 KYC</th>
+                  <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Revenue Share</th>
                   <th className="text-left py-3 text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Can Trade</th>
                 </tr>
               </thead>
@@ -306,14 +306,14 @@ function WhitepaperContent() {
           </div>
 
           <p className="text-zinc-400 leading-relaxed mb-4">
-            <strong className="text-zinc-900 dark:text-white">To receive dividends:</strong>
+            <strong className="text-zinc-900 dark:text-white">To receive serving revenue:</strong>
           </p>
           <ol className="space-y-2 text-zinc-400 mb-6 list-decimal list-inside">
             <li>Hold bearer shares (tokens)</li>
-            <li>Complete KYC verification</li>
-            <li>Stake tokens on the site</li>
+            <li>Complete $401 identity verification (KYC)</li>
+            <li>Stake tokens on the network</li>
             <li>Appear on the Registry of Members</li>
-            <li>Receive proportional dividends from entry fees</li>
+            <li>Receive proportional revenue from served content</li>
           </ol>
 
           <p className="text-zinc-400 leading-relaxed">
@@ -559,10 +559,10 @@ Every / in the path is a business relationship with revenue flowing UP.`}
             <div className="border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50 dark:bg-zinc-950">
               <div className="text-zinc-500 text-xs uppercase tracking-widest mb-2">Staker Receives</div>
               <ul className="text-zinc-400 text-sm space-y-1">
-                <li>• Share of entry fees (70%)</li>
-                <li>• Child path creation fees</li>
-                <li>• API access fees</li>
-                <li>• Dividends proportional to stake</li>
+                <li>• 100% of serving revenue (proportional to stake)</li>
+                <li>• $402 mining rewards (from Proof of Indexing)</li>
+                <li>• Requires $401 identity verification</li>
+                <li>• Revenue accrues while staked</li>
               </ul>
             </div>
           </div>
@@ -844,13 +844,15 @@ Result: Big indexers can't hide. Users know who they're trusting.`}
           <pre className="bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6 text-sm overflow-x-auto text-zinc-400 mb-6">
             {`Layer 0: BitcoinSV           ← 1M+ TPS base layer
     ↓
-Layer 1: BSV-21 + PoW20      ← Token standard + mining
+Layer 1: BSV-21 + PoW20 HTM  ← Token standard + Hash-to-Mint
     ↓
-Layer 2: path402d Network      ← Indexers serving content
+Layer 2: path402d Network     ← Indexers serving content
     ↓
-Interface: BRC-100           ← Browser ↔ path402d
+Layer 3: $401 Identity        ← KYC for staking revenue
     ↓
-Application: $402 Protocol   ← Paths, tokens, dividends`}
+Interface: BRC-100            ← Browser ↔ path402d
+    ↓
+Application: $402 Protocol    ← Paths, tokens, revenue`}
           </pre>
 
           <div className="bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6 text-center">
@@ -1153,18 +1155,18 @@ Network grows through real relationships`}
           </p>
 
           <pre className="bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-6 text-sm overflow-x-auto text-zinc-400 mb-6">
-            {`Your dividend = (your_staked / total_staked) × period_revenue
+            {`Your share = (your_staked / total_staked) × period_revenue
 
 Simple. Fair. No gaming.
 
-Revenue Split (Configurable by creator):
-├── Creator wallet (95%)
-└── Indexer Reward (5%)`}
+Revenue Split:
+├── Staked token holders (100% of serving revenue)
+└── $401 KYC required to claim`}
           </pre>
 
           <p className="text-zinc-400 leading-relaxed mb-6">
-            <strong className="text-zinc-900 dark:text-white">KYC required for dividends.</strong> Basic token holding is permissionless—anyone can buy and trade.
-            But claiming dividends requires identity verification. This creates a natural compliance layer where money flows out.
+            <strong className="text-zinc-900 dark:text-white">$401 KYC required for revenue.</strong> Basic token holding is permissionless—anyone can buy and trade.
+            But claiming serving revenue requires $401 identity verification. This creates a natural compliance layer where money flows out.
           </p>
 
           <h4 className="text-xs font-bold text-zinc-500 mb-3 uppercase tracking-widest">Proof of Serve (Not Proof of Work)</h4>

@@ -76,42 +76,42 @@ These are inverse curves serving different purposes. Both use sqrt_decay math bu
 
 ---
 
-### Layer 3: The Token ($PATH402)
+### Layer 3: The Token ($402)
 
-**What it is:** Equity in the PATH402.com facilitator business. ONE token. Not two.
+**What it is:** A PoW20 Hash-to-Mint (HTM) token on BSV-21. Earned by running the path402d client.
 
 **Key facts:**
 
-- Total supply: 1,000,000,000 (1 billion)
-- 50% retained by PATH402.com (the business treasury)
-- 50% on sale via treasury pricing curve (price increases as supply sells)
-- Minted as a 1Sat ordinal inscription on BSV
-- Tradeable on 1sat.market and b0ase.com/exchange
+- Total supply: 21,000,000 (mirrors Bitcoin exactly)
+- 8 decimal places (same as Bitcoin satoshis)
+- 50 tokens per mint, halving every 210,000 mints (~4 years)
+- 33 halving eras (~132 years of mining)
+- 100% mined, 0% pre-mine
+- Earned through Proof of Indexing (BRC-114)
 
-**What holding $PATH402 gets you:**
+**What $402 does:**
 
-- **Staking:** Stake tokens to earn dividends from facilitator revenue (verification fees, inscription fees, settlement fees)
-- **Governance:** (Future) Vote on protocol parameters
-- **Registry:** Registered holders appear on the cap table at path402.com/registry
+- **Mining reward:** Earned by running path402d and indexing BSV-21 tokens
+- **Staking:** Stake $402 tokens + complete $401 KYC to earn serving revenue
+- **Network fuel:** The token that keeps the indexing network running
 
-**What holding $PATH402 does NOT get you:**
+**What $402 does NOT do:**
 
-- It is not required to use the $402 standard
-- It is not spent when agents acquire content
-- It is not a utility token for protocol operations
-- It is not a second token called "$402" — there is only $PATH402
+- It is not equity in path402.com (the business)
+- It is not purchased — it is mined
+- It is not a content token — content tokens are separate per-path tokens
 
-**The $402 token (if it was separately minted) should be deprecated or merged.** The "$402 Token Standard" is the name of the protocol specification. It is not a separate token. The protocol standard and the investment token are different things. The standard is a document. The token is equity. Only $PATH402 exists as a token.
+**Note:** The legacy $PATH402 equity token (BSV-20, 1B supply) has been deprecated. $402 is the only protocol token going forward.
 
 ---
 
 ### Layer 4: The Exchanges
 
-**path402.com/exchange:** Protocol-specific marketplace. Shows $402-standard content tokens — the access tokens that creators mint for their content using the standard. Example tokens: `$b0ase.com/$blog`, `$b0ase.com/$api`. These are content access tokens priced with access pricing (price decreases with supply).
+**path402.com/exchange:** Protocol-specific marketplace. Shows content tokens — the access tokens that creators mint for their content. Example tokens: `$b0ase.com/$blog`, `$b0ase.com/$api`. These are content access tokens priced with sqrt_decay curves.
 
-**b0ase.com/exchange:** The broader marketplace. Lists $PATH402 alongside 79+ other project tokens from the b0ase.com portfolio. This is the investment exchange where project equity tokens trade. $PATH402 appears here as one listing among many.
+**b0ase.com/exchange:** The broader marketplace. Lists project tokens from the b0ase.com portfolio.
 
-**path402.com/token:** The dedicated page for buying/staking/withdrawing $PATH402 tokens directly. Shows treasury status, price curve, staking interface, withdrawal to ordinals wallet.
+**path402.com/token:** The $402 PoW20 token page. Shows mining stats, staking interface, and the Hash-to-Mint contract details.
 
 ---
 
@@ -155,14 +155,11 @@ These are inverse curves serving different purposes. Both use sqrt_decay math bu
 
 ### "Are there two tokens?"
 
-No. There is one token: $PATH402. The "$402 Token Standard" is the name of the protocol specification, not a token. If a second token called "$402" was minted, it should be deprecated or merged into $PATH402.
+No. $402 is the only protocol token. It is a PoW20 Hash-to-Mint token earned by running the path402d client. Content tokens (per-path access tokens) are separate — they are minted by content creators for their specific paths.
 
 ### "Does the price go up or down?"
 
-Both, depending on context:
-
-- **Content access tokens** (what creators mint): Price goes DOWN as more people buy access. Early buyers pay premium for time advantage, earn serving revenue.
-- **$PATH402 investment token** (equity in the business): Price goes UP as treasury depletes. Early investors get cheap tokens, rewarded for early belief.
+Content access tokens use sqrt_decay pricing — price changes based on supply. The $402 protocol token is not purchased — it is mined. Its market price is determined by supply and demand on secondary markets.
 
 ### "Is PATH402.com a protocol or a business?"
 
@@ -203,7 +200,7 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 | Exchange (broad) | Live | b0ase.com/exchange |
 | MCP server | Published | npm: path402-mcp-server |
 | GitHub repo | Public | github.com/b0ase/path402-mcp-server |
-| $PATH402 token | Minted | 1Sat ordinal inscription |
+| $402 PoW20 token | Pending mainnet deploy | BSV-21 HTM contract |
 | HandCash wallet integration | Working | path402.com/token |
 
 ---
@@ -214,7 +211,7 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 2. **Creator tools** — Wizard for anyone to create $402-gated content on their own domain
 3. **Agent SDK** — Beyond MCP, a standalone SDK for non-Claude agents
 4. **Real payment flow** — Currently the exchange shows placeholder/simulated data; needs live HandCash transaction processing
-5. **$402 token cleanup** — If a separate $402 token was minted, deprecate it and communicate that $PATH402 is the only token
+5. **Deploy $402 mainnet** — Deploy the PoW20 HTM contract to BSV mainnet, add DNS TXT record to path402.com
 
 ---
 
@@ -224,7 +221,7 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 
 **Why x402 compatibility?** Coinbase and Cloudflare are pushing x402 as the standard. Rather than compete with a protocol backed by those companies, build the best facilitator for their protocol. Let them do the marketing. Capture the settlement.
 
-**Why 50/50 token split?** Creator retains majority control (the issuer-always-majority principle from earlier design sessions). 50% sold funds development. 50% retained means the business always controls its own destiny. This also prevents hostile acquisition of the token supply.
+**Why 100% mined?** No pre-mine means no one has an unfair advantage. Like Bitcoin, the token is earned through work. This creates credibility and fair distribution.
 
 **Why sqrt_decay?** Mathematical guarantee that early participants earn positive ROI (for access pricing) or get rewarded for early belief (for treasury pricing). Unlike fixed pricing, it creates a natural market with price discovery. Unlike arbitrary pricing, it's deterministic and verifiable.
 
@@ -234,12 +231,16 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 
 ## Token Details
 
-**On-chain ticker:** `PATH402.com` (used in BSV-20 inscriptions)
+**On-chain ticker:** `402` (BSV-21 PoW20 HTM)
 
-**Display name:** `$PATH402` (user-facing)
+**Display name:** `$402` (user-facing)
 
-**Genesis inscription:** `5bf47d3af709a385d3a50a298faa18f9479b090114a69ce8308055861d20e18d_1`
+**Standard:** BSV-21 Hash-to-Mint (BRC-114 Proof of Indexing)
 
-**Treasury address:** `1BrbnQon4uZPSxNwt19ozwtgHPDbgvaeD1`
+**Supply:** 21,000,000 (8 decimal places, mirrors Bitcoin)
 
-**Note:** The on-chain BSV-20 ticker is `PATH402.com`. In UI and documentation, we display it as `$PATH402` for readability. These refer to the same token. Transfer inscriptions must use the exact on-chain ticker `PATH402.com` to be recognized by indexers.
+**Distribution:** 100% mined, 0% pre-mine, 50 tokens per mint, halving every 210,000 mints
+
+**Genesis inscription:** Pending mainnet deployment
+
+**Legacy token:** The $PATH402 BSV-20 equity token (`5bf47d...`) has been deprecated.
