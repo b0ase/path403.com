@@ -52,14 +52,14 @@ export default function Page403() {
           className="absolute left-1/2 -translate-x-1/2 opacity-30"
           style={{ width: 'calc(100% - 8rem)', top: '-16%' }}
         >
-          <source src="/403-hero.mp4" type="video/mp4" />
+          <source src="/403-RED-1.mp4" type="video/mp4" />
         </video>
 
         {/* Dot pattern */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(245, 158, 11, 0.8) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(239, 68, 68, 0.8) 1px, transparent 1px)',
             backgroundSize: '40px 40px',
           }}
         />
@@ -69,7 +69,7 @@ export default function Page403() {
           <div
             className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px]"
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.02) 35%, transparent 70%)',
+              background: 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 35%, transparent 70%)',
             }}
           />
         </div>
@@ -84,10 +84,10 @@ export default function Page403() {
 
         {/* HUD corners */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-6 left-6 w-12 h-12 border-l-2 border-t-2 border-amber-500/10" />
-          <div className="absolute top-6 right-6 w-12 h-12 border-r-2 border-t-2 border-amber-500/10" />
-          <div className="absolute bottom-6 left-6 w-12 h-12 border-l-2 border-b-2 border-amber-500/10" />
-          <div className="absolute bottom-6 right-6 w-12 h-12 border-r-2 border-b-2 border-amber-500/10" />
+          <div className="absolute top-6 left-6 w-12 h-12 border-l-2 border-t-2 border-red-500/10" />
+          <div className="absolute top-6 right-6 w-12 h-12 border-r-2 border-t-2 border-red-500/10" />
+          <div className="absolute bottom-6 left-6 w-12 h-12 border-l-2 border-b-2 border-red-500/10" />
+          <div className="absolute bottom-6 right-6 w-12 h-12 border-r-2 border-b-2 border-red-500/10" />
           <div className="absolute top-8 left-20 text-[7px] font-mono text-zinc-700 tracking-[0.25em]">
             ACCESS CONTROL PROTOCOL v1.0
           </div>
@@ -105,8 +105,8 @@ export default function Page403() {
             className="flex items-center gap-3 mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
             </span>
             <span className="text-zinc-600 text-[10px] tracking-[0.3em] uppercase font-mono font-bold">
               HTTP 403 : FORBIDDEN &mdash; ACCESS DENIED
@@ -120,7 +120,7 @@ export default function Page403() {
             className="font-display font-black tracking-tighter leading-[0.85] mb-2"
             style={{
               fontSize: 'clamp(4rem, 12vw, 12rem)',
-              textShadow: '0 0 10px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2), 0 0 60px rgba(245, 158, 11, 0.1)',
+              textShadow: '0 0 10px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.2), 0 0 60px rgba(239, 68, 68, 0.1)',
             }}
           >
             <span className="text-white">$403</span>
@@ -137,7 +137,7 @@ export default function Page403() {
             }}
           >
             <div
-              className="font-display font-black tracking-tighter leading-[0.85] text-amber-400/30"
+              className="font-display font-black tracking-tighter leading-[0.85] text-red-400/30"
               style={{ fontSize: 'clamp(4rem, 12vw, 12rem)' }}
             >
               $403
@@ -151,7 +151,7 @@ export default function Page403() {
             className="mb-4"
           >
             <span className="text-zinc-400 text-xl md:text-2xl tracking-[0.3em] uppercase font-display font-black">
-              SECURE YOUR PERIMETER
+              THE FORBIDDEN PATH
             </span>
           </motion.div>
 
@@ -161,7 +161,7 @@ export default function Page403() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-zinc-500 max-w-xl text-sm leading-relaxed mb-12 font-mono"
           >
-            The <code className="text-amber-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">$403</code> standard
+            The <code className="text-red-400 bg-zinc-900 px-1.5 py-0.5 border border-zinc-800">$403</code> standard
             is the access control layer of the protocol stack.
             Geo-gates, time-locks, blacklists, compliance rules &mdash;
             all enforced on-chain, all composable with $401 identity and $402 payment.
@@ -175,7 +175,7 @@ export default function Page403() {
           >
             <Link
               href="/spec"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-amber-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-amber-700 transition-all overflow-hidden"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-all overflow-hidden"
             >
               Read the Spec
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -192,14 +192,14 @@ export default function Page403() {
               href="https://path401.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 border border-zinc-800 text-zinc-400 font-bold uppercase tracking-widest text-xs hover:border-amber-500/50 hover:text-amber-400 transition-all"
+              className="inline-flex items-center gap-3 px-8 py-4 border border-zinc-800 text-zinc-400 font-bold uppercase tracking-widest text-xs hover:border-red-500/50 hover:text-red-400 transition-all"
             >
               $401 Identity &rarr;
             </a>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/20 to-transparent" />
       </section>
 
       {/* ═══ THE IDEA ═══ */}
@@ -233,7 +233,7 @@ export default function Page403() {
                 <p className="text-zinc-500 text-sm">Economic access. Anyone who pays can enter. The market decides.</p>
               </motion.div>
               <motion.div custom={0.3} variants={fadeUp} className="p-8 md:p-12 flex-1">
-                <div className="text-[9px] text-amber-500 font-mono uppercase tracking-[0.2em] mb-4">$403 says</div>
+                <div className="text-[9px] text-red-500 font-mono uppercase tracking-[0.2em] mb-4">$403 says</div>
                 <p className="text-xl font-black tracking-tight mb-2">&ldquo;You shall not pass&rdquo;</p>
                 <p className="text-zinc-500 text-sm">Programmable denial. Geo-fencing, age-gating, time-locks, blacklists. Payment alone is not enough.</p>
               </motion.div>
@@ -266,7 +266,7 @@ export default function Page403() {
                 step: '02',
                 title: 'Time-lock',
                 desc: 'Embargo content until a specific date. Release schedules, pre-sale windows, limited-time access. The blockchain is the clock.',
-                color: 'text-amber-500',
+                color: 'text-red-500',
                 accent: false,
               },
               {
@@ -287,7 +287,7 @@ export default function Page403() {
                 step: '05',
                 title: 'Composite rules',
                 desc: 'Combine any rules with AND/OR logic. "UK residents AND age 18+ AND not blacklisted." The gate is programmable.',
-                color: 'text-amber-400',
+                color: 'text-red-400',
                 accent: true,
               },
             ].map((item, i) => (
@@ -300,7 +300,7 @@ export default function Page403() {
                 } hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors`}
               >
                 <span className={`w-10 h-10 flex items-center justify-center text-xs font-display font-bold shrink-0 ${
-                  item.accent ? 'bg-amber-500 text-black' : 'bg-zinc-100 dark:bg-zinc-900'
+                  item.accent ? 'bg-red-500 text-black' : 'bg-zinc-100 dark:bg-zinc-900'
                 }`}>
                   {item.step}
                 </span>
@@ -313,8 +313,8 @@ export default function Page403() {
                 </div>
                 {item.accent && (
                   <span className="relative flex h-2 w-2 self-center">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                   </span>
                 )}
               </motion.div>
@@ -356,8 +356,8 @@ export default function Page403() {
                 code: '403',
                 title: 'Access Control',
                 desc: 'The gate. Geo-fencing, time-locks, blacklists, identity-gating. Programmable denial.',
-                color: 'text-amber-500',
-                borderColor: 'border-amber-500/20',
+                color: 'text-red-500',
+                borderColor: 'border-red-500/20',
                 href: '#',
               },
             ].map((item, i) => (
@@ -437,7 +437,7 @@ export default function Page403() {
               >
                 <h3 className="text-sm font-black uppercase tracking-wider mb-2">{item.title}</h3>
                 <p className="text-zinc-500 text-sm mb-3">{item.desc}</p>
-                <span className="text-[8px] font-mono text-amber-500 uppercase tracking-widest">{item.tag}</span>
+                <span className="text-[8px] font-mono text-red-500 uppercase tracking-widest">{item.tag}</span>
               </motion.div>
             ))}
           </div>
@@ -458,7 +458,7 @@ export default function Page403() {
             className="text-3xl md:text-5xl font-display font-black tracking-tighter mb-6"
           >
             THE GATE IS<br />
-            <span className="text-amber-500">PROGRAMMABLE</span>
+            <span className="text-red-500">PROGRAMMABLE</span>
           </motion.h2>
           <motion.p
             custom={0.2}
@@ -470,7 +470,7 @@ export default function Page403() {
           <motion.div custom={0.3} variants={fadeUp} className="flex flex-wrap justify-center gap-4">
             <Link
               href="/spec"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-amber-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-amber-700 transition-colors"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-red-600 text-white font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-colors"
             >
               Read the Spec
             </Link>

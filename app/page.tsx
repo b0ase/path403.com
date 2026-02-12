@@ -150,7 +150,7 @@ function BootSequenceHero() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
       >
-        <source src="/403-hero.mp4" type="video/mp4" />
+        <source src="/403-RED-1.mp4" type="video/mp4" />
       </video>
 
       {/* ═══════════ BACKGROUND LAYERS ═══════════ */}
