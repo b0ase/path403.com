@@ -45,6 +45,8 @@ Thumbs.db
 *.jpg
 *.jpeg
 *.png
+!app/opengraph-image.png
+!app/twitter-image.png
 *.gif
 *.webp
 Screenshot*
