@@ -53,6 +53,30 @@ export default function XProtocolPage() {
         </div>
       </div>
 
+      {/* Hero videos — X Protocol traffic lights */}
+      <div className="max-w-6xl mx-auto px-3 pt-8 md:pt-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full rounded-lg border border-zinc-800"
+          >
+            <source src="/x-lights.mp4" type="video/mp4" />
+          </video>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full rounded-lg border border-zinc-800"
+          >
+            <source src="/x-junction-lights.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
       {/* Whitepaper content */}
       <article className="max-w-6xl mx-auto px-3 py-8 md:py-14">
         <style>{`
