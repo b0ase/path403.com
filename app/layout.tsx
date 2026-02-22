@@ -39,6 +39,14 @@ export const metadata: Metadata = {
     siteName: "$403 Protocol",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://path403.com/403-OG.png",
+        width: 678,
+        height: 461,
+        alt: "$403 — The Forbidden Path",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -46,6 +54,7 @@ export const metadata: Metadata = {
     description: "Programmable conditions for the open web. Three DNS records. Three subdomains.",
     creator: "@b0ase",
     site: "@b0ase",
+    images: ["https://path403.com/403-OG.png"],
   },
   robots: {
     index: true,
