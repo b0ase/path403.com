@@ -432,7 +432,7 @@ The DNS record is the activation energy. The flywheel does the rest.
 - HTTP 402 Payment Required — RFC 7231
 - HTTP 403 Forbidden — RFC 7231
 - BSV-21 Token Standard — https://docs.1satordinals.com/bsv21
-- PoW20 Hash-to-Mint — BRC-114
+- PoW20 Hash-to-Mint — BRC-116
 - DNS-DEX — https://dns-dex.com
 - path401.com — https://path401.com
 - path402.com — https://path402.com

@@ -124,7 +124,7 @@ Operators (Facilitators) earn reputation and revenue shares by:
 
 ## $402 Token Details (The Asset)
 
-"The Token" refers to **$402**, a PoW20 Hash-to-Mint token on BSV-21 (BRC-114 Proof of Indexing).
+"The Token" refers to **$402**, a PoW20 Hash-to-Mint token on BSV-21 (BRC-116 Proof of Indexing).
 
 *   **Supply**: 21,000,000 (mirrors Bitcoin exactly)
 *   **Decimals**: 8 (same as Bitcoin satoshis)

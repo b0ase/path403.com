@@ -151,7 +151,7 @@ export default async function Image() {
             </div>
           </div>
           <div style={{ fontSize: 12, color: '#3f3f46', letterSpacing: '0.15em', display: 'flex' }}>
-            BSV-21 // POW20 // BRC-114
+            BSV-21 // POW20 // BRC-116
           </div>
         </div>
       </div>

@@ -1006,7 +1006,7 @@ function TokenModel() {
             <div className="space-y-4">
               {[
                 ['Earned', 'By running a node and serving the network'],
-                ['Standard', 'BSV-21 via POW20 mining (BRC-114)'],
+                ['Standard', 'BSV-21 via POW20 mining (BRC-116)'],
                 ['Utility', 'Protocol fees, staking, governance'],
                 ['Distribution', 'Fair \u2014 operators earn, not speculators'],
               ].map(([label, desc]) => (

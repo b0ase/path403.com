@@ -113,7 +113,7 @@ const RELEASE_NOTES = [
     date: "February 2026",
     tag: "",
     changes: [
-      "BRC-114 Hash-to-Mint: real $402 token mining via on-chain smart contract",
+      "BRC-116 Hash-to-Mint: real $402 token mining via on-chain smart contract",
       "Proof-of-Indexing work commitments recorded permanently on BSV",
       "UTXO contention handling with automatic retry + backoff",
       "macOS builds signed AND notarized (no more Gatekeeper bypass)",

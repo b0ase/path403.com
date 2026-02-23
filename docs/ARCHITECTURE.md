@@ -87,7 +87,7 @@ These are inverse curves serving different purposes. Both use sqrt_decay math bu
 - 50 tokens per mint, halving every 210,000 mints (~4 years)
 - 33 halving eras (~132 years of mining)
 - 100% mined, 0% pre-mine
-- Earned through Proof of Indexing (BRC-114)
+- Earned through Proof of Indexing (BRC-116)
 
 **What $402 does:**
 
@@ -235,7 +235,7 @@ b0ase.com is Richard's digital venture studio (60+ projects). PATH402.com is one
 
 **Display name:** `$402` (user-facing)
 
-**Standard:** BSV-21 Hash-to-Mint (BRC-114 Proof of Indexing)
+**Standard:** BSV-21 Hash-to-Mint (BRC-116 Proof of Indexing)
 
 **Supply:** 21,000,000 (8 decimal places, mirrors Bitcoin)
 

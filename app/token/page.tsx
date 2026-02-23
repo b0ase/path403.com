@@ -93,7 +93,7 @@ export default function TokenPage() {
                   <div className="text-2xl font-black mb-3">02</div>
                   <h3 className="text-sm font-bold uppercase tracking-wide mb-2">Prove Your Work</h3>
                   <p className="text-zinc-500 text-sm">
-                    The HTM contract (BRC-114 Proof of Indexing) requires nodes to index BSV-21 tokens.
+                    The HTM contract (BRC-116 Proof of Indexing) requires nodes to index BSV-21 tokens.
                     Nodes that index and serve content earn $402 mining rewards.
                   </p>
                 </div>

@@ -304,7 +304,7 @@ This means:
 ### Token Standard
 
 $402 uses the BSV-21 PoW20 Hash-to-Mint standard:
-- Protocol: `bsv-21` (BRC-114 Proof of Indexing)
+- Protocol: `bsv-21` (BRC-116 Proof of Indexing)
 - Total supply: 21,000,000 (mirrors Bitcoin)
 - Decimal places: 8 (same as Bitcoin satoshis)
 - Distribution: 100% mined, 0% pre-mine
