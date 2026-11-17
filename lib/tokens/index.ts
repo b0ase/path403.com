@@ -29,7 +29,7 @@ let _supabase: any = null;
 function getSupabase(): any {
   if (!_supabase) {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY) /* service key only: no anon fallback (fail closed) */;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY /* only: no anon or SERVICE_KEY fallback (fail closed) */;
     if (!supabaseUrl || !supabaseKey) {
       throw new Error('Supabase environment variables not configured');
     }
