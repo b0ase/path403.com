@@ -1,3 +1,8 @@
+// ┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+// │ DO NOT set SUPABASE_SERVICE_ROLE_KEY on this project until this route is fixed: the signed message is not bound to the domain, and each call spends treasury funds.
+// │ Today this route fails closed only because that key is not set. See the internal auth & money review
+// │ of 17 Nov 2026 (path402-com / path403-com), held by the CTO.
+// └──────────────────────────────────────────────────────────────────────────────────────────────────────┘
 import { NextRequest, NextResponse } from 'next/server';
 import { createAndBroadcastInscription } from '@/lib/bsv-inscribe';
 import { verifyBsvMessageSignature, isValidBsvAddress } from '@/lib/bsv-domain-proof';

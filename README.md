@@ -1,5 +1,8 @@
 # path402.com
 
+> **Security:** DO NOT set `SUPABASE_SERVICE_ROLE_KEY` on this project's deployment until the auth/replay issues in `tokens/[address]/stream`, `uhrp/advertise`, `tokens/[address]/bridge` and `domain/verify-inscribe` (internal review, 17 Nov 2026) are fixed. Those routes fail closed only because the key is unset.
+
+
 The official website for the **$402 protocol**.
 
 ## What is $402?

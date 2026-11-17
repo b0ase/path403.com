@@ -1,3 +1,8 @@
+// ┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+// │ DO NOT set SUPABASE_SERVICE_ROLE_KEY on this project until this route is fixed: the viewer is not authenticated (x-wallet-handle is asserted) and a payment txid can be replayed or reused by another viewer.
+// │ Today this route fails closed only because that key is not set. See the internal auth & money review
+// │ of 17 Nov 2026 (path402-com / path403-com), held by the CTO.
+// └──────────────────────────────────────────────────────────────────────────────────────────────────────┘
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getToken } from '@/lib/tokens';
