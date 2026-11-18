@@ -3,13 +3,13 @@ import type { NextRequest } from 'next/server';
 import { retired } from '@/lib/retired';
 
 // RETIRED 18 Nov 2026 (security): every /api route answers 410 except these read-only public GETs the pages call.
+// (/api/token/cap-table is NOT on the list: it published stakers' KYC names with their handles.)
 // Routes here trusted asserted handles, unsigned cookies, or secret checks that pass when the env var is unset, and
 // several spent from the treasury key. Exact paths, GET only; anything else (other methods, encodings, trailing
 // slashes, new routes) is refused. The per-route 410s stay as a second layer.
 const OPEN_API_GETS = new Set([
   '/api/token/stats',
   '/api/token/onchain',
-  '/api/token/cap-table',
   '/api/price/bsv',
   '/api/tokens',
 ]);

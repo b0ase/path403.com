@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { NextRequest } from 'next/server';
 
 // 18 Nov 2026 blanket retirement: the proxy answers 410 for every /api request except these read-only public GETs.
-const OPEN_API_GETS = ['/api/token/stats', '/api/token/onchain', '/api/token/cap-table', '/api/price/bsv', '/api/tokens'];
+const OPEN_API_GETS = ['/api/token/stats', '/api/token/onchain', '/api/price/bsv', '/api/tokens'];
 const METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
 
 async function gate(): Promise<(req: NextRequest) => Response | Promise<Response>> {
@@ -81,6 +81,8 @@ describe('blanket /api retirement in the proxy', () => {
     }
     expect(await isRetired(await proxy(req('/api/client/identity', 'GET', { cookie: 'hc_handle=victim' })))).toBe(true);
     expect(await isRetired(await proxy(req('/api/x402/settle', 'POST')))).toBe(true);
+    // cap-table published stakers' KYC names with their handles
+    expect(await isRetired(await proxy(req('/api/token/cap-table', 'GET')))).toBe(true);
   });
 
   it('the proxy runs on every path except static assets (so /API and encoded variants reach it)', () => {
