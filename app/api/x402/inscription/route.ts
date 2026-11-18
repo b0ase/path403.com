@@ -1,3 +1,4 @@
+import { retired } from '@/lib/retired';
 import { NextRequest, NextResponse } from 'next/server';
 import { createInscription, getInscription } from '@/lib/x402';
 
@@ -45,55 +46,6 @@ export async function GET(request: NextRequest) {
   });
 }
 
-/**
- * POST /api/x402/inscription
- *
- * Create a new BSV inscription for a payment proof
- */
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const {
-      network,
-      txId,
-      payment,
-      signature,
-    } = body;
-
-    if (!network || !txId) {
-      return NextResponse.json({
-        error: 'network and txId are required'
-      }, { status: 400 });
-    }
-
-    const result = await createInscription(
-      network,
-      txId,
-      payment || {
-        from: 'unknown',
-        to: 'unknown',
-        amount: '0',
-        asset: 'unknown',
-      },
-      signature || ''
-    );
-
-    if (!result.success) {
-      return NextResponse.json({
-        error: result.error || 'Failed to create inscription'
-      }, { status: 500 });
-    }
-
-    return NextResponse.json({
-      inscription_id: result.inscriptionId,
-      txId: result.txId,
-      explorer_url: `https://whatsonchain.com/tx/${result.txId}`,
-      created_at: new Date().toISOString(),
-    }, { status: 201 });
-  } catch (error) {
-    console.error('[x402/inscription] Error:', error);
-    return NextResponse.json({
-      error: 'Failed to create inscription'
-    }, { status: 500 });
-  }
-}
+// RETIRED 18 Nov 2026 (security): POST took any {network, txId} with no authentication and broadcast an
+// inscription paid from the treasury key. 410 only; settlement inscribes via /api/x402/settle after a verified payment.
+export const POST = retired;

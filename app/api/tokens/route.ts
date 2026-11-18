@@ -1,3 +1,4 @@
+import { retired } from '@/lib/retired';
 import { NextRequest, NextResponse } from 'next/server';
 import { listTokens, registerToken, RegisterTokenRequest } from '@/lib/tokens';
 import { verifyDomainOwnership } from '@/lib/domain-verification';
@@ -29,75 +30,12 @@ export async function GET(request: NextRequest) {
   }
 }
 
-/**
- * POST /api/tokens
- *
- * Register a new $address token
- */
-export async function POST(request: NextRequest) {
-  try {
-    // Get issuer from auth headers
-    const issuerHandle = request.headers.get('x-wallet-handle');
-    const provider = request.headers.get('x-wallet-provider');
-
-    if (!issuerHandle || !provider) {
-      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
-    }
-
-    const body: RegisterTokenRequest = await request.json();
-
-    // Validate required fields
-    if (!body.address || !body.name) {
-      return NextResponse.json({ error: 'address and name are required' }, { status: 400 });
-    }
-
-    // Validate $address format
-    if (!body.address.startsWith('$')) {
-      return NextResponse.json({ error: 'Address must start with $' }, { status: 400 });
-    }
-
-    if (!body.issuer_address) {
-      return NextResponse.json({ error: 'issuer_address is required' }, { status: 400 });
-    }
-
-    // Validate access mode + usage pricing consistency
-    if (body.access_mode && !['token', 'usage', 'hybrid', 'public'].includes(body.access_mode)) {
-      return NextResponse.json({ error: 'Invalid access_mode' }, { status: 400 });
-    }
-
-    if (body.access_mode && (body.access_mode === 'usage' || body.access_mode === 'hybrid')) {
-      if (!body.usage_pricing || !body.usage_pricing.unit_ms || !body.usage_pricing.price_sats_per_unit) {
-        return NextResponse.json({
-          error: 'usage_pricing is required for access_mode usage/hybrid',
-        }, { status: 400 });
-      }
-    }
-
-    const domain = extractDomain(body.address);
-    const verified = await verifyDomainOwnership(domain, issuerHandle, body.issuer_address);
-    if (!verified) {
-      return NextResponse.json({
-        error: 'Domain ownership verification failed',
-        details: `Add a TXT record at _path402.${domain} with value path402=${issuerHandle} and issuer_address=${body.issuer_address}, and configure https://${domain}/.well-known/path402.json with issuer + issuer_address + on-chain signature.`,
-      }, { status: 403 });
-    }
-
-    const token = await registerToken(issuerHandle, body);
-
-    return NextResponse.json({
-      success: true,
-      token,
-    }, { status: 201 });
-  } catch (error) {
-    console.error('[/api/tokens POST] Error:', error);
-    const message = error instanceof Error ? error.message : 'Failed to register token';
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
-}
-
 function extractDomain(address: string): string {
   const parts = address.split('/').filter(Boolean);
   if (!parts.length) return '';
   const root = parts[0];
   return root.startsWith('$') ? root.slice(1) : root;
 }
+
+// RETIRED 18 Nov 2026 (security): POST trusted an unauthenticated x-wallet-handle header. 410 only.
+export const POST = retired;
